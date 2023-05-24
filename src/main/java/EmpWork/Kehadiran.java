@@ -9,35 +9,41 @@ import java.time.LocalDateTime;
  * @author Iqro Banyuanto
  */
 public class Kehadiran {
-    private boolean tapping;
-    private LocalDateTime waktu_masuk;
-    private LocalDateTime waktu_keluar;
-    private int jam_masuk;
-    private int jam_keluar;
+    private static LocalDateTime waktu_masuk;
+    private static LocalDateTime waktu_keluar;
+    private static int jam_masuk;
+    private static int jam_keluar;
     
     public Kehadiran(){
-        tapping = false;
+        waktu_masuk = null;
+        waktu_keluar = null;
+        jam_masuk = -99;
+        jam_keluar = -99;
     }
-    public void setWaktuMasuk(boolean tapping){
+    public void setWaktuMasuk(){
         waktu_masuk = LocalDateTime.now();
         jam_masuk = waktu_masuk.getHour();
     }
-    public void setWaktuKeluar(boolean tapping){
+    public void setWaktuKeluar(){
         waktu_keluar = LocalDateTime.now();
         jam_keluar = waktu_keluar.getHour();
     }
     public void resetRecord(){
         waktu_masuk = null;
         waktu_keluar = null;
-        jam_masuk = 0;
-        jam_keluar = 0;
+        jam_masuk = -99;
+        jam_keluar = -99;
+    }
+    public int cekJamMasuk(){
+        return jam_masuk;
+    }
+    public int cekJamKeluar(){
+        return jam_keluar;
     }
     public String getWaktuMasuk(){
-        return waktu_masuk.toString();
+        return "Jam Masuk: "+waktu_masuk.toString();
     }
     public String getWaktuKeluar(){
-        return waktu_keluar.toString();
+        return "Jam Keluar: "+waktu_keluar.toString();
     }
-    
-    
 }

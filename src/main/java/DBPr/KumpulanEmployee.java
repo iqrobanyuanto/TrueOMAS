@@ -5,6 +5,7 @@
 package DBPr;
 import EmpWork.Manager;
 import EmpWork.Pegawai;
+import EmpWork.Employee;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +65,15 @@ public class KumpulanEmployee {
         for(Pegawai s: listPegawai){
             s.showIdentity();
             System.out.println("");
+        }
+    }
+    public Employee searchEmployee(String namaJabatan, String idEmployee){
+        if(namaJabatan.equals("Manager")){
+            return getManager(idEmployee);
+        }else if(namaJabatan.equals("Pegawai")){
+            return getPegawai(idEmployee);
+        }else{
+            return null;
         }
     }
 }
