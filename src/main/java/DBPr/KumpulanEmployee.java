@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class KumpulanEmployee {
     private static List<Manager> listManager = new ArrayList();
-    private static List<Pegawai> listPegawai = new ArrayList();
+    private static List<Pegawai> listPegawai = new ArrayList(); 
     
     public void addManager(Manager manager){
         listManager.add(manager);
@@ -57,13 +57,13 @@ public class KumpulanEmployee {
     }
     public void showAllManager(){
         for(Manager s: listManager){
-            s.showIdentity();
+            s.showEmployee();
             System.out.println("");
         }
     }
     public void showAllPegawai(){
         for(Pegawai s: listPegawai){
-            s.showIdentity();
+            s.showEmployee();
             System.out.println("");
         }
     }

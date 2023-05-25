@@ -4,6 +4,7 @@
  */
 package EmpWork;
 import java.util.List;
+import java.util.ArrayList;
 /**
  *
  * @author Iqro Banyuanto
@@ -16,16 +17,23 @@ public abstract class Employee {
     private String alamat;
     //Untuk menyimpan data kehadiran satu hari, dan tapping sistem satu employee
     public Kehadiran kartuKehadiran;
+    //Untuk menyimpan record jam kerja selama sebulan
+    public PerhitunganWaktu recordKerja;
     //Untuk menyimpan data gaji pegawai
-    public PerhitunganGaji StatusGaji;
+    public PerhitunganGaji statusGaji;
     //untuk menyimpan tanggal dan waktu kehadiran
     public List<String> list_kehadiran;
     
-    public Employee(String nama, int umur, String nomor_telepon, String alamat){
+    public Employee(String idEmployee, String nama, int umur, String nomor_telepon, String alamat){
+        this.idEmployee = idEmployee;
         this.nama = nama;
         this.umur = umur;
         this.nomor_telepon = nomor_telepon;
         this.alamat = alamat;
+        kartuKehadiran = new Kehadiran();
+        recordKerja = new PerhitunganWaktu();
+        statusGaji = new PerhitunganGaji();
+        list_kehadiran = new ArrayList();
     }
     
     public void setIdEmployee(String id){
@@ -76,6 +84,6 @@ public abstract class Employee {
         return list_kehadiran;
     }
     
-    public abstract void showIdentity();
+    public abstract void showEmployee();
     
 }

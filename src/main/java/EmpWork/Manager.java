@@ -52,7 +52,7 @@ public class Manager extends Employee{
      }
      
      @Override
-     public void showIdentity(){
+     public void showEmployee(){
          
      }
 }
