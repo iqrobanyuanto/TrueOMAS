@@ -33,7 +33,7 @@ public class Login {
             if(k.getAkun(id, password) == null){
                 throw new Exception("Id atau password salah");
             }
-//          Nanti isi kode dibawah ini, apa yang terjadi kalau id dan password BENAR
+//          @MAx @Liyan Nanti isi kode dibawah ini, apa yang terjadi kalau id dan password BENAR
             System.out.println("Benar");
         }catch(Exception e){
             System.out.println(e.getMessage());
