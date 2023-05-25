@@ -17,7 +17,6 @@ public class TiketLembur {
     public TiketLembur(String nama){
         namaPegawai = nama;
         statuslembur = false;
-
     }
     public boolean setStatusLembur(String pengizin, int waktulembur){
         waktuLembur = waktulembur;

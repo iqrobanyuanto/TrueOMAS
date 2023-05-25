@@ -31,5 +31,10 @@ public class PerhitunganWaktu {
     public int getTotalJamKerja(){
         return totalJamKerja;
     }
+    public void showDescJamKerja(){
+            
+    }
+      //Belum ada algoritma untuk terlambat ketika saat jam masuk
+      //Belum ada algoritma untuk mendapatkan waktu lama lembur
     
 }

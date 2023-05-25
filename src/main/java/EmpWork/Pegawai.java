@@ -54,7 +54,7 @@ public class Pegawai extends Employee{
      }
      
      @Override
-     public void showIdentity(){
+     public void showEmployee(){
          
      }
      
