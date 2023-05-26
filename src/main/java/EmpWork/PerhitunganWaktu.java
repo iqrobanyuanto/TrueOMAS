@@ -36,5 +36,4 @@ public class PerhitunganWaktu {
     }
       //Belum ada algoritma untuk terlambat ketika saat jam masuk
       //Belum ada algoritma untuk mendapatkan waktu lama lembur
-    
 }

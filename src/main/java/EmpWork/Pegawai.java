@@ -3,50 +3,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package EmpWork;
+
 import java.time.LocalTime;
+
 /**
  *
  * @author Iqro Banyuanto
  */
 public class Pegawai extends Employee{
      private String nama_jabatan;
-     private int standargaji;
-     private LocalTime standarJamMasuk;
-     private LocalTime standarJamKeluar;
      public TiketLembur statusLembur;
      
      public Pegawai(String idEmployee, String namaEMP, int umur, String nomor_telepon, String alamat){
          super(idEmployee, namaEMP, umur, nomor_telepon, alamat);
          statusLembur = new TiketLembur(nama);
+         statusGaji.setStandarGaji(25000);
+         kartuKehadiran.setStadarMasuk(LocalTime.of(8, 0, 0));
+         kartuKehadiran.setStandarKeluar(LocalTime.of(17, 0, 0));
          nama_jabatan = "Pegawai";
      }
      
+     @Override
      public String getNamaJabatan(){
          return nama_jabatan;
-     }
-     
-     public void setStandarGaji(int standarGaji){
-         this.standargaji = standarGaji;
-     }
-     
-     public int getStandarGaji(){
-         return standargaji;
-     }
-     
-     public void setStadarMasuk(LocalTime standarjammasuk){
-        standarJamMasuk = standarjammasuk; 
-     }
-     
-     public LocalTime getStandarMasuk(){
-         return standarJamMasuk;
-     }
-     
-     public void setStandarKeluar(LocalTime standarjamkeluar){
-         standarJamKeluar = standarjamkeluar;
-     }
-     
-     public LocalTime getStandarKeluar(){
-         return standarJamKeluar;
      }
      
      public void assignLembur(String pengizin, int lamalembur){

@@ -12,42 +12,16 @@ import java.time.LocalTime;
  */
 public class Manager extends Employee{
      private String nama_jabatan;
-     private int standargaji;
-     private LocalTime standarJamMasuk;
-     private LocalTime standarJamKeluar;
-     public TiketLembur statusLembur;
      public Manager(String idEmployee, String namaEMP, int umur, String nomor_telepon, String alamat){
          super(idEmployee, namaEMP, umur, nomor_telepon, alamat);
-         statusLembur = new TiketLembur(nama);
+         statusGaji.setStandarGaji(35000);
+         kartuKehadiran.setStadarMasuk(LocalTime.of(11, 0, 0));
+         kartuKehadiran.setStandarKeluar(LocalTime.of(15, 0, 0));
          nama_jabatan = "Manager";
      }
-     
+     @Override
      public String getNamaJabatan(){
          return nama_jabatan;
-     }
-     
-     public void setStandarGaji(int standarGaji){
-         this.standargaji = standarGaji;
-     }
-     
-     public int getStandarGaji(){
-         return standargaji;
-     }
-     
-     public void setStadarMasuk(LocalTime standarjammasuk){
-        standarJamMasuk = standarjammasuk; 
-     }
-     
-     public LocalTime getStandarMasuk(){
-         return standarJamMasuk;
-     }
-     
-     public void setStandarKeluar(LocalTime standarjamkeluar){
-         standarJamKeluar = standarjamkeluar;
-     }
-     
-     public LocalTime getStandarKeluar(){
-         return standarJamKeluar;
      }
      
      @Override
