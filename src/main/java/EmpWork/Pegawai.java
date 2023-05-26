@@ -16,7 +16,7 @@ public class Pegawai extends Employee{
      public TiketLembur statusLembur;
      
      public Pegawai(String idEmployee, String namaEMP, int umur, String nomor_telepon, String alamat){
-         super(idEmployee ,namaEMP, umur, nomor_telepon, alamat);
+         super(idEmployee, namaEMP, umur, nomor_telepon, alamat);
          statusLembur = new TiketLembur(nama);
          nama_jabatan = "Pegawai";
      }

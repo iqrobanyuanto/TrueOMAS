@@ -16,9 +16,8 @@ public class Manager extends Employee{
      private LocalTime standarJamMasuk;
      private LocalTime standarJamKeluar;
      public TiketLembur statusLembur;
-     
-     public Manager(String idEmployee,String namaEMP, int umur, String nomor_telepon, String alamat){
-         super(idEmployee,namaEMP, umur, nomor_telepon, alamat);
+     public Manager(String idEmployee, String namaEMP, int umur, String nomor_telepon, String alamat){
+         super(idEmployee, namaEMP, umur, nomor_telepon, alamat);
          statusLembur = new TiketLembur(nama);
          nama_jabatan = "Manager";
      }
