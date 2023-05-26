@@ -12,6 +12,7 @@ import java.time.LocalTime;
  */
 public class Manager extends Employee{
      private String nama_jabatan;
+  
      public Manager(String idEmployee, String namaEMP, int umur, String nomor_telepon, String alamat){
          super(idEmployee, namaEMP, umur, nomor_telepon, alamat);
          statusGaji.setStandarGaji(35000);

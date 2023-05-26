@@ -13,7 +13,7 @@ import java.time.LocalTime;
 public class Pegawai extends Employee{
      private String nama_jabatan;
      public TiketLembur statusLembur;
-     
+  
      public Pegawai(String idEmployee, String namaEMP, int umur, String nomor_telepon, String alamat){
          super(idEmployee, namaEMP, umur, nomor_telepon, alamat);
          statusLembur = new TiketLembur(nama);
