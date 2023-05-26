@@ -25,4 +25,9 @@ public class Tapping {
             System.out.println(e.getMessage());
         }
     }
+    private void prosesKalkulasi(Employee emp){
+        if(emp.kartuKehadiran.getWaktu_masuk().getHour() > emp.kartuKehadiran.getStandarMasuk().getHour()){
+            
+        }
+    }
 }

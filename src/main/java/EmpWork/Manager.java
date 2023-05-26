@@ -19,6 +19,7 @@ public class Manager extends Employee{
          kartuKehadiran.setStandarKeluar(LocalTime.of(15, 0, 0));
          nama_jabatan = "Manager";
      }
+     
      @Override
      public String getNamaJabatan(){
          return nama_jabatan;

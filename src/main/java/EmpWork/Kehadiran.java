@@ -23,6 +23,7 @@ public class Kehadiran {
         jam_masuk = -99;
         jam_keluar = -99;
     }
+    
     public void setStadarMasuk(LocalTime standarjammasuk){
         standarJamMasuk = standarjammasuk; 
     }
@@ -44,9 +45,17 @@ public class Kehadiran {
         jam_masuk = waktu_masuk.getHour();
     }
     
+    public LocalDateTime getWaktu_masuk(){
+        return waktu_masuk;
+    }
+    
     public void setWaktuKeluar(){
         waktu_keluar = LocalDateTime.now();
         jam_keluar = waktu_keluar.getHour();
+    }
+    
+    public LocalDateTime getWaktu_keluar(){
+        return waktu_keluar;
     }
     
     public void resetRecord(){
@@ -70,9 +79,5 @@ public class Kehadiran {
     
     public String getWaktuKeluar(){
         return "Jam Keluar: "+waktu_keluar.toString();
-    }
-    
-    public void kalkulasiTotalJamKerja(){
-        
     }
 }
