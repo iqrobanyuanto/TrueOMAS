@@ -84,6 +84,14 @@ public abstract class Employee {
         return list_kehadiran;
     }
     
+    public void showListKehadiran(){
+        System.out.println("--Data Rekaman Kehadiran--");
+        for(String s : list_kehadiran){
+            System.out.println(s);
+        }
+        System.out.println("------");
+    }
+    
     public abstract String getNamaJabatan();
     
     public abstract void showEmployee();

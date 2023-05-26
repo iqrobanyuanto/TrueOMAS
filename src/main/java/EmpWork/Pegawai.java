@@ -34,7 +34,16 @@ public class Pegawai extends Employee{
      
      @Override
      public void showEmployee(){
-         
+        System.out.println("Jabatan: "+this.getNamaJabatan());
+        System.out.println("Id Manager: "+this.getIdEmployee());
+        System.out.println("Nama: "+this.getNamaEmployee());
+        System.out.println("Umur: "+this.getUmur());
+        System.out.println("Nomor Telepon: "+this.getNomorTelepon());
+        System.out.println("Alamat: "+this.getAlamat());
+        this.statusGaji.showDescGaji();
+        this.kartuKehadiran.showStandarJamKerja();
+        this.recordKerja.showDescJamKerja();
+        this.showListKehadiran();
+        this.statusLembur.showTiketDesc();
      }
-     
 }

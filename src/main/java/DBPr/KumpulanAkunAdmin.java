@@ -33,4 +33,7 @@ public class KumpulanAkunAdmin {
         }
         return null;
     }
+    public List<AkunAdmin> getListAkun(){
+        return listAkunAdmin;
+    }
 }

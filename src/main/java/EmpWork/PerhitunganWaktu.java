@@ -32,8 +32,10 @@ public class PerhitunganWaktu {
         return totalJamKerja;
     }
     public void showDescJamKerja(){
-            
+        System.out.println("--Deskripsi Kehadiran--");
+        System.out.println("Total Waktu Lembur Bulan Ini: "+totalLembur+ " Jam");
+        System.out.println("Total Waktu Terlambat Bulan Ini: "+ totalTerlambat+" Jam");
+        System.out.println("Total Waktu Kerja Bulan Ini: "+ (totalJamKerja-totalTerlambat)+" Jam");
+        System.out.println("------");
     }
-      //Belum ada algoritma untuk terlambat ketika saat jam masuk
-      //Belum ada algoritma untuk mendapatkan waktu lama lembur
 }

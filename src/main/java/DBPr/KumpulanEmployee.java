@@ -66,12 +66,16 @@ public class KumpulanEmployee {
     }    
     
     public void showAllManager(){
+        System.out.println("List Manager: ");
+        System.out.println("_____________");
         for(Manager s: listManager){
             s.showEmployee();
             System.out.println("");
         }
     }
     public void showAllPegawai(){
+        System.out.println("List Pegawai: ");
+        System.out.println("_____________");
         for(Pegawai s: listPegawai){
             s.showEmployee();
             System.out.println("");

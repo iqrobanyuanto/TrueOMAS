@@ -80,4 +80,10 @@ public class Kehadiran {
     public String getWaktuKeluar(){
         return "Jam Keluar: "+waktu_keluar.toString();
     }
+    public void showStandarJamKerja(){
+        System.out.println("--Deskripsi Standar Jam Kerja--");
+        System.out.println("Standar Jam Masuk: "+ standarJamMasuk.toString());
+        System.out.println("Standar Jam Keluar: " + standarJamMasuk.toString());
+        System.out.println("------");
+    }
 }

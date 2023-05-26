@@ -12,20 +12,26 @@ public class TiketLembur {
     private String namaPegawai;
     private int waktuLembur;
     private String pengizin;
-    private boolean statuslembur;
+    private boolean statusTiket;
     
     public TiketLembur(String nama){
         namaPegawai = nama;
-        statuslembur = false;
+        statusTiket = false;
     }
-    public boolean setStatusLembur(String pengizin, int waktulembur){
+    public void setStatusLembur(String pengizin, int waktulembur){
         waktuLembur = waktulembur;
         this.pengizin = pengizin;
-        statuslembur = true;
-        return statuslembur;
+        statusTiket = true;
+    }
+    public void resetStatus(){
+        if(statusTiket == true){
+            waktuLembur = 0;
+            this.pengizin = "";
+            statusTiket = false;
+        }
     }
     public void showTiketDesc(){
         System.out.println("---Tiket Lembur---");
-        System.out.println("Nama Pegawai: "+ namaPegawai+"\n Lama lembur: "+ waktuLembur +" jam \n "+ "Pengizin: "+pengizin+" \n Status lembur: "+ statuslembur);
+        System.out.println("Nama Pegawai: "+ namaPegawai+"\n Lama lembur: "+ waktuLembur +" jam \n "+ "Pengizin: "+pengizin+" \n Status lembur: "+ statusTiket);
     }
 }

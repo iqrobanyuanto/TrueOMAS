@@ -30,6 +30,9 @@ public class PerhitunganGaji {
     }
     
     public void showDescGaji(){
-        System.out.println("Total Gaji: "+ totalGaji);
+        System.out.println("--Deskripsi Gaji--");
+        System.out.println("Standar Gaji Per-Bulan: "+ standargaji);
+        System.out.println("Total Gaji Bulan Ini: "+ totalGaji);
+        System.out.println("------");
     }
 }
