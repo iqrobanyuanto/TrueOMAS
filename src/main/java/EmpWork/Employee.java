@@ -84,6 +84,8 @@ public abstract class Employee {
         return list_kehadiran;
     }
     
-    public abstract void showEmployee();
+    public abstract String getNamaJabatan();
     
+    public abstract void showEmployee();
+        
 }

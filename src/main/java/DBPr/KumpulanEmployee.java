@@ -47,6 +47,11 @@ public class KumpulanEmployee {
         }
         return null;
     }
+    
+    public List<Manager> getListManager(){
+        return listManager;
+    }
+    
     public Pegawai getPegawai(String idEmployee){
         for(Pegawai s : listPegawai){
             if(s.getIdEmployee().equals(idEmployee)){
@@ -55,6 +60,11 @@ public class KumpulanEmployee {
         }
         return null;
     }
+
+    public List<Pegawai> getListPegawai(){
+        return listPegawai;
+    }    
+    
     public void showAllManager(){
         for(Manager s: listManager){
             s.showEmployee();
