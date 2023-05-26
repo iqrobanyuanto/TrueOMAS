@@ -15,8 +15,8 @@ public class Pegawai extends Employee{
      private LocalTime standarJamKeluar;
      public TiketLembur statusLembur;
      
-     public Pegawai(String namaEMP, int umur, String nomor_telepon, String alamat){
-         super(namaEMP, umur, nomor_telepon, alamat);
+     public Pegawai(String idEmployee, String namaEMP, int umur, String nomor_telepon, String alamat){
+         super(idEmployee ,namaEMP, umur, nomor_telepon, alamat);
          statusLembur = new TiketLembur(nama);
          nama_jabatan = "Pegawai";
      }
