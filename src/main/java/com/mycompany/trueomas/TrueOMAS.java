@@ -24,6 +24,8 @@ public class TrueOMAS {
         q.addEmployee("Pegawai", "1", "rasi", 15, "32132132", "Jakarta");
         q.assignLembur("1", 3, "rudi");
         q.resetStatusLembur("1");
+        Tapping.Tap("Pegawai", "1");
+        Tapping.Tap("Pegawai", "1");
         q.showDescAllEmployee();
     }
 }
