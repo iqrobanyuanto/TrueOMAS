@@ -32,8 +32,13 @@ public class TrueOMAS {
         */
         
         //Test Process with database
-        Pegawai peg = new Pegawai("1", "rasi", 15, "32132132", "Jakarta");
-        dao.insertEmployee(peg);
+        //Pegawai peg = new Pegawai("111", "roqi", 20, "12312312", "Ciceheng");
+        //dao.insertEmployee(peg);
+        //dao.updateEmployee(peg);
+        
+        //Pegawai r = dao.getPegawai("111");
+        //System.out.println(r.getNamaEmployee());
+        //System.out.println(r.getNamaJabatan());
         
     }
 }

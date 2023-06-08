@@ -51,11 +51,11 @@ public class EmployeeDao implements InterfaceDaoEmployee{
         String sql;
         String info;
         if(namaJabatan.equals("Manager")){
-            sql = "DELETE FROM Manager WHERE id =?";
+            sql = "DELETE FROM Manager WHERE idManager = ?";
             info = "Manager dengan id [" + id +"] telah dihapus";
         }else{
-            sql = "DELETE FROM Pegawai WHERE id =?";
-            info = "Pegawai dengan id " + id +" telah dihapus";
+            sql = "DELETE FROM Pegawai WHERE idPegawai = ?";
+            info = "Pegawai dengan id [" + id +"] telah dihapus";
         }
          try (PreparedStatement statement = DBConnection.getConnection().prepareStatement(sql)) {
              statement.setString(1, id);
@@ -91,7 +91,7 @@ public class EmployeeDao implements InterfaceDaoEmployee{
     public Pegawai getPegawai(String id){
         Pegawai pegawai = null;
         String sql;
-        sql = "SELECT * FROM Pegawai WHERE id = " + id;
+        sql = "SELECT * FROM Pegawai WHERE idPegawai = " + id;
          try (Statement statement = DBConnection.getConnection().createStatement()) {
              ResultSet result = statement.executeQuery(sql);
              if(result.next()){
@@ -134,11 +134,11 @@ public class EmployeeDao implements InterfaceDaoEmployee{
     public Manager getManager(String id){
         Manager manager = null;
         String sql;
-        sql = "SELECT * FROM Manager WHERE id = " + id;
+        sql = "SELECT * FROM Manager WHERE idManager = " + id;
          try (Statement statement = DBConnection.getConnection().createStatement()) {
              ResultSet result = statement.executeQuery(sql);
              if(result.next()){
-                 String idpegawai = result.getString("idPegawai");
+                 String idpegawai = result.getString("idManager");
                  String nama = result.getString("nama");
                  int umur = result.getInt("umur");
                  String nomortelp = result.getString("nomor_telepon");
