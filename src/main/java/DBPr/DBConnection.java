@@ -16,11 +16,16 @@ import java.util.logging.Logger;
  */
 public class DBConnection {
     private static Connection connection;
+    private static final String url = "jdbc:mysql://localhost:3306/DBTrueOMAS";
+    private static final String username = "root";
+    private static final String password = "percobaan";
+    private static final String className = "com.mysql.jdbc.Driver";
+    
     public static Connection getConnection() throws SQLException{
         if (connection == null){
             try {
-                Class.forName("com.mysql.jdbc.Driver");
-               connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBTrueOMAS","root","percobaan");
+                Class.forName(className);
+               connection = DriverManager.getConnection(url,username,password);
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
             }
