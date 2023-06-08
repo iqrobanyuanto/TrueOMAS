@@ -57,6 +57,7 @@ public class EmployeePegawai extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
+        jButton1.setBackground(new java.awt.Color(102, 255, 102));
         jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,6 +65,7 @@ public class EmployeePegawai extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 102, 102));
         jButton2.setText("Delete");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -95,6 +97,8 @@ public class EmployeePegawai extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
         );
 
+        jButton3.setBackground(new java.awt.Color(153, 153, 153));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Pegawai");
 
         jButton4.setText("Manager");
@@ -135,8 +139,10 @@ public class EmployeePegawai extends javax.swing.JFrame {
 
         jLabel7.setText("Standarnya----");
 
+        jButton5.setBackground(new java.awt.Color(102, 255, 102));
         jButton5.setText("Set Gaji");
 
+        jButton6.setBackground(new java.awt.Color(102, 255, 102));
         jButton6.setText("Set Jam");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
