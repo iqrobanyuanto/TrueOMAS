@@ -9,7 +9,7 @@ import DBPr.KumpulanEmployee;
  * @author Iqro Banyuanto
  */
 public class Tapping {
-    public Tapping(String namaJabatan, String idEmployee){
+    public static void Tap(String namaJabatan, String idEmployee){
         try{
             KumpulanEmployee r = new KumpulanEmployee();
             Employee q = r.searchEmployee(namaJabatan, idEmployee);
@@ -18,7 +18,9 @@ public class Tapping {
             }
             if(q.kartuKehadiran.cekJamMasuk() == -99){
                 q.kartuKehadiran.setWaktuMasuk();
-                q.list_kehadiran.add(q.kartuKehadiran.getWaktuMasuk());
+                if(q.kartuKehadiran.getWaktuMasuk() != null){
+                    q.list_kehadiran.add(q.kartuKehadiran.getWaktuMasuk());
+                }
             }else{
                 q.kartuKehadiran.setWaktuKeluar();
                 q.list_kehadiran.add(q.kartuKehadiran.getWaktuKeluar());
@@ -28,7 +30,7 @@ public class Tapping {
             System.out.println(e.getMessage());
         }
     }
-    private void prosesTambahTotalJamKerja(Employee emp){
+    private static void prosesTambahTotalJamKerja(Employee emp){
         if(emp.kartuKehadiran.getWaktu_masuk().getHour() > emp.kartuKehadiran.getStandarMasuk().getHour()){
              emp.recordKerja.tambahTotalTerlambat(emp.kartuKehadiran.getWaktu_masuk().getHour() - emp.kartuKehadiran.getStandarMasuk().getHour());
         }
