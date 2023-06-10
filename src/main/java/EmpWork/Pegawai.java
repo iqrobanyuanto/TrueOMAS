@@ -46,4 +46,14 @@ public class Pegawai extends Employee{
         this.showListKehadiran();
         this.statusLembur.showTiketDesc();
      }
+     //test Liyan
+     public String getDataPegawai(){
+        String str = ("Jabatan: "+this.getNamaJabatan()+
+                "Id Manager: "+this.getIdEmployee()+
+                "Nama: "+this.getNamaEmployee()+
+                "Umur: "+this.getUmur()+
+                "Nomor Telepon: "+this.getNomorTelepon()+
+                "Alamat: "+this.getAlamat());
+        return str;
+     }
 }
