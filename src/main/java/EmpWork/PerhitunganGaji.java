@@ -25,6 +25,10 @@ public class PerhitunganGaji {
         return totalGaji;
     }
     
+    public void setTotalGaji(int totalgaji){
+        totalGaji = totalgaji;
+    }
+    
     public int getTotalJamGaji(){
         return totalGaji;
     }

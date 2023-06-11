@@ -14,9 +14,36 @@ public class TiketLembur {
     private String pengizin;
     private boolean statusTiket;
     
+    public TiketLembur(){
+        
+    }
     public TiketLembur(String nama){
         namaPegawai = nama;
         statusTiket = false;
+    }
+    public void setNamaPegawai(String namaPegawai){
+        this.namaPegawai = namaPegawai;
+    }
+    public String getNamaPegawai(){
+        return namaPegawai;
+    }
+    public void setWaktuLembur(int waktuLembur){
+        this.waktuLembur = waktuLembur;
+    }
+    public int getWaktuLembur(){
+        return waktuLembur;
+    }
+    public void setPengizin(String pengizin){
+        this.pengizin = pengizin;
+    }
+    public String getPengizin(){
+        return pengizin;
+    }
+    public void setStatusTiket(boolean statusTiket){
+        this.statusTiket = statusTiket;
+    }
+    public boolean getStatusTiket(){
+        return statusTiket;
     }
     public void setStatusLembur(String pengizin, int waktulembur){
         waktuLembur = waktulembur;

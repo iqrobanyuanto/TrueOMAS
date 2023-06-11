@@ -15,7 +15,6 @@ import java.time.LocalTime;
 public class Kehadiran {
     private LocalTime standarJamMasuk;
     private LocalTime standarJamKeluar;
-    private transient DateFormat df;
     private LocalDateTime waktu_masuk;
     private LocalDateTime waktu_keluar;
     private int jam_masuk;
@@ -26,8 +25,6 @@ public class Kehadiran {
         waktu_keluar = null;
         jam_masuk = -99;
         jam_keluar = -99;
-        //date formatter
-        df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     }
     
     public void setStadarMasuk(LocalTime standarjammasuk){
@@ -41,9 +38,17 @@ public class Kehadiran {
     public void setStandarKeluar(LocalTime standarjamkeluar){
         standarJamKeluar = standarjamkeluar;
     }
-     
+    
     public LocalTime getStandarKeluar(){
         return standarJamKeluar;
+    }
+    
+    public void setWaktu_Masuk(LocalDateTime waktuMasuk){
+        waktu_masuk = waktuMasuk;
+    }
+    
+    public void setWaktu_Keluar(LocalDateTime waktuKeluar){
+        waktu_keluar = waktuKeluar;
     }
     
     public void setWaktuMasuk(){
@@ -56,7 +61,12 @@ public class Kehadiran {
     }
     
     public LocalDateTime getWaktu_masuk(){
-        return waktu_masuk;
+        if(waktu_masuk == null){
+            System.out.println("Tidak ada waktu masuk yang tercatat");
+            return null;
+        }else{
+            return waktu_masuk;
+        }
     }
     
     public void setWaktuKeluar(){
@@ -80,25 +90,20 @@ public class Kehadiran {
         jam_keluar = -99;
     }
     
+    public void setJamMasuk(int jamMasuk){
+        jam_masuk = jamMasuk;
+    }
+    
     public int cekJamMasuk(){
         return jam_masuk;
     }
     
+    public void setJamKeluar(int jamKeluar){
+        jam_keluar = jamKeluar;
+    }
+    
     public int cekJamKeluar(){
         return jam_keluar;
-    }
-    
-    public String getWaktuMasuk(){
-        if(waktu_masuk == null){
-            System.out.println("Tidak ada waktu masuk yang tercatat");
-            return null;
-        }else{
-            return "Jam Masuk: "+waktu_masuk.toString();
-        }
-    }
-    
-    public String getWaktuKeluar(){
-            return "Jam Keluar: "+waktu_keluar.toString();
     }
     
     public void showStandarJamKerja(){

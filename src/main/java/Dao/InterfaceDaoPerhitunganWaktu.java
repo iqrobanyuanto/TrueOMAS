@@ -11,8 +11,8 @@ import EmpWork.PerhitunganWaktu;
  * @author Iqro Banyuanto
  */
 public interface InterfaceDaoPerhitunganWaktu {
-    public abstract void insertPerhitunganWaktu();
-    public abstract void deletePerhitunganWaktu();
-    public abstract void updatePerhitunganWaktu();
-    public abstract PerhitunganWaktu getPerhitunganWaktu();
+    public abstract void insertPerhitunganWaktu(PerhitunganWaktu recordKerja, String idEmployee, String namaJabatan);
+    public abstract void deletePerhitunganWaktu(String idEmployee, String namaJabatan);
+    public abstract void updatePerhitunganWaktu(PerhitunganWaktu recordKerja, String idEmployee, String namaJabatan);
+    public abstract PerhitunganWaktu getPerhitunganWaktu(String idEmployee, String namaJabatan);
 }

@@ -11,8 +11,8 @@ import EmpWork.PerhitunganGaji;
  * @author Iqro Banyuanto
  */
 public interface InterfaceDaoPerhitunganGaji {
-    public abstract void insertPerhitunganGaji();
-    public abstract void updatePerhitunganGaji();
-    public abstract void deletePerhitunganGaji();
-    public abstract PerhitunganGaji getPerhiitunganGaji();
+    public abstract void insertPerhitunganGaji(PerhitunganGaji statusGaji, String idEmployee, String namaJabatan);
+    public abstract void updatePerhitunganGaji(PerhitunganGaji statusGaji, String idEmployee, String namaJabatan);
+    public abstract void deletePerhitunganGaji(String idEmployee, String namaJabatan);
+    public abstract PerhitunganGaji getPerhiitunganGaji(String idEmployee, String namaJabatan);
 }

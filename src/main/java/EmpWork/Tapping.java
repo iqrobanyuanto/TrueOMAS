@@ -18,12 +18,12 @@ public class Tapping {
             }
             if(q.kartuKehadiran.cekJamMasuk() == -99){
                 q.kartuKehadiran.setWaktuMasuk();
-                if(q.kartuKehadiran.getWaktuMasuk() != null){
-                    q.list_kehadiran.add(q.kartuKehadiran.getWaktuMasuk());
+                if(q.kartuKehadiran.getWaktu_masuk() != null){
+                    q.list_kehadiran.add(q.kartuKehadiran.getWaktu_masuk());
                 }
             }else{
                 q.kartuKehadiran.setWaktuKeluar();
-                q.list_kehadiran.add(q.kartuKehadiran.getWaktuKeluar());
+                q.list_kehadiran.add(q.kartuKehadiran.getWaktu_keluar());
                 prosesTambahTotalJamKerja(q);
             }
         }catch(IllegalArgumentException e){

@@ -11,8 +11,8 @@ import EmpWork.Kehadiran;
  * @author Iqro Banyuanto
  */
 public interface InterfaceDaoKehadiran {
-    public abstract void insertKartuKehadiran();
-    public abstract void updateKartuKehadiran();
-    public abstract void deleteKartuKehadiran();
-    public abstract Kehadiran getKehadiran();
+    public abstract void insertKartuKehadiran(Kehadiran kartu, String idEmployee, String namaJabatan);
+    public abstract void updateKartuKehadiran(Kehadiran kartu, String idEmployee, String namaJabatan);
+    public abstract void deleteKartuKehadiran(String idEmployee, String namaJabatan);
+    public Kehadiran getKehadiran(String idEmployee, String namaJabatan);
 }

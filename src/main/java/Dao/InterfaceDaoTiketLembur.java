@@ -9,8 +9,8 @@ import EmpWork.TiketLembur;
  * @author Iqro Banyuanto
  */
 public interface InterfaceDaoTiketLembur {
-    public abstract void insertTiketLembur();
-    public abstract void deleteTiketLembur();
-    public abstract void updateTiketLembur();
-    public abstract TiketLembur getTiketLembur();
+    public abstract void insertTiketLembur(TiketLembur statusLembur, String idPegawai);
+    public abstract void deleteTiketLembur(String idPegawai);
+    public abstract void updateTiketLembur(TiketLembur statusLembur, String idPegawai);
+    public abstract TiketLembur getTiketLembur(String idPegawai);
 }

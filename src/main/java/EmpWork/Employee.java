@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package EmpWork;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ArrayList;
 /**
@@ -22,7 +23,7 @@ public abstract class Employee {
     //Untuk menyimpan data gaji pegawai
     public PerhitunganGaji statusGaji;
     //untuk menyimpan tanggal dan waktu kehadiran
-    public List<String> list_kehadiran;
+    public List<LocalDateTime> list_kehadiran;
     
     public Employee(String idEmployee, String nama, int umur, String nomor_telepon, String alamat){
         this.idEmployee = idEmployee;
@@ -76,18 +77,18 @@ public abstract class Employee {
         return alamat;
     }
     
-    public void addkehadiran(String kehadiran){
+    public void addkehadiran(LocalDateTime kehadiran){
         list_kehadiran.add(kehadiran);
     }
     
-    public List<String> getkehadiran(){
+    public List<LocalDateTime> getkehadiran(){
         return list_kehadiran;
     }
     
     public void showListKehadiran(){
         System.out.println("--Data Rekaman Kehadiran--");
-        for(String s : list_kehadiran){
-            System.out.println(s);
+        for(LocalDateTime s : list_kehadiran){
+            System.out.println(s.toString());
         }
         System.out.println("------");
     }
