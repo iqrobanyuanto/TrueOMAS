@@ -4,6 +4,8 @@
  */
 package view;
 
+import javax.swing.JTextField;
+
 /**
  *
  * @author andry
@@ -117,4 +119,9 @@ public class SetGaji extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    public JTextField getjTextField1() {
+        return jTextField1;
+    }
+
 }

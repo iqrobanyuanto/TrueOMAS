@@ -12,6 +12,7 @@ import javax.swing.*;
 import Dao.*;
 import java.awt.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 /**
@@ -50,7 +51,10 @@ public class ControllerApp {
     Employee emp; //akses Employee dari EmpWork
     Pegawai pegawai; //akses Pegawai dari EmpWork
     Manager manager; //akses Manager dari EmpWork
-    PerhitunganGajiDao DAOgaji; //akses DAO Gaji dari DAo
+    Kehadiran kehadiran; //Frame Kehadiran
+    PerhitunganGajiDao DAOgaji; //akses DAO Gaji dari DAO
+    RecordKehadiranDao DAOkehadiran; //akses DAO Kehadiran dari DAO
+    private SetKehadiran setKehadiran;
     
     //liyan
     public void refreshPegawai() {
@@ -120,20 +124,70 @@ public class ControllerApp {
     //SetGaji Pegawai sesuai input
     public void setGajiPegawai(){
         
-        int convertTextField = Integer.parseInt(setGaji.getjTextField1().getText()); //mengubah String jadi int
+        int convertTextField = Integer.parseInt(setGaji.getjTextField1().getText()); //Mengubah String jadi int
         pegawai.statusGaji.setStandarGaji(convertTextField); //Replace standar gaji pada pegawai
         framePegawai.getDeskrip_Gaji().setText(setGaji.getjTextField1().getText()); //Mengganti text di frame SetGaji
         DAOgaji.updatePerhitunganGaji(emp.statusGaji, emp.getIdEmployee(), emp.getNamaJabatan()); //Update ke database
+        setGaji.setVisible(false); //Menghilangkan JDialog ketika ditekan
     }
     
-    //SetGaji Pegawai sesuai input
+    //SetGaji Manager sesuai input
     public void setGajiManager(){
-        int convertTextField = Integer.parseInt(setGaji.getjTextField1().getText()); //mengubah String jadi int
+        int convertTextField = Integer.parseInt(setGaji.getjTextField1().getText()); //Mengubah String jadi int
         manager.statusGaji.setStandarGaji(convertTextField); //Replace standar gaji pada manager
         framePegawai.getDeskrip_Gaji().setText(setGaji.getjTextField1().getText()); //Mengganti text di frame SetGaji
         DAOgaji.updatePerhitunganGaji(emp.statusGaji, emp.getIdEmployee(), emp.getNamaJabatan()); //Update ke database
+        setGaji.setVisible(false); //Menghilangkan JDialog ketika ditekan
     }
+    
+    //Menampilkan JDialog untuk SetKehadiran (Pegawai)
+    public void showSetkehadiranPegawai(){
+        setKehadiran = new SetKehadiran(framePegawai,true);
+        setKehadiran.setVisible(true);
+        setKehadiran.setLocationRelativeTo(null);
+    }
+    
+    //Menampilkan JDialog untuk SetKehadiran (Manager)
+    public void showSetkehadiranManager(){
+        setKehadiran = new SetKehadiran(frameManager,true);
+        setKehadiran.setVisible(true);
+        setKehadiran.setLocationRelativeTo(null);
+    }
+    
+    //Set Kehadiran Pegawai
+    public void setKehadiranPegawai(){
+        int convertTextFieldMasuk = Integer.parseInt(setKehadiran.getjTextField1().getText()); //Mengubah String jadi int
+        int convertTextFieldKeluar = Integer.parseInt(setKehadiran.getjTextField2().getText()); //Mengubah String jadi int
         
+        kehadiran.setJamMasuk(convertTextFieldMasuk); //Replace Jam Masuk
+        kehadiran.setJamKeluar(convertTextFieldKeluar); //Replace Jam Keluar
+        framePegawai.getDeskrip_Standar().setText("Jam Masuk: "+setKehadiran.getjTextField1().getText()+"\n"+
+                "Jam Keluar: "+setKehadiran.getjTextField2().getText()); //Mengganti label standar
+        
+        DateTimeFormatter jam = DateTimeFormatter.ofPattern("HH:mm"); //Membuat format jam
+        LocalDateTime waktu = LocalDateTime.parse(setKehadiran.getjTextField1().getText(),jam); //Mengubah String menjadi Jam
+        DAOkehadiran.insertRecord(waktu, emp.getIdEmployee(), emp.getNamaJabatan()); //Memasukkan jam ke database
+        
+        setKehadiran.setVisible(false); //Menghilangkan JDialog SetKehadiran
+    }
+    
+    //Set Kehadiran Manager
+    public void setKehadiranManager(){
+        int convertTextFieldMasuk = Integer.parseInt(setKehadiran.getjTextField1().getText()); //Mengubah String jadi int
+        int convertTextFieldKeluar = Integer.parseInt(setKehadiran.getjTextField2().getText()); //Mengubah String jadi int
+        
+        kehadiran.setJamMasuk(convertTextFieldMasuk); //Replace Jam Masuk
+        kehadiran.setJamKeluar(convertTextFieldKeluar); //Replace Jam Keluar
+        frameManager.getDeskrip_Standar().setText("Jam Masuk: "+setKehadiran.getjTextField1().getText()+"\n"+
+                "Jam Keluar: "+setKehadiran.getjTextField2().getText()); //Mengganti label standar
+        
+        DateTimeFormatter jam = DateTimeFormatter.ofPattern("HH:mm"); //Membuat format jam
+        LocalDateTime waktu = LocalDateTime.parse(setKehadiran.getjTextField1().getText(),jam); //Mengubah String menjadi Jam
+        DAOkehadiran.insertRecord(waktu, emp.getIdEmployee(), emp.getNamaJabatan()); //Memasukkan jam ke database
+        
+        setKehadiran.setVisible(false); //Menghilangkan JDialog SetKehadiran
+    }
+    
     public void updateFormManager() {
         int selectedIndex = frameManager.getListManager().getSelectedIndex();
         if (selectedIndex >= 0 && selectedIndex < listMngr.size()) {
