@@ -10,7 +10,6 @@ import view.*;
 import java.util.*;
 import javax.swing.*;
 import Dao.*;
-import java.awt.*;
 import java.time.LocalDateTime;
 
 
@@ -66,7 +65,7 @@ public class ControllerApp {
         } else {
             assign.getjLabel4().setText("");
             assign.getjLabel6().setText("");
-            assign.getjLabel6().setText("");
+            assign.getjLabel8().setText("");
         }
         
     }
