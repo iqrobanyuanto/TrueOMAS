@@ -7,7 +7,7 @@ package controller;
 import DBPr.*;
 import EmpWork.*;
 import view.*;
-import java.util.*;
+import java.util.List;
 import javax.swing.*;
 import Dao.*;
 import java.awt.*;
@@ -63,7 +63,7 @@ public class ControllerApp {
         for (Manager m : listMngr) {
             frameManager.getListModel().addElement(m.getNamaEmployee());
         }
-        updateForm();
+        updateFormManager();
     }
  
     public void updateFormPegawai() {
@@ -72,20 +72,59 @@ public class ControllerApp {
             Pegawai pgw = listPgw.get(selectedIndex);
             int gaji = pgw.statusGaji.getStandarGaji();
             String standarJamMasuk = pgw.kartuKehadiran.getStandarMasuk().toString();
-            String standarJamKeluar = pgw.kartuKehadiran.getWaktuKeluar();
+            String standarJamKeluar = pgw.kartuKehadiran.getStandarKeluar().toString();
             String statusLembur = pgw.statusLembur.toString();
-            String totalLembur = ;
+            int totalLembur = pgw.recordKerja.getTotalLembur();
             
             framePegawai.getDeskrip_Pegawai().setText(pgw.getDataPegawai());
             framePegawai.getDeskrip_Gaji().setText("Standar Gaji :"+gaji);
             framePegawai.getDeskrip_Standar().setText("Standar Jam Masuk: "+standarJamMasuk+
                                                         "\n Standar Jam Keluar: "+standarJamKeluar+
                                                         "\n\n Status Lembur: "+statusLembur+
-                                                        "\n Total Lembur: ");
-                
+                                                        "\n Total Lembur: "+totalLembur);
         } else {
-            
+             framePegawai.getDeskrip_Pegawai().setText("""
+                                                       Jabatan:
+                                                       Id Manager: 
+                                                       Nama: 
+                                                       Umur: 
+                                                       Nomor Telepon: """);
+            framePegawai.getDeskrip_Gaji().setText("Standar Gaji :");       
+            framePegawai.getDeskrip_Standar().setText("""
+                                                      Standar Jam Masuk: 
+                                                      Standar Jam Keluar:  
+                                                       Status Lembur:  
+                                                       Total Lembur: """);
         }
+    }
+        
+    public void updateFormManager() {
+        int selectedIndex = frameManager.getListManager().getSelectedIndex();
+        if (selectedIndex >= 0 && selectedIndex < listMngr.size()) {
+            Manager m = listMngr.get(selectedIndex);
+            int gaji = m.statusGaji.getStandarGaji();
+            String standarJamMasuk = m.kartuKehadiran.getStandarMasuk().toString();
+            String standarJamKeluar = m.kartuKehadiran.getStandarKeluar().toString();
+            
+            frameManager.getDeskrip_Manager().setText(m.getDataManager());
+            frameManager.getDeskrip_Gaji().setText("Standar Gaji :"+gaji);
+            frameManager.getDeskrip_Standar().setText("Standar Jam Masuk: "+standarJamMasuk+
+                                                        "\n Standar Jam Keluar: "+standarJamKeluar);
+                                                        
+        } else {
+             frameManager.getDeskrip_Manager().setText("""
+                                                       Jabatan:
+                                                       Id Manager: 
+                                                       Nama: 
+                                                       Umur: 
+                                                       Nomor Telepon: """);
+            frameManager.getDeskrip_Gaji().setText("Standar Gaji :");       
+            frameManager.getDeskrip_Standar().setText("""
+                                                      Standar Jam Masuk: 
+                                                      Standar Jam Keluar:  
+                                                        """);
+        }
+ }
         
 //andry
     InterfaceDaoEmployee EmployeeDao;
