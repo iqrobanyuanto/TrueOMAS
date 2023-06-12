@@ -4,6 +4,8 @@
  */
 package view;
 
+import javax.swing.JTable;
+
 /**
  *
  * @author madel
@@ -16,7 +18,9 @@ public class LogKehadiran extends javax.swing.JFrame {
     public LogKehadiran() {
         initComponents();
     }
-
+    public JTable getTable(){
+        return jTable2;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

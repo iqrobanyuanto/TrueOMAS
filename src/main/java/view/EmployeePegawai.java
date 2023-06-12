@@ -4,19 +4,22 @@
  */
 package view;
 
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author madel
  */
 public class EmployeePegawai extends javax.swing.JFrame {
-
+    DefaultListModel listModel;
     /**
      * Creates new form Assign
      */
     public EmployeePegawai() {
         initComponents();
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,44 +32,44 @@ public class EmployeePegawai extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        listPegawai = new javax.swing.JList<>();
+        Button_Add = new javax.swing.JButton();
+        Button_Delete = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        Button_Pegawai = new javax.swing.JButton();
+        Button_Manager = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        Deskrip_Pegawai = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        Deskrip_Gaji = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        Deskrip_Standar = new javax.swing.JLabel();
+        Button_setGaji = new javax.swing.JButton();
+        Button_setJam = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("List Pegawai");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        listPegawai.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listPegawai);
 
-        jButton1.setBackground(new java.awt.Color(102, 255, 102));
-        jButton1.setText("Add");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Button_Add.setBackground(new java.awt.Color(102, 255, 102));
+        Button_Add.setText("Add");
+        Button_Add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                Button_AddActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 102, 102));
-        jButton2.setText("Delete");
+        Button_Delete.setBackground(new java.awt.Color(255, 102, 102));
+        Button_Delete.setText("Delete");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -78,9 +81,9 @@ public class EmployeePegawai extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Button_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Button_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -92,16 +95,16 @@ public class EmployeePegawai extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(Button_Add)
+                    .addComponent(Button_Delete))
                 .addGap(28, 28, 28))
         );
 
-        jButton3.setBackground(new java.awt.Color(153, 153, 153));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Pegawai");
+        Button_Pegawai.setBackground(new java.awt.Color(153, 153, 153));
+        Button_Pegawai.setForeground(new java.awt.Color(255, 255, 255));
+        Button_Pegawai.setText("Pegawai");
 
-        jButton4.setText("Manager");
+        Button_Manager.setText("Manager");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -109,9 +112,9 @@ public class EmployeePegawai extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton3)
+                .addComponent(Button_Pegawai)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
+                .addComponent(Button_Manager)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -119,31 +122,31 @@ public class EmployeePegawai extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(Button_Pegawai)
+                    .addComponent(Button_Manager))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("Deskripsi Pegawai");
 
-        jLabel3.setText("Deskripsinya---");
+        Deskrip_Pegawai.setText("Deskripsinya---");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Deskripsi Gaji");
 
-        jLabel5.setText("Deskripsi Gaji---");
+        Deskrip_Gaji.setText("Deskripsi Gaji---");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel6.setText("Standar Jam Kerja");
 
-        jLabel7.setText("Standarnya----");
+        Deskrip_Standar.setText("Standarnya----");
 
-        jButton5.setBackground(new java.awt.Color(102, 255, 102));
-        jButton5.setText("Set Gaji");
+        Button_setGaji.setBackground(new java.awt.Color(102, 255, 102));
+        Button_setGaji.setText("Set Gaji");
 
-        jButton6.setBackground(new java.awt.Color(102, 255, 102));
-        jButton6.setText("Set Jam");
+        Button_setJam.setBackground(new java.awt.Color(102, 255, 102));
+        Button_setJam.setText("Set Jam");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -153,20 +156,20 @@ public class EmployeePegawai extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(Deskrip_Gaji)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5))
+                        .addComponent(Button_setGaji))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3)
+                            .addComponent(Deskrip_Pegawai)
                             .addComponent(jLabel4)
                             .addComponent(jLabel6))
                         .addGap(0, 331, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                        .addComponent(Deskrip_Standar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton6)))
+                        .addComponent(Button_setJam)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -175,19 +178,19 @@ public class EmployeePegawai extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addComponent(Deskrip_Pegawai)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jButton5))
+                    .addComponent(Deskrip_Gaji)
+                    .addComponent(Button_setGaji))
                 .addGap(46, 46, 46)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jButton6))
+                    .addComponent(Deskrip_Standar)
+                    .addComponent(Button_setJam))
                 .addGap(108, 108, 108))
         );
 
@@ -223,9 +226,9 @@ public class EmployeePegawai extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void Button_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_AddActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_Button_AddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,23 +267,42 @@ public class EmployeePegawai extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton Button_Add;
+    private javax.swing.JButton Button_Delete;
+    private javax.swing.JButton Button_Manager;
+    private javax.swing.JButton Button_Pegawai;
+    private javax.swing.JButton Button_setGaji;
+    private javax.swing.JButton Button_setJam;
+    private javax.swing.JLabel Deskrip_Gaji;
+    private javax.swing.JLabel Deskrip_Pegawai;
+    private javax.swing.JLabel Deskrip_Standar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> listPegawai;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JLabel getDeskrip_Gaji() {
+        return Deskrip_Gaji;
+    }
+
+    public javax.swing.JLabel getDeskrip_Pegawai() {
+        return Deskrip_Pegawai;
+    }
+
+    public javax.swing.JLabel getDeskrip_Standar() {
+        return Deskrip_Standar;
+    }
+
+    public javax.swing.JList<String> getListPegawai() {
+        return listPegawai;
+    }
+    public DefaultListModel getListModel() {
+        return listModel;
+    }
 }
