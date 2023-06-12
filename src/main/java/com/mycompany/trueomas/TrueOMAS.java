@@ -3,6 +3,7 @@
  */
 
 package com.mycompany.trueomas;
+
 /**
  *
  * @author Iqro Banyuanto
@@ -10,6 +11,6 @@ package com.mycompany.trueomas;
 public class TrueOMAS {
 
     public static void main(String[] args) {
-
+        
     }
 }

@@ -13,16 +13,28 @@ public class AkunAdmin {
     private String password;
     private String namaAdmin;
     
+    public AkunAdmin(){
+        
+    }
     public AkunAdmin(String id, String password, String namaAdmin){
         this.id = id;
         this.password = password;
         this.namaAdmin  = namaAdmin;
     }
+    public void setid(String id){
+        this.id = id;
+    }
     public String getid(){
         return id;
     }
+    public void setpassword(String password){
+        this.password = password;
+    }
     public String getpassword(){
         return password;
+    }
+    public void setnamaAdmin(String namaAdmin){
+        this.namaAdmin = namaAdmin;
     }
     public String getnamaAdmin(){
         return namaAdmin;
