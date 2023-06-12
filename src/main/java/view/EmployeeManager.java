@@ -4,12 +4,14 @@
  */
 package view;
 
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author DELL
  */
 public class EmployeeManager extends javax.swing.JFrame {
-
+    DefaultListModel listModel;
     /**
      * Creates new form EmployeeManager
      */
@@ -281,4 +283,8 @@ public class EmployeeManager extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+    public DefaultListModel getListModel() {
+        
+        return listModel;
+    }
 }
