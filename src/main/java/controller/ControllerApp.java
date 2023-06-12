@@ -46,6 +46,11 @@ public class ControllerApp {
     EmployeeDao DaoEmp;
     private EmployeePegawai framePegawai;
     private EmployeeManager frameManager;
+    private SetGaji setGaji; //Frame SetGaji
+    Employee emp; //akses Employee dari EmpWork
+    Pegawai pegawai; //akses Pegawai dari EmpWork
+    Manager manager; //akses Manager dari EmpWork
+    PerhitunganGajiDao DAOgaji; //akses DAO Gaji dari DAo
     
     //liyan
     public void refreshPegawai() {
@@ -96,6 +101,37 @@ public class ControllerApp {
                                                        Status Lembur:  
                                                        Total Lembur: """);
         }
+    }
+    
+    //Menampilkan JDialog SetGaji (Pegawai)
+    public void showSetGajiPegawai(){
+        setGaji = new SetGaji(framePegawai,true);
+        setGaji.setVisible(true);
+        setGaji.setLocationRelativeTo(null);
+    }
+    
+    //Menampilkan JDialog SetGaji (Manager)
+    public void showSetGajiManager(){
+        setGaji = new SetGaji(frameManager,true);
+        setGaji.setVisible(true);
+        setGaji.setLocationRelativeTo(null);
+    }
+    
+    //SetGaji Pegawai sesuai input
+    public void setGajiPegawai(){
+        
+        int convertTextField = Integer.parseInt(setGaji.getjTextField1().getText()); //mengubah String jadi int
+        pegawai.statusGaji.setStandarGaji(convertTextField); //Replace standar gaji pada pegawai
+        framePegawai.getDeskrip_Gaji().setText(setGaji.getjTextField1().getText()); //Mengganti text di frame SetGaji
+        DAOgaji.updatePerhitunganGaji(emp.statusGaji, emp.getIdEmployee(), emp.getNamaJabatan()); //Update ke database
+    }
+    
+    //SetGaji Pegawai sesuai input
+    public void setGajiManager(){
+        int convertTextField = Integer.parseInt(setGaji.getjTextField1().getText()); //mengubah String jadi int
+        manager.statusGaji.setStandarGaji(convertTextField); //Replace standar gaji pada manager
+        framePegawai.getDeskrip_Gaji().setText(setGaji.getjTextField1().getText()); //Mengganti text di frame SetGaji
+        DAOgaji.updatePerhitunganGaji(emp.statusGaji, emp.getIdEmployee(), emp.getNamaJabatan()); //Update ke database
     }
         
     public void updateFormManager() {
