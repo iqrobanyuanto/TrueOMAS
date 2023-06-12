@@ -41,11 +41,15 @@ public class ControllerApp {
     public void selectedLembur(){
         //if(assign.getjList1()){}
     }
+    
     List<Pegawai> listPgw;
     List<Manager> listMngr;
     EmployeeDao DaoEmp;
+    RecordKehadiranDao DaoRecord;
     private EmployeePegawai framePegawai;
     private EmployeeManager frameManager;
+    private AddPegawai dialogAddPegawai;
+    private Login frameLogin;
     
     //liyan
     public void refreshPegawai() {
@@ -134,4 +138,37 @@ public class ControllerApp {
         ModelTableKehadiran mt = new ModelTableKehadiran(listPegawai);
         frameLog.getTable().setModel(mt);
     }
+    
+    public void AddPegawai(){
+        DaoEmp.insertEmployee(dialogAddPegawai.getId().getText(), dialogAddPegawai.getNama().getText(), Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), dialogAddPegawai.getAlamat().getText(), dialogAddPegawai.getJabatan().getText());
+    }
+    
+    //WIP
+//    public void Login(String id, String pass){
+//        if(id == null || pass == null){
+//            LoginError error = new LoginError(frameLogin, true);
+//        }else{
+//            
+//        }
+//    }
+    
+    public void Delete(java.awt.Frame parent, boolean manager){
+        if(manager){
+            RemovePegawai delete = new RemovePegawai(parent,  true, true);
+        }else{
+            RemovePegawai delete = new RemovePegawai(parent,  true, false);
+        }
+        
+    }
+    public void DeleteEmployee(boolean manager){
+        if(manager){
+            int selectedIndex = frameManager.getListManager().getSelectedIndex();
+            DaoEmp.deleteEmployee(listPgw.get(selectedIndex).getIdEmployee(), "Manager");
+        }else{
+            int selectedIndex = framePegawai.getListPegawai().getSelectedIndex();
+        DaoEmp.deleteEmployee(listPgw.get(selectedIndex).getIdEmployee(), listPgw.get(selectedIndex).getNamaJabatan());
+        }
+    }
+    
+    
 }

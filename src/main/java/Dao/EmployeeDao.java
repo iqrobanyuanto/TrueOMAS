@@ -23,10 +23,10 @@ import java.util.logging.Logger;
  */
 public class EmployeeDao implements InterfaceDaoEmployee{
     @Override
-    public void insertEmployee(Employee emp){
+    public void insertEmployee(String idEmployee, String nama, int umur, String nomor_telepon, String alamat, String namaJabatan){
         String sql;
         String info;
-        if(emp.getNamaJabatan().equals("Manager")){
+        if(namaJabatan.equals("Manager")){
             sql = "INSERT INTO Manager(idManager, namaJabatan, nama, umur, nomor_telepon, alamat) VALUES(?,?,?,?,?,?)";
             info = "Manager baru telah ditambahkan ke dalam database!";
         }else{
@@ -34,12 +34,12 @@ public class EmployeeDao implements InterfaceDaoEmployee{
             info = "Pegawai baru telah ditambahkan ke dalam database!";
         }
          try (PreparedStatement statement = DBConnection.getConnection().prepareStatement(sql)) {
-             statement.setString(1, emp.getIdEmployee());
-             statement.setString(2, emp.getNamaJabatan());
-             statement.setString(3, emp.getNamaEmployee());
-             statement.setInt(4, emp.getUmur());
-             statement.setString(5, emp.getNomorTelepon());
-             statement.setString(6, emp.getAlamat());
+             statement.setString(1, idEmployee);
+             statement.setString(2, namaJabatan);
+             statement.setString(3, nama);
+             statement.setInt(4, umur);
+             statement.setString(5, nomor_telepon);
+             statement.setString(6, alamat);
              statement.executeUpdate();
              System.out.println(info);
         } catch (SQLException e) {

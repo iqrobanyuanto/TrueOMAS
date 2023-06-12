@@ -14,7 +14,7 @@ import java.util.List;
  * @author Iqro Banyuanto
  */
 public interface InterfaceDaoEmployee {
-    public abstract void insertEmployee(Employee emp);
+    public abstract void insertEmployee(String idEmployee, String nama, int umur, String nomor_telepon, String alamat, String namaJabatan);
     public abstract void deleteEmployee(String id, String namaEmployee);
     public abstract void updateEmployee(Employee emp);
     public abstract Pegawai getPegawai(String id);
