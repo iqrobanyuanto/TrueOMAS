@@ -4,7 +4,6 @@
  */
 package controller;
 
-
 import DBPr.*;
 import EmpWork.*;
 import view.*;
@@ -20,6 +19,7 @@ import java.time.LocalDateTime;
  * @author Liyan & Max & Andry
  */
 public class ControllerApp {
+
     private Assign assign;
     
     public ControllerApp() {
@@ -47,7 +47,7 @@ public class ControllerApp {
     private EmployeePegawai framePegawai;
     private EmployeeManager frameManager;
     
-    
+    //liyan
     public void refreshPegawai() {
         listPgw = DaoEmp.getAllPegawai();
         framePegawai.getListModel().removeAllElements();
@@ -87,5 +87,12 @@ public class ControllerApp {
             
         }
         
+//andry
+    InterfaceDaoEmployee EmployeeDao;
+    LogKehadiran frameLog;
+    public void isiTableKehadiran(){
+        List<Pegawai> listPegawai = EmployeeDao.getAllPegawai();
+        ModelTableKehadiran mt = new ModelTableKehadiran(listPegawai);
+        frameLog.getTable().setModel(mt);
     }
 }
