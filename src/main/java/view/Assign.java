@@ -4,6 +4,7 @@
  */
 package view;
 
+import javax.swing.JLabel;
 import javax.swing.JList;
 
 /**
@@ -204,6 +205,30 @@ public class Assign extends javax.swing.JFrame {
 
     public JList<String> getjList1() {
         return jList1;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public JLabel getjLabel6() {
+        return jLabel6;
+    }
+
+    public JLabel getjLabel8() {
+        return jLabel8;
+    }
+
+    public void setjLabel4(JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    public void setjLabel6(JLabel jLabel6) {
+        this.jLabel6 = jLabel6;
+    }
+
+    public void setjLabel8(JLabel jLabel8) {
+        this.jLabel8 = jLabel8;
     }
 
 }
