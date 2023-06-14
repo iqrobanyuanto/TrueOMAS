@@ -55,20 +55,19 @@ public class ControllerApp {
         assign = new Assign();
         assign.setVisible(true);
         assign.setLocationRelativeTo(null);
-        AssignList();
+        refreshAssign();
     }
     
     //Mengupdate list pada Assign lembur
-    public void AssignList(){
-        var tiketPegawai = pegawai.statusLembur.getStatusTiket(); //Navigasi dari Pegawai ke TiketLembur
+    public void refreshAssign() {
         listPgw = DaoEmp.getAllPegawai();
         framePegawai.getListModel().removeAllElements();
         for (Pegawai pgw : listPgw) {
-            if(tiketPegawai = true){
+            if(pgw.statusLembur.getStatusTiket() == true){
                 framePegawai.getListModel().addElement(pgw.getNamaEmployee());
             }
         }
-        updateFormPegawai();
+        updateFormAssign();
     }
     
     //Deskripsi pada list yang dituju
