@@ -4,6 +4,8 @@
  */
 package view;
 
+import javax.swing.JTextField;
+
 /**
  *
  * @author andry
@@ -139,4 +141,14 @@ public class SetKehadiran extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+
+    public JTextField getjTextField1() {
+        return jTextField1;
+    }
+
+    public JTextField getjTextField2() {
+        return jTextField2;
+    }
+
+
 }

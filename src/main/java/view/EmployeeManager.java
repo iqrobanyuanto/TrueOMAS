@@ -4,7 +4,9 @@
  */
 package view;
 
+import controller.ControllerApp;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
 /**
  *
@@ -12,6 +14,8 @@ import javax.swing.DefaultListModel;
  */
 public class EmployeeManager extends javax.swing.JFrame {
     DefaultListModel listModel;
+    JList<String> listManager;
+    ControllerApp ck;
     /**
      * Creates new form EmployeeManager
      */
@@ -36,11 +40,11 @@ public class EmployeeManager extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        Deskrip_Manager = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        getDeskrip_Gaji = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        getDeskrip_Standar = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -69,6 +73,11 @@ public class EmployeeManager extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(255, 102, 102));
         jButton2.setText("Delete");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -102,17 +111,17 @@ public class EmployeeManager extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("Deskripsi Manager");
 
-        jLabel3.setText("Deskripsinya---");
+        Deskrip_Manager.setText("Deskripsinya---");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Deskripsi Gaji");
 
-        jLabel5.setText("Gajinyaa---");
+        getDeskrip_Gaji.setText("Gajinyaa---");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel6.setText("Standar Jam Kerja");
 
-        jLabel7.setText("Standarnya--");
+        getDeskrip_Standar.setText("Standarnya--");
 
         jButton5.setBackground(new java.awt.Color(102, 255, 102));
         jButton5.setText("Set Gaji");
@@ -128,18 +137,18 @@ public class EmployeeManager extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(getDeskrip_Gaji)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton5))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3)
+                            .addComponent(Deskrip_Manager)
                             .addComponent(jLabel4)
                             .addComponent(jLabel6))
                         .addGap(0, 315, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                        .addComponent(getDeskrip_Standar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton6)))
                 .addContainerGap())
@@ -150,18 +159,18 @@ public class EmployeeManager extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addComponent(Deskrip_Manager)
                 .addGap(79, 79, 79)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(getDeskrip_Gaji)
                     .addComponent(jButton5))
                 .addGap(44, 44, 44)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                    .addComponent(getDeskrip_Standar)
                     .addComponent(jButton6))
                 .addContainerGap(148, Short.MAX_VALUE))
         );
@@ -228,6 +237,11 @@ public class EmployeeManager extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ck.Delete(this, true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -264,6 +278,9 @@ public class EmployeeManager extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Deskrip_Manager;
+    private javax.swing.JLabel getDeskrip_Gaji;
+    private javax.swing.JLabel getDeskrip_Standar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -272,11 +289,8 @@ public class EmployeeManager extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -287,4 +301,30 @@ public class EmployeeManager extends javax.swing.JFrame {
         
         return listModel;
     }
+    public javax.swing.JList<String> getListManager() {
+        
+        return listManager;
+    }
+
+    /**
+     * @return the Deskrip_Manager
+     */
+    public javax.swing.JLabel getDeskrip_Manager() {
+        return Deskrip_Manager;
+    }
+
+    /**
+     * @return the getDeskrip_Gaji
+     */
+    public javax.swing.JLabel getDeskrip_Gaji() {
+        return getDeskrip_Gaji;
+    }
+
+    /**
+     * @return the getDeskrip_Standar
+     */
+    public javax.swing.JLabel getDeskrip_Standar() {
+        return getDeskrip_Standar;
+    }
+    
 }

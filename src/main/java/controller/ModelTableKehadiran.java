@@ -4,7 +4,10 @@
  */
 package controller;
 
+import Dao.RecordKehadiranDao;
 import EmpWork.Pegawai;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -14,8 +17,12 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModelTableKehadiran extends AbstractTableModel{
     List <Pegawai> listPegawai;
-    
-    public ModelTableKehadiran(List<Pegawai> listPegawai) { this.listPegawai = listPegawai; }
+    List <LocalDateTime> list_kehadiran;
+    RecordKehadiranDao dao;
+    LocalDateTime kehadiran;
+    public ModelTableKehadiran(List<Pegawai> listPegawai) { 
+        this.listPegawai = listPegawai; 
+    }
     
     public Pegawai getRow(int row) { return listPegawai.get(row); } 
     @Override
@@ -29,7 +36,17 @@ public class ModelTableKehadiran extends AbstractTableModel{
             case 0: return listPegawai.get(rowIndex).getIdEmployee();
             case 1: return listPegawai.get(rowIndex).getNamaEmployee();
             case 2: return listPegawai.get(rowIndex).getNamaJabatan();
-            case 3: return listPegawai.get(rowIndex).getkehadiran();
+            case 3: 
+                list_kehadiran = dao.getRecordKehadiran(listPegawai.get(rowIndex).getIdEmployee(), listPegawai.get(rowIndex).getNamaJabatan());
+             for (LocalDateTime list_kehadiran1 : list_kehadiran) {
+                 DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+                 LocalDateTime now = LocalDateTime.now();
+                 if(list_kehadiran1.format(format).equals(now.format(format))){
+                     kehadiran = list_kehadiran1;
+                 }
+             }
+                return kehadiran;
+
             default: return null;
         }
     }
