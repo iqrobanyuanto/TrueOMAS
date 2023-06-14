@@ -47,7 +47,7 @@ public class ControllerApp {
     private SetKehadiran setKehadiran;
     private AddPegawai dialogAddPegawai;
     AkunAdminDao DaoAdmin;
-    private LogKehadiran frameKehadiran;
+    
     
     //Controller kosong
     public ControllerApp() {}
