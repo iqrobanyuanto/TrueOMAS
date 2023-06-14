@@ -38,7 +38,6 @@ public class ControllerApp {
     private Login frameLogin;
     //Class GUI Assign--------
     private Assign assign;
-    EmpWork.Pegawai pegawai;
     
     public ControllerApp() {
         
