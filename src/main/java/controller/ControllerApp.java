@@ -4,6 +4,7 @@
  */
 package controller;
 
+import AdmWork.*;
 import DBPr.*;
 import EmpWork.*;
 import view.*;
@@ -22,6 +23,7 @@ public class ControllerApp {
 
     List<Pegawai> listPgw;
     List<Manager> listMngr;
+    List<AkunAdmin> listAkunAdmn;
     EmployeeDao DaoEmp;
     RecordKehadiranDao DaoRecord;
     private EmployeePegawai framePegawai;
@@ -35,7 +37,9 @@ public class ControllerApp {
     RecordKehadiranDao DAOkehadiran; //akses DAO Kehadiran dari DAO
     private SetKehadiran setKehadiran;
     private AddPegawai dialogAddPegawai;
+    AkunAdminDao DaoAdmin;
     private Login frameLogin;
+    private LogKehadiran frameKehadiran;
     //Class GUI Assign--------
     private Assign assign;
     
@@ -260,13 +264,25 @@ public class ControllerApp {
     }
     
     //WIP
-//    public void Login(String id, String pass){
-//        if(id == null || pass == null){
-//            LoginError error = new LoginError(frameLogin, true);
-//        }else{
-//            
-//        }
-//    }
+    public void Login(String id, String pass){
+        if(id == null || pass == null){
+            LoginError error = new LoginError(frameLogin, true);
+        }else{
+            //mencari akun
+            listAkunAdmn = DaoAdmin.getAllAkunAdmin();
+            for(int i=0; i < listAkunAdmn.size() ;i++ ){
+                if(listAkunAdmn.get(i).getid().equals(id)){
+                    if (listAkunAdmn.get(i).getpassword().equals(DaoEmp)){
+                        frameKehadiran.setVisible(true);
+                        frameLogin.setVisible(false);
+                    }
+                } else {
+                    LoginError error = new LoginError(frameLogin, true);
+                }
+            }
+        }
+    }
+    
     
     public void Delete(java.awt.Frame parent, boolean manager){
         if(manager){
