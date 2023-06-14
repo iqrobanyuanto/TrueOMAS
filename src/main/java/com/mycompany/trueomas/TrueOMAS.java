@@ -4,6 +4,7 @@
 
 package com.mycompany.trueomas;
 
+import controller.ControllerApp;
 import java.time.LocalDate;
 
 /**
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 public class TrueOMAS {
 
     public static void main(String[] args) {
-        
+        ControllerApp ca = new ControllerApp();
+        ca.showLogin();
     }
 }
