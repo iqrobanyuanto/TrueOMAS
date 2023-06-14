@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.ControllerApp;
 import javax.swing.JLabel;
 import javax.swing.JList;
 
@@ -12,7 +13,7 @@ import javax.swing.JList;
  * @author DELL
  */
 public class Assign extends javax.swing.JFrame {
-
+    ControllerApp ck;
     /**
      * Creates new form Assign
      */
@@ -138,13 +139,29 @@ public class Assign extends javax.swing.JFrame {
         );
 
         logKehadiran.setText("Log Kehadiran");
+        logKehadiran.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logKehadiranActionPerformed(evt);
+            }
+        });
 
+        assign.setBackground(new java.awt.Color(153, 153, 153));
         assign.setText("Assign");
 
         jButton3.setText("Employee");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         logout.setBackground(new java.awt.Color(255, 51, 51));
         logout.setText("Log Out");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,6 +202,21 @@ public class Assign extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void logKehadiranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logKehadiranActionPerformed
+        this.setVisible(false);
+        ck.showLogKehadiran();
+    }//GEN-LAST:event_logKehadiranActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.setVisible(false);
+        ck.showemployeePegawai();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        this.setVisible(false);
+        ck.showLogin();
+    }//GEN-LAST:event_logoutActionPerformed
 
     /**
      * @param args the command line arguments

@@ -26,7 +26,6 @@ public class ControllerApp {
     List<Manager> listMngr;
     List<AkunAdmin> listAkunAdmn;
     EmployeeDao DaoEmp;
-    RecordKehadiranDao DaoRecord;
     Employee emp; //akses Employee dari EmpWork
     Pegawai pegawai; //akses Pegawai dari EmpWork
     Manager manager; //akses Manager dari EmpWork
@@ -99,6 +98,20 @@ public class ControllerApp {
  //###############################################################################################################################################
     
  //################################################################## EMPLOYEE #############################################################################  
+    
+    //Show Frame Employee (Pegawai)
+    public void showemployeePegawai(){
+        framePegawai = new EmployeePegawai();
+        framePegawai.setVisible(true);
+        framePegawai.setLocationRelativeTo(null);
+    }
+    
+    //Show Frame Employee (Manager)
+    public void showemployeeManager(){
+        frameManager = new EmployeeManager();
+        frameManager.setVisible(true);
+        frameManager.setLocationRelativeTo(null);
+    }
     
     //Mengupdate list pegawai
     public void refreshPegawai() {
