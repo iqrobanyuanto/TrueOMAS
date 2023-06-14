@@ -12,7 +12,7 @@ import javax.swing.JTextField;
  * @author madel
  */
 public class Login extends javax.swing.JFrame {
-    ControllerApp ck;
+    ControllerApp ck = new ControllerApp();
     /**
      * Creates new form Login
      */
@@ -120,7 +120,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        ck.Login(getId(), getPassword());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

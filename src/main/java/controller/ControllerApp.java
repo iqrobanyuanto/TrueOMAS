@@ -44,7 +44,7 @@ public class ControllerApp {
     Kehadiran kehadiran; //Frame Kehadiran
     private SetKehadiran setKehadiran;
     private AddPegawai dialogAddPegawai;
-    AkunAdminDao DaoAdmin;
+    AkunAdminDao DaoAdmin = new AkunAdminDao();
     private LogKehadiran frameKehadiran;
     
     //Controller kosong
@@ -331,7 +331,7 @@ public class ControllerApp {
             listAkunAdmn = DaoAdmin.getAllAkunAdmin();
             for(int i=0; i < listAkunAdmn.size() ;i++ ){
                 if(listAkunAdmn.get(i).getid().equals(id)){
-                    if (listAkunAdmn.get(i).getpassword().equals(DaoEmp)){
+                    if (listAkunAdmn.get(i).getpassword().equals(pass)){
                         frameKehadiran.setVisible(true);
                         frameLogin.setVisible(false);
                     }
@@ -340,5 +340,5 @@ public class ControllerApp {
                 }
             }
         }
-    }       
+    }
 }
