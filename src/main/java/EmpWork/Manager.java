@@ -39,4 +39,14 @@ public class Manager extends Employee{
         this.recordKerja.showDescJamKerja();
         this.showListKehadiran();
      }
+         //test Liyan
+     public String getDataManager(){
+        String str = ("Jabatan: "+this.getNamaJabatan()+
+                "Id Manager: "+this.getIdEmployee()+
+                "Nama: "+this.getNamaEmployee()+
+                "Umur: "+this.getUmur()+
+                "Nomor Telepon: "+this.getNomorTelepon()+
+                "Alamat: "+this.getAlamat());
+        return str;
+     }
 }
