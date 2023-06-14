@@ -179,7 +179,7 @@ public class AddPegawai extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(jTextField1 == null || jTextField2 == null || jTextField3 == null || jTextField4 == null || jTextField5 == null || jTextField6 == null){
+        if(jTextField1.getText() == null || jTextField2.getText() == null || jTextField3.getText() == null || jTextField4.getText() == null || jTextField5.getText() == null || jTextField6.getText() == null){
             jLabel9.setText("Tolong isi semua data");
         }else{
             ck.AddPegawai();

@@ -20,6 +20,22 @@ import java.time.format.DateTimeFormatter;
  */
 public class ControllerApp {
 
+    List<Pegawai> listPgw;
+    List<Manager> listMngr;
+    EmployeeDao DaoEmp;
+    RecordKehadiranDao DaoRecord;
+    private EmployeePegawai framePegawai;
+    private EmployeeManager frameManager;
+    private SetGaji setGaji; //Frame SetGaji
+    Employee emp; //akses Employee dari EmpWork
+    Pegawai pegawai; //akses Pegawai dari EmpWork
+    Manager manager; //akses Manager dari EmpWork
+    Kehadiran kehadiran; //Frame Kehadiran
+    PerhitunganGajiDao DAOgaji; //akses DAO Gaji dari DAO
+    RecordKehadiranDao DAOkehadiran; //akses DAO Kehadiran dari DAO
+    private SetKehadiran setKehadiran;
+    private AddPegawai dialogAddPegawai;
+    private Login frameLogin;
     //Class GUI Assign--------
     private Assign assign;
     EmpWork.Pegawai pegawai;
@@ -70,20 +86,6 @@ public class ControllerApp {
         }
         
     }
-    
-    List<Pegawai> listPgw;
-    List<Manager> listMngr;
-    EmployeeDao DaoEmp;
-    private EmployeePegawai framePegawai;
-    private EmployeeManager frameManager;
-    private SetGaji setGaji; //Frame SetGaji
-    Employee emp; //akses Employee dari EmpWork
-    Pegawai pegawai; //akses Pegawai dari EmpWork
-    Manager manager; //akses Manager dari EmpWork
-    Kehadiran kehadiran; //Frame Kehadiran
-    PerhitunganGajiDao DAOgaji; //akses DAO Gaji dari DAO
-    RecordKehadiranDao DAOkehadiran; //akses DAO Kehadiran dari DAO
-    private SetKehadiran setKehadiran;
     
     //liyan
     public void refreshPegawai() {
@@ -253,4 +255,37 @@ public class ControllerApp {
         ModelTableKehadiran mt = new ModelTableKehadiran(listPegawai);
         frameLog.getTable().setModel(mt);
     }
+    
+    public void AddPegawai(){
+        DaoEmp.insertEmployee(dialogAddPegawai.getId().getText(), dialogAddPegawai.getNama().getText(), Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), dialogAddPegawai.getAlamat().getText(), dialogAddPegawai.getJabatan().getText());
+    }
+    
+    //WIP
+//    public void Login(String id, String pass){
+//        if(id == null || pass == null){
+//            LoginError error = new LoginError(frameLogin, true);
+//        }else{
+//            
+//        }
+//    }
+    
+    public void Delete(java.awt.Frame parent, boolean manager){
+        if(manager){
+            RemovePegawai delete = new RemovePegawai(parent,  true, true);
+        }else{
+            RemovePegawai delete = new RemovePegawai(parent,  true, false);
+        }
+        
+    }
+    public void DeleteEmployee(boolean manager){
+        if(manager){
+            int selectedIndex = frameManager.getListManager().getSelectedIndex();
+            DaoEmp.deleteEmployee(listPgw.get(selectedIndex).getIdEmployee(), "Manager");
+        }else{
+            int selectedIndex = framePegawai.getListPegawai().getSelectedIndex();
+        DaoEmp.deleteEmployee(listPgw.get(selectedIndex).getIdEmployee(), listPgw.get(selectedIndex).getNamaJabatan());
+        }
+    }
+    
+    
 }

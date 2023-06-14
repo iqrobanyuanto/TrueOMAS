@@ -3,6 +3,9 @@
  */
 
 package com.mycompany.trueomas;
+
+import java.time.LocalDate;
+
 /**
  *
  * @author Iqro Banyuanto
@@ -10,6 +13,5 @@ package com.mycompany.trueomas;
 public class TrueOMAS {
 
     public static void main(String[] args) {
-
     }
 }

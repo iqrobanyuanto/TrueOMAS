@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.ControllerApp;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
@@ -14,6 +15,7 @@ import javax.swing.JList;
 public class EmployeeManager extends javax.swing.JFrame {
     DefaultListModel listModel;
     JList<String> listManager;
+    ControllerApp ck;
     /**
      * Creates new form EmployeeManager
      */
@@ -71,6 +73,11 @@ public class EmployeeManager extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(255, 102, 102));
         jButton2.setText("Delete");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -229,6 +236,11 @@ public class EmployeeManager extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ck.Delete(this, true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
