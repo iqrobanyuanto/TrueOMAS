@@ -11,8 +11,10 @@ import view.*;
 import java.util.List;
 import javax.swing.*;
 import Dao.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 
 /**
@@ -310,6 +312,11 @@ public class ControllerApp {
         ModelTableKehadiran mt = new ModelTableKehadiran(listPegawai);
         frameLog.getTable().setModel(mt);
     }
+    public void updateTanggal(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDate = dateFormat.format(new Date());
+        frameLog.getDateLabel().setText(currentDate);
+    }
     
     
 //###############################################################################################################################################
@@ -331,7 +338,7 @@ public class ControllerApp {
             listAkunAdmn = DaoAdmin.getAllAkunAdmin();
             for(int i=0; i < listAkunAdmn.size() ;i++ ){
                 if(listAkunAdmn.get(i).getid().equals(id)){
-                    if (listAkunAdmn.get(i).getpassword().equals(DaoEmp)){
+                    if (listAkunAdmn.get(i).getpassword().equals(pass)){
                         frameKehadiran.setVisible(true);
                         frameLogin.setVisible(false);
                     }
