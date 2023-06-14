@@ -71,7 +71,7 @@ public class ControllerApp {
                 framePegawai.getListModel().addElement(pgw.getNamaEmployee());
             }
         }
-        updateFormPegawai();
+        updateFormAssign();
     }
     
     //Deskripsi pada list yang dituju
@@ -339,7 +339,7 @@ public class ControllerApp {
             for(int i=0; i < listAkunAdmn.size() ;i++ ){
                 if(listAkunAdmn.get(i).getid().equals(id)){
                     if (listAkunAdmn.get(i).getpassword().equals(pass)){
-                        frameKehadiran.setVisible(true);
+                        frameLog.setVisible(true);
                         frameLogin.setVisible(false);
                     }
                 } else {
