@@ -15,6 +15,6 @@ public class TrueOMAS {
 
     public static void main(String[] args) {
         ControllerApp ca = new ControllerApp();
-        
+        ca.showLogin();
     }
 }
