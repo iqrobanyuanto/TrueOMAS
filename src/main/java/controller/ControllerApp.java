@@ -45,10 +45,7 @@ public class ControllerApp {
     private SetKehadiran setKehadiran;
     private AddPegawai dialogAddPegawai;
     AkunAdminDao DaoAdmin;
-    private Login frameLogin;
     private LogKehadiran frameKehadiran;
-    //Class GUI Assign--------
-    private Assign assign;
     
     //Controller kosong
     public ControllerApp() {}
@@ -314,15 +311,6 @@ public class ControllerApp {
         frameLog.getTable().setModel(mt);
     }
     
-    //Menghapus pegawai
-    public void Delete(java.awt.Frame parent, boolean manager){
-        if(manager){
-            RemovePegawai delete = new RemovePegawai(parent,  true, true);
-        }else{
-            RemovePegawai delete = new RemovePegawai(parent,  true, false);
-        }
-        
-    }
     
 //###############################################################################################################################################
     
@@ -352,7 +340,5 @@ public class ControllerApp {
                 }
             }
         }
-    }
-
-        
+    }       
 }
