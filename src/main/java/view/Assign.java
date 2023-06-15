@@ -14,17 +14,16 @@ import javax.swing.JList;
  * @author DELL
  */
 public class Assign extends javax.swing.JFrame {
-    DefaultListModel listModel;
-    ControllerApp ck;
+    private DefaultListModel listModel;
+    private ControllerApp ck;
     /**
      * Creates new form Assign
      * @param as
      */
     public Assign(ControllerApp as) {
-        initComponents();
-        ck = as;
         listModel = new DefaultListModel();
-        ck.refreshAssign();
+        this.ck = as;
+        initComponents();
         jList1.setModel(listModel);
         
     }
@@ -260,11 +259,11 @@ public class Assign extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Assign().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Assign().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

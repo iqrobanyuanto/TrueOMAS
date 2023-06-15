@@ -18,9 +18,11 @@ public class EmployeePegawai extends javax.swing.JFrame {
     /**
      * Creates new form Assign
      */
-    public EmployeePegawai() {
+    public EmployeePegawai(ControllerApp as) {
         listModel = new DefaultListModel();
+        this.ck = as;
         initComponents();
+        listPegawai.setModel(listModel);
     }
     
     

@@ -34,17 +34,17 @@ public class ControllerApp {
     AkunAdminDao DaoAdmin = new AkunAdminDao();
     
     //Class GUI
-    private static Login frameLogin = new Login();
-    private static EmployeePegawai framePegawai = new EmployeePegawai();
-    private static EmployeeManager frameManager = new EmployeeManager();
-    private static Assign assign = new Assign();
-    private static SetGaji setGaji = new SetGaji(framePegawai,true); //Frame SetGaji
-    static LogKehadiran frameLog = new LogKehadiran();
-    private static SetKehadiran setKehadiran = new SetKehadiran(framePegawai,true);
-    private static AddPegawai dialogAddPegawai = new AddPegawai(framePegawai,true);
-    private static LogKehadiran frameKehadiran = new LogKehadiran();
-    private static RemovePegawai dialogDeletePegawai = new RemovePegawai(framePegawai, true, false);
-    private static RemovePegawai dialogDeleteManager = new RemovePegawai(frameManager, true, true);
+    private  Login frameLogin = new Login();
+    private  EmployeePegawai framePegawai = new EmployeePegawai(this);
+    private  EmployeeManager frameManager = new EmployeeManager(this);
+    private  Assign assign = new Assign(this);
+    private  SetGaji setGaji = new SetGaji(framePegawai,true); //Frame SetGaji
+    private LogKehadiran frameLog = new LogKehadiran();
+    private  SetKehadiran setKehadiran = new SetKehadiran(framePegawai,true);
+    private  AddPegawai dialogAddPegawai = new AddPegawai(framePegawai,true);
+    private  LogKehadiran frameKehadiran = new LogKehadiran();
+    private  RemovePegawai dialogDeletePegawai = new RemovePegawai(framePegawai, true, false);
+    private  RemovePegawai dialogDeleteManager = new RemovePegawai(frameManager, true, true);
     //Controller kosong
     public ControllerApp(){
         DaoEmp = new EmployeeDao();

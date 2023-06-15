@@ -19,8 +19,11 @@ public class EmployeeManager extends javax.swing.JFrame {
     /**
      * Creates new form EmployeeManager
      */
-    public EmployeeManager() {
+    public EmployeeManager(ControllerApp as) {
+        listModel = new DefaultListModel();
+        this.ck = as;
         initComponents();
+        listManager.setModel(listModel);
     }
 
     /**
@@ -342,11 +345,11 @@ public class EmployeeManager extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EmployeeManager().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new EmployeeManager().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
