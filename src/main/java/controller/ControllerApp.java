@@ -33,34 +33,48 @@ public class ControllerApp {
     InterfaceDaoEmployee EmployeeDao;
     AkunAdminDao DaoAdmin = new AkunAdminDao();
     
-    //Class GUI
-    private  Login frameLogin = new Login();
-    private  EmployeePegawai framePegawai = new EmployeePegawai(this);
-    private  EmployeeManager frameManager = new EmployeeManager(this);
-    private  Assign assign = new Assign(this);
-    private  SetGaji setGaji = new SetGaji(framePegawai,true); //Frame SetGaji
-    private LogKehadiran frameLog = new LogKehadiran();
-    private  SetKehadiran setKehadiran = new SetKehadiran(framePegawai,true);
-    private  AddPegawai dialogAddPegawai = new AddPegawai(framePegawai,true);
-    private  LogKehadiran frameKehadiran = new LogKehadiran();
-    private  RemovePegawai dialogDeletePegawai = new RemovePegawai(framePegawai, true, false);
-    private  RemovePegawai dialogDeleteManager = new RemovePegawai(frameManager, true, true);
-    //Controller kosong
+    private  Login frameLogin;
+    private  EmployeePegawai framePegawai;
+    private  EmployeeManager frameManager;
+    private  Assign assign;
+    private  SetGaji setGaji; //Frame SetGaji
+    private  LogKehadiran frameLog;
+    private  SetKehadiran setKehadiran;
+    private  AddPegawai dialogAddPegawai;
+    private  LogKehadiran frameKehadiran;
+    private  RemovePegawai dialogDeletePegawai;
+    private  RemovePegawai dialogDeleteManager;
+//Class GUI
+    /*
+    private static Login frameLogin = new Login();
+    private static EmployeePegawai framePegawai = new EmployeePegawai(this);
+    private static EmployeeManager frameManager = new EmployeeManager(this);
+    private static Assign assign = new Assign(this);
+    private static SetGaji setGaji = new SetGaji(framePegawai,true); //Frame SetGaji
+    private static LogKehadiran frameLog = new LogKehadiran();
+    private static SetKehadiran setKehadiran = new SetKehadiran(framePegawai,true);
+    private static AddPegawai dialogAddPegawai = new AddPegawai(framePegawai,true);
+    private static LogKehadiran frameKehadiran = new LogKehadiran();
+    private static RemovePegawai dialogDeletePegawai = new RemovePegawai(framePegawai, true, false);
+    private static RemovePegawai dialogDeleteManager = new RemovePegawai(frameManager, true, true);
+    
+    */
+//Controller kosong
     public ControllerApp(){
         DaoEmp = new EmployeeDao();
-        /*
-        this.frameLogin = new Login();
-        this.framePegawai = new EmployeePegawai();
-        this.frameManager = new EmployeeManager();
-        this.assign = new Assign();
+        
+        this.frameLogin = new Login(this);
+        this.framePegawai = new EmployeePegawai(this);
+        this.frameManager = new EmployeeManager(this);
+        this.assign = new Assign(this);
         this.setGaji = new SetGaji(framePegawai,true); //Frame SetGaji
         this.frameLog = new LogKehadiran();
-        this.kehadiran = new Kehadiran(); //Frame Kehadiran
+        //this.kehadiran = new Kehadiran(); //Frame Kehadiran
         this.setKehadiran = new SetKehadiran(framePegawai,true);
         this.dialogAddPegawai = new AddPegawai(framePegawai,true);
         this.DaoAdmin = new AkunAdminDao();
         this.frameKehadiran = new LogKehadiran();
-        */
+       
     }
     
  //#################################################################### ASSIGN #####################################################################
@@ -84,9 +98,9 @@ public class ControllerApp {
     }
     
     //Deskripsi pada list yang dituju
-    public void AssignDesc(){
-        
-    }
+//    public void AssignDesc(){
+//        
+//    }
     
     //update list pegawai di GUI Assign
     public void updateFormAssign() {

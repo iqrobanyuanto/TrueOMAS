@@ -14,7 +14,6 @@ import javax.swing.JList;
  */
 public class EmployeeManager extends javax.swing.JFrame {
     DefaultListModel listModel;
-    JList<String> listManager;
     ControllerApp ck;
     /**
      * Creates new form EmployeeManager
@@ -23,7 +22,7 @@ public class EmployeeManager extends javax.swing.JFrame {
         listModel = new DefaultListModel();
         this.ck = as;
         initComponents();
-        listManager.setModel(listModel);
+        jList1.setModel(listModel);
     }
 
     /**
@@ -294,7 +293,7 @@ public class EmployeeManager extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ck.showDelete(true, listManager.getSelectedValue());
+        ck.showDelete(true, jList1.getSelectedValue());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void assignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignActionPerformed
@@ -382,7 +381,7 @@ public class EmployeeManager extends javax.swing.JFrame {
     }
     public javax.swing.JList<String> getListManager() {
         
-        return listManager;
+        return jList1;
     }
 
     /**
