@@ -21,7 +21,7 @@ public class TrueOMAS {
         ControllerApp ca = new ControllerApp();
         //ca.showLogin();
         
-        ca.showemployeePegawai();
+        ca.showLogin();
         
         //ca.ShowAssign();
         

@@ -50,6 +50,7 @@ public class ControllerApp {
     private static RemovePegawai dialogDeleteManager = new RemovePegawai(frameManager, true, true);
     //Controller kosong
     public ControllerApp(){
+        DaoEmp = new EmployeeDao();
         /*
         this.frameLogin = new Login();
         this.framePegawai = new EmployeePegawai();
@@ -67,10 +68,10 @@ public class ControllerApp {
     
  //#################################################################### ASSIGN #####################################################################
     //Untuk show GUI Assign-------
-    public static void ShowAssign(){
+    public void ShowAssign(){
         assign.setVisible(true);
         assign.setLocationRelativeTo(null);
-        //refreshAssign();
+        refreshAssign();
     }
     
     //Mengupdate list pada Assign lembur
