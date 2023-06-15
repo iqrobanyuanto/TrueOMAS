@@ -304,7 +304,7 @@ public class EmployeePegawai extends javax.swing.JFrame {
     private void Button_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_DeleteActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        ck.showDelete(false);
+        ck.showDelete(false, listPegawai.getSelectedValue());
     }//GEN-LAST:event_Button_DeleteActionPerformed
 
     /**

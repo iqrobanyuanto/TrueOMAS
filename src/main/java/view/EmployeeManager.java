@@ -291,7 +291,7 @@ public class EmployeeManager extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ck.showDelete(true);
+        ck.showDelete(true, listManager.getSelectedValue());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void assignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignActionPerformed
