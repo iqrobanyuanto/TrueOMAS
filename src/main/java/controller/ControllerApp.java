@@ -40,7 +40,6 @@ public class ControllerApp {
     private static Assign assign = new Assign();
     private static SetGaji setGaji = new SetGaji(framePegawai,true); //Frame SetGaji
     static LogKehadiran frameLog = new LogKehadiran();
-    static Kehadiran kehadiran = new Kehadiran(); //Frame Kehadiran
     private static SetKehadiran setKehadiran = new SetKehadiran(framePegawai,true);
     private static AddPegawai dialogAddPegawai = new AddPegawai(framePegawai,true);
     private static LogKehadiran frameKehadiran = new LogKehadiran();
