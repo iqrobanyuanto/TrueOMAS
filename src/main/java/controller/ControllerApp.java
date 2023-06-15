@@ -46,7 +46,8 @@ public class ControllerApp {
     private static SetKehadiran setKehadiran = new SetKehadiran(framePegawai,true);
     private static AddPegawai dialogAddPegawai = new AddPegawai(framePegawai,true);
     private static LogKehadiran frameKehadiran = new LogKehadiran();
-    
+    private static RemovePegawai dialogDeletePegawai = new RemovePegawai(framePegawai, true, false);
+    private static RemovePegawai dialogDeleteManager = new RemovePegawai(frameManager, true, true);
     //Controller kosong
     public ControllerApp(){
         /*
@@ -291,22 +292,27 @@ public class ControllerApp {
     
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         
+    public void showAddPegawai(){
+        dialogAddPegawai.setVisible(true);
+    }
     //Menambahkan pegawai ke database
     public void AddPegawai(){
         DaoEmp.insertEmployee(dialogAddPegawai.getId().getText(), dialogAddPegawai.getNama().getText(), Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), dialogAddPegawai.getAlamat().getText(), dialogAddPegawai.getJabatan().getText());
     }
     
-    public void Delete(java.awt.Frame parent, boolean manager){
-        if(manager){
-            RemovePegawai delete = new RemovePegawai(parent,  true, true);
+    public void showDelete(boolean isManager, String selectedPegawai){
+        if(isManager){
+            dialogDeleteManager.getjLabel1().setText("Apakah anda ingin menghapus "+selectedPegawai+" dari database?");
+            dialogDeleteManager.setVisible(true);
         }else{
-            RemovePegawai delete = new RemovePegawai(parent,  true, false);
+            dialogDeletePegawai.getjLabel1().setText("Apakah anda ingin menghapus "+selectedPegawai+" dari database?");
+            dialogDeletePegawai.setVisible(true);
         }
         
     }
     //Menghapus Employee
-    public void DeleteEmployee(boolean manager){
-        if(manager){
+    public void DeleteEmployee(boolean isManager){
+        if(isManager){
             int selectedIndex = frameManager.getListManager().getSelectedIndex();
             DaoEmp.deleteEmployee(listPgw.get(selectedIndex).getIdEmployee(), "Manager");
         }else{

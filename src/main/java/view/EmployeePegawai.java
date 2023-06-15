@@ -13,7 +13,7 @@ import javax.swing.DefaultListModel;
  */
 public class EmployeePegawai extends javax.swing.JFrame {
     DefaultListModel listModel;
-    ControllerApp ck;
+    ControllerApp ck = new ControllerApp();
     /**
      * Creates new form Assign
      */
@@ -76,6 +76,11 @@ public class EmployeePegawai extends javax.swing.JFrame {
 
         Button_Delete.setBackground(new java.awt.Color(255, 102, 102));
         Button_Delete.setText("Delete");
+        Button_Delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_DeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -277,6 +282,8 @@ public class EmployeePegawai extends javax.swing.JFrame {
 
     private void Button_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_AddActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        ck.showAddPegawai();
     }//GEN-LAST:event_Button_AddActionPerformed
 
     private void logkehadiranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logkehadiranActionPerformed
@@ -293,6 +300,12 @@ public class EmployeePegawai extends javax.swing.JFrame {
         this.setVisible(false);
         ck.showLogin();
     }//GEN-LAST:event_logoutActionPerformed
+
+    private void Button_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_DeleteActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        ck.showDelete(false, listPegawai.getSelectedValue());
+    }//GEN-LAST:event_Button_DeleteActionPerformed
 
     /**
      * @param args the command line arguments

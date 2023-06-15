@@ -15,7 +15,7 @@ import javax.swing.JList;
 public class EmployeeManager extends javax.swing.JFrame {
     DefaultListModel listModel;
     JList<String> listManager;
-    ControllerApp ck;
+    ControllerApp ck = new ControllerApp();
     /**
      * Creates new form EmployeeManager
      */
@@ -285,11 +285,13 @@ public class EmployeeManager extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        ck.showAddPegawai();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ck.Delete(this, true);
+        ck.showDelete(true, listManager.getSelectedValue());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void assignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignActionPerformed
