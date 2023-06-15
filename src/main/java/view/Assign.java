@@ -19,6 +19,7 @@ public class Assign extends javax.swing.JFrame {
      */
     public Assign() {
         initComponents();
+        ck.refreshAssign();
     }
 
     /**

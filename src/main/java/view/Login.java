@@ -18,6 +18,8 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        jTextField1.setText("");
+        jTextField2.setText("");
     }
     public String getId(){
         return jTextField1.getText();

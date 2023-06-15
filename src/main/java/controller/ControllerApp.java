@@ -33,6 +33,7 @@ public class ControllerApp {
     PerhitunganGajiDao DAOgaji; //akses DAO Gaji dari DAO
     RecordKehadiranDao DAOkehadiran; //akses DAO Kehadiran dari DAO
     InterfaceDaoEmployee EmployeeDao;
+    AkunAdminDao DaoAdmin = new AkunAdminDao();
     
     //Class GUI
     private static Login frameLogin = new Login();
@@ -44,7 +45,6 @@ public class ControllerApp {
     static Kehadiran kehadiran = new Kehadiran(); //Frame Kehadiran
     private static SetKehadiran setKehadiran = new SetKehadiran(framePegawai,true);
     private static AddPegawai dialogAddPegawai = new AddPegawai(framePegawai,true);
-    static AkunAdminDao DaoAdmin = new AkunAdminDao();
     private static LogKehadiran frameKehadiran = new LogKehadiran();
     
     //Controller kosong
