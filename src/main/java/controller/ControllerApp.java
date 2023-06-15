@@ -34,25 +34,36 @@ public class ControllerApp {
     InterfaceDaoEmployee EmployeeDao;
     
     //Class GUI
-    private Login frameLogin;
-    private EmployeePegawai framePegawai;
-    private EmployeeManager frameManager;
-    private Assign assign;
-    private SetGaji setGaji; //Frame SetGaji
-    LogKehadiran frameLog;
-    Kehadiran kehadiran; //Frame Kehadiran
-    private SetKehadiran setKehadiran;
-    private AddPegawai dialogAddPegawai;
-    AkunAdminDao DaoAdmin = new AkunAdminDao();
-    private LogKehadiran frameKehadiran;
+    private Login frameLogin; //= new Login();
+    private EmployeePegawai framePegawai; // = new EmployeePegawai();
+    private EmployeeManager frameManager; // = new EmployeeManager();
+    private Assign assign; // = new Assign();
+    private SetGaji setGaji; // = new SetGaji(framePegawai,true); //Frame SetGaji
+    LogKehadiran frameLog; // = new LogKehadiran();
+    Kehadiran kehadiran; // = new Kehadiran(); //Frame Kehadiran
+    private SetKehadiran setKehadiran; // = new SetKehadiran(framePegawai,true);
+    private AddPegawai dialogAddPegawai; // = new AddPegawai(framePegawai,true);
+    AkunAdminDao DaoAdmin; // = new AkunAdminDao();
+    private LogKehadiran frameKehadiran; // = new LogKehadiran();
     
     //Controller kosong
-    public ControllerApp() {}
+    public ControllerApp(){
+        this.frameLogin = new Login();
+        this.framePegawai = new EmployeePegawai();
+        this.frameManager = new EmployeeManager();
+        this.assign = new Assign();
+        this.setGaji = new SetGaji(framePegawai,true); //Frame SetGaji
+        this.frameLog = new LogKehadiran();
+        this.kehadiran = new Kehadiran(); //Frame Kehadiran
+        this.setKehadiran = new SetKehadiran(framePegawai,true);
+        this.dialogAddPegawai = new AddPegawai(framePegawai,true);
+        this.DaoAdmin = new AkunAdminDao();
+        this.frameKehadiran = new LogKehadiran();
+    }
     
  //#################################################################### ASSIGN #####################################################################
     //Untuk show GUI Assign-------
     public void ShowAssign(){
-        assign = new Assign();
         assign.setVisible(true);
         assign.setLocationRelativeTo(null);
         refreshAssign();
@@ -100,14 +111,12 @@ public class ControllerApp {
     
     //Show Frame Employee (Pegawai)
     public void showemployeePegawai(){
-        framePegawai = new EmployeePegawai();
         framePegawai.setVisible(true);
         framePegawai.setLocationRelativeTo(null);
     }
     
     //Show Frame Employee (Manager)
     public void showemployeeManager(){
-        frameManager = new EmployeeManager();
         frameManager.setVisible(true);
         frameManager.setLocationRelativeTo(null);
     }
@@ -198,14 +207,12 @@ public class ControllerApp {
     
     //Menampilkan JDialog SetGaji (Pegawai)
     public void showSetGajiPegawai(){
-        setGaji = new SetGaji(framePegawai,true);
         setGaji.setVisible(true);
         setGaji.setLocationRelativeTo(null);
     }
     
     //Menampilkan JDialog SetGaji (Manager)
     public void showSetGajiManager(){
-        setGaji = new SetGaji(frameManager,true);
         setGaji.setVisible(true);
         setGaji.setLocationRelativeTo(null);
     }
@@ -235,14 +242,12 @@ public class ControllerApp {
     
     //Menampilkan JDialog untuk SetKehadiran (Pegawai)
     public void showSetkehadiranPegawai(){
-        setKehadiran = new SetKehadiran(framePegawai,true);
         setKehadiran.setVisible(true);
         setKehadiran.setLocationRelativeTo(null);
     }
     
     //Menampilkan JDialog untuk SetKehadiran (Manager)
     public void showSetkehadiranManager(){
-        setKehadiran = new SetKehadiran(frameManager,true);
         setKehadiran.setVisible(true);
         setKehadiran.setLocationRelativeTo(null);
     }
@@ -312,9 +317,8 @@ public class ControllerApp {
 //####################################################################### LOG KEHADIRAN ########################################################################
     
     public void showLogKehadiran(){
-        LogKehadiran lk = new LogKehadiran();
-        lk.setVisible(true);
-        lk.setLocationRelativeTo(null);
+        frameKehadiran.setVisible(true);
+        frameKehadiran.setLocationRelativeTo(null);
     }
     
     public void isiTableKehadiran(){
@@ -330,9 +334,8 @@ public class ControllerApp {
     
     //Memunculkan GUI login
     public void showLogin(){
-        Login login = new Login();
-        login.setVisible(true);
-        login.setLocationRelativeTo(null);
+        frameLogin.setVisible(true);
+        frameLogin.setLocationRelativeTo(null);
     }
     
     public void Login(String id, String pass){
