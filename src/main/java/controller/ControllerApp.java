@@ -34,20 +34,21 @@ public class ControllerApp {
     InterfaceDaoEmployee EmployeeDao;
     
     //Class GUI
-    private Login frameLogin; //= new Login();
-    private EmployeePegawai framePegawai; // = new EmployeePegawai();
-    private EmployeeManager frameManager; // = new EmployeeManager();
-    private Assign assign; // = new Assign();
-    private SetGaji setGaji; // = new SetGaji(framePegawai,true); //Frame SetGaji
-    LogKehadiran frameLog; // = new LogKehadiran();
-    Kehadiran kehadiran; // = new Kehadiran(); //Frame Kehadiran
-    private SetKehadiran setKehadiran; // = new SetKehadiran(framePegawai,true);
-    private AddPegawai dialogAddPegawai; // = new AddPegawai(framePegawai,true);
-    AkunAdminDao DaoAdmin; // = new AkunAdminDao();
-    private LogKehadiran frameKehadiran; // = new LogKehadiran();
+    private static Login frameLogin = new Login();
+    private static EmployeePegawai framePegawai = new EmployeePegawai();
+    private static EmployeeManager frameManager = new EmployeeManager();
+    private static Assign assign = new Assign();
+    private static SetGaji setGaji = new SetGaji(framePegawai,true); //Frame SetGaji
+    static LogKehadiran frameLog = new LogKehadiran();
+    static Kehadiran kehadiran = new Kehadiran(); //Frame Kehadiran
+    private static SetKehadiran setKehadiran = new SetKehadiran(framePegawai,true);
+    private static AddPegawai dialogAddPegawai = new AddPegawai(framePegawai,true);
+    static AkunAdminDao DaoAdmin = new AkunAdminDao();
+    private static LogKehadiran frameKehadiran = new LogKehadiran();
     
     //Controller kosong
     public ControllerApp(){
+        /*
         this.frameLogin = new Login();
         this.framePegawai = new EmployeePegawai();
         this.frameManager = new EmployeeManager();
@@ -59,14 +60,15 @@ public class ControllerApp {
         this.dialogAddPegawai = new AddPegawai(framePegawai,true);
         this.DaoAdmin = new AkunAdminDao();
         this.frameKehadiran = new LogKehadiran();
+        */
     }
     
  //#################################################################### ASSIGN #####################################################################
     //Untuk show GUI Assign-------
-    public void ShowAssign(){
+    public static void ShowAssign(){
         assign.setVisible(true);
         assign.setLocationRelativeTo(null);
-        refreshAssign();
+        //refreshAssign();
     }
     
     //Mengupdate list pada Assign lembur
