@@ -11,6 +11,7 @@ import view.*;
 import java.util.List;
 import javax.swing.*;
 import Dao.*;
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -341,8 +342,17 @@ public class ControllerApp {
     }
     
     public void Login(String id, String pass){
-        if(id == null || pass == null){
-            LoginError error = new LoginError(frameLogin, true);
+        if(id.length() == 0 || pass.length() == 0){
+            
+            //Membuat JDialog baru yang berisikan notif error
+            JDialog errorDialog = new JDialog(frameLogin, "Error", true);
+            errorDialog.setLayout(new FlowLayout());
+            JLabel errorMessageLabel = new JLabel("Please put a correct input");
+            errorDialog.add(errorMessageLabel);
+
+            errorDialog.pack();
+            errorDialog.setLocationRelativeTo(frameLogin);
+            errorDialog.setVisible(true);
         }else{
             //mencari akun
             listAkunAdmn = DaoAdmin.getAllAkunAdmin();
@@ -354,6 +364,8 @@ public class ControllerApp {
                     }
                 } else {
                     LoginError error = new LoginError(frameLogin, true);
+                    error.setVisible(true);
+                    error.setLocationRelativeTo(null);
                 }
             }
         }
