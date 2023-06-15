@@ -5,6 +5,7 @@
 package view;
 
 import controller.ControllerApp;
+import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 
@@ -13,15 +14,26 @@ import javax.swing.JList;
  * @author DELL
  */
 public class Assign extends javax.swing.JFrame {
-    ControllerApp ck = new ControllerApp();
+    DefaultListModel listModel;
+    ControllerApp ck;
     /**
      * Creates new form Assign
+     * @param as
      */
-    public Assign() {
+    public Assign(ControllerApp as) {
         initComponents();
-        ck = new ControllerApp();
+        ck = as;
+        listModel = new DefaultListModel();
         ck.refreshAssign();
+        jList1.setModel(listModel);
+        
     }
+
+    public DefaultListModel getListModel() {
+        return listModel;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

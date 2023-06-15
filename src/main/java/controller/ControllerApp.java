@@ -94,6 +94,9 @@ public class ControllerApp {
         Pegawai pgw = listPgw.get(selectedIndex);
         String pengizin = pgw.statusLembur.getPengizin();
         int jamLembur = pgw.statusLembur.getWaktuLembur();
+        assign.getjLabel4().setText(pgw.getNamaEmployee());
+        assign.getjLabel6().setText(pengizin);
+        assign.getjLabel8().setText(""+jamLembur);
         if (selectedIndex >= 0 && selectedIndex < listPgw.size()) {
             assign.getjLabel4().setText(pgw.getNamaEmployee());
             assign.getjLabel6().setText(pengizin);
@@ -103,7 +106,6 @@ public class ControllerApp {
             assign.getjLabel6().setText("");
             assign.getjLabel8().setText("");
         }
-        
     }
     
  //###############################################################################################################################################
