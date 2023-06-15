@@ -15,7 +15,7 @@ import javax.swing.JList;
 public class EmployeeManager extends javax.swing.JFrame {
     DefaultListModel listModel;
     JList<String> listManager;
-    ControllerApp ck = new ControllerApp();
+    ControllerApp ck;
     /**
      * Creates new form EmployeeManager
      */

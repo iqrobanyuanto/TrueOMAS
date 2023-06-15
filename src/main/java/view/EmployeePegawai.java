@@ -14,7 +14,7 @@ import javax.swing.DefaultListModel;
  */
 public class EmployeePegawai extends javax.swing.JFrame {
     DefaultListModel listModel;
-    ControllerApp ck = new ControllerApp();
+    ControllerApp ck;
     /**
      * Creates new form Assign
      */
