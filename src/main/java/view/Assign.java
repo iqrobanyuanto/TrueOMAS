@@ -13,7 +13,7 @@ import javax.swing.JList;
  * @author DELL
  */
 public class Assign extends javax.swing.JFrame {
-    ControllerApp ck;
+    ControllerApp ck = new ControllerApp();
     /**
      * Creates new form Assign
      */
