@@ -5,6 +5,7 @@
 package view;
 
 import controller.ControllerApp;
+import javax.swing.JLabel;
 
 /**
  *
@@ -12,14 +13,14 @@ import controller.ControllerApp;
  */
 public class RemovePegawai extends javax.swing.JDialog {
     ControllerApp ck;
-    boolean statusManager;
+    boolean isManager;
     /**
      * Creates new form RemovePegawai
      */
-    public RemovePegawai(java.awt.Frame parent, boolean modal, boolean manager) {
+    public RemovePegawai(java.awt.Frame parent, boolean modal, boolean isManager) {
         super(parent, modal);
         initComponents();
-        statusManager = manager;
+        this.isManager = isManager;
     }
 
     /**
@@ -90,12 +91,17 @@ public class RemovePegawai extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ck.DeleteEmployee(statusManager);
+        ck.DeleteEmployee(isManager);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        dispose();
+        this.setVisible(false);
+        if(isManager){
+            ck.showemployeeManager();
+        }else{
+            ck.showemployeePegawai();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -107,4 +113,9 @@ public class RemovePegawai extends javax.swing.JDialog {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
 }

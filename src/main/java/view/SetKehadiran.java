@@ -39,7 +39,7 @@ public class SetKehadiran extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Atur Jadwal Kehadarian");
+        jLabel1.setText("Atur Jadwal Kehadiran");
 
         jLabel2.setText("Jadwal Masuk :");
 
