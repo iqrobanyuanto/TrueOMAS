@@ -12,7 +12,7 @@ import javax.swing.JLabel;
  * @author andry
  */
 public class RemovePegawai extends javax.swing.JDialog {
-    ControllerApp ck;
+    ControllerApp ck = new ControllerApp();
     boolean isManager;
     /**
      * Creates new form RemovePegawai
@@ -96,12 +96,13 @@ public class RemovePegawai extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+        
         if(isManager){
             ck.showemployeeManager();
         }else{
             ck.showemployeePegawai();
         }
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
