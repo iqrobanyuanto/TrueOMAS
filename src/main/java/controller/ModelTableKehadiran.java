@@ -6,6 +6,7 @@ package controller;
 
 import Dao.RecordKehadiranDao;
 import EmpWork.Pegawai;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -39,8 +40,8 @@ public class ModelTableKehadiran extends AbstractTableModel{
             case 3: 
                 list_kehadiran = dao.getRecordKehadiran(listPegawai.get(rowIndex).getIdEmployee(), listPegawai.get(rowIndex).getNamaJabatan());
              for (LocalDateTime list_kehadiran1 : list_kehadiran) {
-                 DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-                 LocalDateTime now = LocalDateTime.now();
+                 DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                 LocalDate now = LocalDate.now();
                  if(list_kehadiran1.format(format).equals(now.format(format))){
                      kehadiran = list_kehadiran1;
                  }

@@ -16,10 +16,10 @@ import java.util.logging.Logger;
  */
 public class DBConnection {
     private static Connection connection;
-    private static final String url = "jdbc:mysql://localhost:3306/DBTrueOMAS";
+    private static final String url = "jdbc:mysql://localhost:3306/testing?zeroDateTimeBehavior=CONVERT_TO_NULL";
     private static final String username = "root";
-    private static final String password = "percobaan";
-    private static final String className = "com.mysql.jdbc.Driver";
+    private static final String password = "";
+    private static final String className = "com.mysql.cj.jdbc.Driver";
     
     public static Connection getConnection() throws SQLException{
         if (connection == null){
