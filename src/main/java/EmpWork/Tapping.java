@@ -17,13 +17,18 @@ public class Tapping {
                 throw new IllegalArgumentException("Employee tidak ditemukan");
             }
             if(q.kartuKehadiran.cekJamMasuk() == -99){
-                q.kartuKehadiran.setWaktuMasuk();
-                if(q.kartuKehadiran.getWaktu_masuk() != null){
-                    q.list_kehadiran.add(q.kartuKehadiran.getWaktu_masuk());
+                q.kartuKehadiran.setTappingWaktuMasuk();
+                
+                if(q.kartuKehadiran.getWaktu_masuk() == null){
+                    LogKehadiran e = new LogKehadiran();
+                    e.setTanggal(q.kartuKehadiran.getWaktu_masuk().toLocalDate());
+                    e.setWaktuMasuk(q.kartuKehadiran.getWaktu_masuk().toLocalTime());
+                    q.list_kehadiran.add(e);
                 }
             }else{
-                q.kartuKehadiran.setWaktuKeluar();
-                q.list_kehadiran.add(q.kartuKehadiran.getWaktu_keluar());
+                q.kartuKehadiran.setTappingWaktuKeluar();
+                LogKehadiran e = q.list_kehadiran.get(q.list_kehadiran.size());
+                e.setWaktuKeluar(q.kartuKehadiran.getWaktu_keluar().toLocalTime());
                 prosesTambahTotalJamKerja(q);
             }
         }catch(IllegalArgumentException e){
