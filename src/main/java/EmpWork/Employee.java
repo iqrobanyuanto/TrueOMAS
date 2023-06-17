@@ -23,7 +23,7 @@ public abstract class Employee {
     //Untuk menyimpan data gaji pegawai
     public PerhitunganGaji statusGaji;
     //untuk menyimpan tanggal dan waktu kehadiran
-    public List<LocalDateTime> list_kehadiran;
+    public List<LogKehadiran> list_kehadiran;
     
     public Employee(String idEmployee, String nama, int umur, String nomor_telepon, String alamat){
         this.idEmployee = idEmployee;
@@ -77,18 +77,20 @@ public abstract class Employee {
         return alamat;
     }
     
-    public void addkehadiran(LocalDateTime kehadiran){
+    public void addkehadiran(LogKehadiran kehadiran){
         list_kehadiran.add(kehadiran);
     }
     
-    public List<LocalDateTime> getkehadiran(){
+    public List<LogKehadiran> getkehadiran(){
         return list_kehadiran;
     }
     
     public void showListKehadiran(){
         System.out.println("--Data Rekaman Kehadiran--");
-        for(LocalDateTime s : list_kehadiran){
-            System.out.println(s.toString());
+        for(LogKehadiran s : list_kehadiran){
+            System.out.println(s.getTanggal().toString());
+            System.out.println(s.getWaktuMasuk().toString());
+            System.out.println(s.getWaktuKeluar().toString());
         }
         System.out.println("------");
     }
