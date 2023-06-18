@@ -87,9 +87,9 @@ public class PerhitunganWaktuDao implements InterfaceDaoPerhitunganWaktu{
         String sql;
         PerhitunganWaktu recordKerja = new PerhitunganWaktu();
         if(namaJabatan.equals("Manager")){
-            sql = "SELECT * FROM ManagerRecordJamKerja WHERE idManager = " + idEmployee;
+            sql = "SELECT * FROM ManagerRecordJamKerja WHERE idManager = '" + idEmployee+"'";
         }else{
-            sql = "SELECT * FROM PegawaiRecordJamKerja WHERE idPegawai = " + idEmployee;
+            sql = "SELECT * FROM PegawaiRecordJamKerja WHERE idPegawai = '" + idEmployee+"'";
         }
         try(Statement statement = DBConnection.getConnection().createStatement()){
             ResultSet result = statement.executeQuery(sql);

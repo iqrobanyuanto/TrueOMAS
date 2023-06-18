@@ -165,13 +165,20 @@ public class ControllerApp {
             
             //update isi object Standar Jam
             Kehadiran hadir = DaoKehadiran.getKehadiran(pgw.getIdEmployee(), pgw.getNamaJabatan());
+            
+            //update status lembur
+            TiketLembur lembur = DaoLembur.getTiketLembur(pgw.getIdEmployee());
+            
+            //update perhitungan waktu untuk total lembur
+            var waktuLembur = DaoWaktu.getPerhitunganWaktu(pgw.getIdEmployee(), pgw.getNamaJabatan());
 
             //Pemanggilan variblen untuk di format cetak
             int gaji = statusGaji.getStandarGaji();
             String standarJamMasuk = hadir.getStandarMasuk().toString();
             String standarJamKeluar = hadir.getStandarKeluar().toString();
-            boolean statusLembur = pgw.statusLembur.getStatusTiket();
-            int totalLembur = pgw.recordKerja.getTotalLembur();
+            boolean statusLembur = lembur.getStatusTiket();
+            int totalLembur = waktuLembur.getTotalLembur();
+
             //format cetak terupdate
             framePegawai.getDeskrip_Pegawai().setText("Jabatan: "+pgw.getNamaJabatan());
             framePegawai.getDeskrip_Pegawai1().setText("Id Pegawai: "+pgw.getIdEmployee());
@@ -409,16 +416,26 @@ public class ControllerApp {
         Pegawai pgw;
         Manager m;
         if(dialogAddPegawai.getJabatan().getText().equals("Pegawai")){
-            pgw = new Pegawai(dialogAddPegawai.getId().getText(), dialogAddPegawai.getNama().getText(), Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), dialogAddPegawai.getAlamat().getText());
+            pgw = new Pegawai(dialogAddPegawai.getId().getText(), dialogAddPegawai.getNama().getText(), 
+                    Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), 
+                        dialogAddPegawai.getAlamat().getText());
             
             DaoLembur.insertTiketLembur(pgw.statusLembur, pgw);
-            DaoEmp.insertEmployee(pgw.getIdEmployee(), pgw.getNamaEmployee(), pgw.getUmur(), pgw.getNomorTelepon(), pgw.getAlamat(), pgw.getNamaJabatan());
+            
+            DaoEmp.insertEmployee(pgw.getIdEmployee(), pgw.getNamaEmployee(), pgw.getUmur(), pgw.getNomorTelepon(), 
+                        pgw.getAlamat(), pgw.getNamaJabatan());
+            
             DAOgaji.insertPerhitunganGaji(pgw.statusGaji, pgw.getIdEmployee(), pgw.getNamaJabatan());
             DaoKehadiran.insertKartuKehadiran(pgw.kartuKehadiran, pgw.getIdEmployee(), pgw.getNamaEmployee());
             DaoWaktu.insertPerhitunganWaktu(pgw.recordKerja, pgw.getIdEmployee(), pgw.getNamaJabatan());
         }else{
-            m = new Manager(dialogAddPegawai.getId().getText(), dialogAddPegawai.getNama().getText(), Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), dialogAddPegawai.getAlamat().getText());
-            DaoEmp.insertEmployee(m.getIdEmployee(), m.getNamaEmployee(), m.getUmur(), m.getNomorTelepon(), m.getAlamat(), m.getNamaJabatan());
+            m = new Manager(dialogAddPegawai.getId().getText(), dialogAddPegawai.getNama().getText(), 
+                        Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), 
+                            dialogAddPegawai.getAlamat().getText());
+            
+            DaoEmp.insertEmployee(m.getIdEmployee(), m.getNamaEmployee(), m.getUmur(), m.getNomorTelepon(), 
+                        m.getAlamat(), m.getNamaJabatan());
+            
             DAOgaji.insertPerhitunganGaji(m.statusGaji, m.getIdEmployee(), m.getNamaJabatan());
             DaoKehadiran.insertKartuKehadiran(m.kartuKehadiran, m.getIdEmployee(), m.getNamaEmployee());
             DaoWaktu.insertPerhitunganWaktu(m.recordKerja, m.getIdEmployee(), m.getNamaJabatan());

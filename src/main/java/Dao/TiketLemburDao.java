@@ -106,7 +106,7 @@ public class TiketLemburDao implements InterfaceDaoTiketLembur{
     public TiketLembur getTiketLembur(String idPegawai){
         String sql;
         TiketLembur statusLembur = new TiketLembur();
-        sql = "SELECT * FROM PegawaiStatusLembur WHERE idPegawai = " + idPegawai;
+        sql = "SELECT * FROM PegawaiStatusLembur WHERE idPegawai = '" + idPegawai+"'";
         try(Statement statement = DBConnection.getConnection().createStatement()){
             ResultSet result = statement.executeQuery(sql);
             if(result.next()){
