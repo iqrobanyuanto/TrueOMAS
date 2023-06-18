@@ -24,8 +24,7 @@ public class Assign extends javax.swing.JFrame {
         listModel = new DefaultListModel();
         this.ck = as;
         initComponents();
-        jList1.setModel(listModel);
-        
+        ck.refreshAssign(jList1);
     }
 
     public DefaultListModel getListModel() {
