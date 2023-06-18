@@ -160,34 +160,36 @@ public class ControllerApp {
     
     //Mengupdate list GUI pegawai
     public void updateFormPegawai() {
+        
         int selectedIndex = framePegawai.getListPegawai().getSelectedIndex();
         if (selectedIndex >= 0 && selectedIndex < listPgw.size()) {
             Pegawai pgw = listPgw.get(selectedIndex);
-            int gaji = pgw.statusGaji.getStandarGaji();
+            //update isi object statusGaji
+            PerhitunganGaji statusGaji = DAOgaji.getPerhiitunganGaji(pgw.getIdEmployee(), pgw.getNamaJabatan());
+            pgw.statusGaji.setStandarGaji(statusGaji.getStandarGaji());
+            pgw.statusGaji.setTotalGaji(statusGaji.getTotalJamGaji());
+            
+            //Pemanggilan variblen untuk di format cetak
+            int gaji = statusGaji.getStandarGaji();
             String standarJamMasuk = pgw.kartuKehadiran.getStandarMasuk().toString();
             String standarJamKeluar = pgw.kartuKehadiran.getStandarKeluar().toString();
-            String statusLembur = pgw.statusLembur.toString();
+            boolean statusLembur = pgw.statusLembur.getStatusTiket();
             int totalLembur = pgw.recordKerja.getTotalLembur();
-            
-            framePegawai.getDeskrip_Pegawai().setText(pgw.getDataPegawai());
-            framePegawai.getDeskrip_Gaji().setText("Standar Gaji :"+gaji);
-            framePegawai.getDeskrip_Standar().setText("Standar Jam Masuk: "+standarJamMasuk+
-                                                        "\n Standar Jam Keluar: "+standarJamKeluar+
-                                                        "\n\n Status Lembur: "+statusLembur+
-                                                        "\n Total Lembur: "+totalLembur);
+            //format cetak terupdate
+            framePegawai.getDeskrip_Pegawai().setText("Jabatan: "+pgw.getNamaJabatan());
+            framePegawai.getDeskrip_Pegawai1().setText("Id Pegawai: "+pgw.getIdEmployee());
+            framePegawai.getDeskrip_Pegawai2().setText("Nama Employee: "+pgw.getNamaEmployee());
+            framePegawai.getDeskrip_Pegawai3().setText("Umur: "+pgw.getUmur());
+            framePegawai.getDeskrip_Pegawai4().setText("No. Telepon: "+pgw.getNomorTelepon());
+            framePegawai.getDeskrip_Gaji().setText("Standar Gaji: "+gaji);
+            framePegawai.getDeskrip_Standar().setText("Standar Jam Masuk: "+ standarJamMasuk);
+            framePegawai.getDeskrip_Standar1().setText("Standar Jam Keluar: "+standarJamKeluar);
+            framePegawai.getDeskrip_Standar2().setText("Status Lembur: "+statusLembur);
+            framePegawai.getDeskrip_Standar3().setText("Total Lembur: "+totalLembur);
         } else {
-             framePegawai.getDeskrip_Pegawai().setText("""
-                                                       Jabatan:
-                                                       Id Manager: 
-                                                       Nama: 
-                                                       Umur: 
-                                                       Nomor Telepon: """);
-            framePegawai.getDeskrip_Gaji().setText("Standar Gaji :");       
-            framePegawai.getDeskrip_Standar().setText("""
-                                                      Standar Jam Masuk: 
-                                                      Standar Jam Keluar:  
-                                                       Status Lembur:  
-                                                       Total Lembur: """);
+             framePegawai.getDeskrip_Pegawai().setText("");
+            framePegawai.getDeskrip_Gaji().setText("");       
+            framePegawai.getDeskrip_Standar().setText("");
         }
     }
     
