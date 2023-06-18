@@ -14,21 +14,19 @@ import javax.swing.JList;
  * @author DELL
  */
 public class Assign extends javax.swing.JFrame {
-    private DefaultListModel listModel;
-    private ControllerApp ck;
+    ControllerApp ck = new ControllerApp();
     /**
      * Creates new form Assign
-     * @param as
      */
-    public Assign(ControllerApp as) {
-        listModel = new DefaultListModel();
-        this.ck = as;
+    public Assign() {
+        DefaultListModel listModel = new DefaultListModel();
         initComponents();
         jList1.setModel(listModel);
         
     }
 
     public DefaultListModel getListModel() {
+        DefaultListModel listModel = null;
         return listModel;
     }
     

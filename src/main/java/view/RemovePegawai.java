@@ -14,13 +14,15 @@ import javax.swing.JLabel;
 public class RemovePegawai extends javax.swing.JDialog {
     ControllerApp ck = new ControllerApp();
     boolean isManager;
+    int selectedIndex;
     /**
      * Creates new form RemovePegawai
      */
-    public RemovePegawai(java.awt.Frame parent, boolean modal, boolean isManager) {
+    public RemovePegawai(java.awt.Frame parent, boolean modal, boolean isManager, int selectedIndex) {
         super(parent, modal);
         initComponents();
         this.isManager = isManager;
+        this.selectedIndex = selectedIndex;
     }
 
     /**
@@ -91,18 +93,25 @@ public class RemovePegawai extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ck.DeleteEmployee(isManager);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        
+        ck.DeleteEmployee(isManager, selectedIndex);
         if(isManager){
             ck.showemployeeManager();
         }else{
             ck.showemployeePegawai();
         }
         this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if(isManager){
+            ck.showemployeeManager();
+        }else{
+            ck.showemployeePegawai();
+        }
+        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

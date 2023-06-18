@@ -159,12 +159,12 @@ public class EmployeeDao implements InterfaceDaoEmployee{
         try(Statement statement = DBConnection.getConnection().createStatement()){
             ResultSet result = statement.executeQuery(sql);
             while(result.next()){
-                 String idpegawai = result.getString("idPegawai");
+                 String idManager = result.getString("idManager");
                  String nama = result.getString("nama");
                  int umur = result.getInt("umur");
                  String nomortelp = result.getString("nomor_telepon");
                  String alamat = result.getString("alamat");
-                Manager peg = new Manager(idpegawai, nama, umur, nomortelp, alamat);
+                Manager peg = new Manager(idManager, nama, umur, nomortelp, alamat);
                 listManager.add(peg);
             }
             statement.close();
