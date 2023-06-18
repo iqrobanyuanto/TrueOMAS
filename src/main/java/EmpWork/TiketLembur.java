@@ -13,11 +13,11 @@ import java.time.LocalTime;
  */
 public class TiketLembur {
     private String namaPegawai;
-    private LocalDate tanggal;
-    private LocalTime waktuMulai;
-    private LocalTime waktuAkhir;
-    private String pengizin;
-    private boolean statusTiket;
+    private LocalDate tanggal = null;
+    private LocalTime waktuMulai = null;
+    private LocalTime waktuAkhir = null;
+    private String pengizin = "";
+    private boolean statusTiket = false;
     
     public TiketLembur(){}
     public TiketLembur(String nama){

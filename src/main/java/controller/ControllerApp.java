@@ -440,10 +440,10 @@ public class ControllerApp {
     public void DeleteEmployee(boolean isManager, int selectedIndex){
         if(isManager){
             Manager m = listMngr.get(selectedIndex);
-            DaoEmp.deleteEmployee(listMngr.get(selectedIndex).getIdEmployee(), "Manager");
+            DaoEmp.deleteEmployee(m.getIdEmployee(), "Manager");
         }else{
             Pegawai pgw = listPgw.get(selectedIndex);
-            DaoEmp.deleteEmployee(listPgw.get(selectedIndex).getIdEmployee(), listPgw.get(selectedIndex).getNamaJabatan());
+            DaoEmp.deleteEmployee(pgw.getIdEmployee(), "Pegawai");
         }
     }
     
