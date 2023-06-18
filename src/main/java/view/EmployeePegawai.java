@@ -406,6 +406,7 @@ public class EmployeePegawai extends javax.swing.JFrame {
 
     private void Button_setGajiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_setGajiActionPerformed
         // TODO add your handling code here:
+        ck.showSetGajiPegawai();
     }//GEN-LAST:event_Button_setGajiActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -22,6 +22,7 @@ import java.util.logging.Logger;
  * @author Iqro Banyuanto
  */
 public class EmployeeDao implements InterfaceDaoEmployee{
+    PerhitunganGajiDao DaoGaji = new PerhitunganGajiDao();
     @Override
     public void insertEmployee(String idEmployee, String nama, int umur, String nomor_telepon, String alamat, String namaJabatan){
         String sql;

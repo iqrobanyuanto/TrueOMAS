@@ -19,13 +19,13 @@ public class TrueOMAS {
         
         
         ControllerApp ca = new ControllerApp();
-        ca.showLogin();
+        //ca.showLogin();
         
 //        ca.showemployeePegawai();
         
         //ca.ShowAssign();
         
-        //ca.showLogKehadiran();
+        ca.showLogKehadiran();
         
         
         //TiketLemburDao tiket = new TiketLemburDao();

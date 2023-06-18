@@ -30,7 +30,7 @@ public class ControllerApp {
     Employee emp; //akses Employee dari EmpWork
     Pegawai pegawai; //akses Pegawai dari EmpWork
     Manager manager; //akses Manager dari EmpWork
-    PerhitunganGajiDao DAOgaji; //akses DAO Gaji dari DAO
+    PerhitunganGajiDao DAOgaji = new PerhitunganGajiDao(); //akses DAO Gaji dari DAO
     RecordKehadiranDao DAOkehadiran; //akses DAO Kehadiran dari DAO
     InterfaceDaoEmployee EmployeeDao;
     
@@ -155,7 +155,7 @@ public class ControllerApp {
             int gaji = pgw.statusGaji.getStandarGaji();
             String standarJamMasuk = pgw.kartuKehadiran.getStandarMasuk().toString();
             String standarJamKeluar = pgw.kartuKehadiran.getStandarKeluar().toString();
-            String statusLembur = pgw.statusLembur.toString();
+            boolean statusLembur = pgw.statusLembur.getStatusTiket();
             int totalLembur = pgw.recordKerja.getTotalLembur();
             
             framePegawai.getDeskrip_Pegawai().setText("Jabatan: "+pgw.getNamaJabatan());
@@ -169,18 +169,9 @@ public class ControllerApp {
             framePegawai.getDeskrip_Standar2().setText("Status Lembur: "+statusLembur);
             framePegawai.getDeskrip_Standar3().setText("Total Lembur: "+totalLembur);
         } else {
-             framePegawai.getDeskrip_Pegawai().setText("""
-                                                       Jabatan:
-                                                       Id Manager: 
-                                                       Nama: 
-                                                       Umur: 
-                                                       Nomor Telepon: """);
-            framePegawai.getDeskrip_Gaji().setText("Standar Gaji :");       
-            framePegawai.getDeskrip_Standar().setText("""
-                                                      Standar Jam Masuk: 
-                                                      Standar Jam Keluar:  
-                                                       Status Lembur:  
-                                                       Total Lembur: """);
+             framePegawai.getDeskrip_Pegawai().setText("");
+            framePegawai.getDeskrip_Gaji().setText("");       
+            framePegawai.getDeskrip_Standar().setText("");
         }
     }
     
@@ -241,24 +232,34 @@ public class ControllerApp {
     
     //Menampilkan JDialog SetGaji (Pegawai)
     public void showSetGajiPegawai(){
-        setGaji.setVisible(true);
-        setGaji.setLocationRelativeTo(null);
+        int selectedIndex = framePegawai.getListPegawai().getSelectedIndex();
+        if(selectedIndex >= 0){
+            setGaji.setVisible(true);
+            setGaji.setLocationRelativeTo(null);
+        }        
     }
     
     //Menampilkan JDialog SetGaji (Manager)
     public void showSetGajiManager(){
-        setGaji.setVisible(true);
-        setGaji.setLocationRelativeTo(null);
+        int selectedIndex = frameManager.getListManager().getSelectedIndex();
+        if(selectedIndex >= 0){
+            setGaji.setVisible(true);
+            setGaji.setLocationRelativeTo(null);
+        } 
     }
     
     //SetGaji Pegawai sesuai input
     public void setGajiPegawai(){
-        
+        int selectedIndex = framePegawai.getListPegawai().getSelectedIndex();
+        Employee pgw = listPgw.get(selectedIndex);
         int convertTextField = Integer.parseInt(setGaji.getjTextField1().getText()); //Mengubah String jadi int
-        pegawai.statusGaji.setStandarGaji(convertTextField); //Replace standar gaji pada pegawai
-        framePegawai.getDeskrip_Gaji().setText(setGaji.getjTextField1().getText()); //Mengganti text di frame SetGaji
-        DAOgaji.updatePerhitunganGaji(emp.statusGaji, emp.getIdEmployee(), emp.getNamaJabatan()); //Update ke database
-        setGaji.setVisible(false); //Menghilangkan JDialog ketika ditekan
+        if (selectedIndex >= 0 && selectedIndex < listPgw.size()) {
+            pgw.statusGaji.setStandarGaji(convertTextField);//Replace standar gaji pada pegawai
+            framePegawai.getDeskrip_Gaji().setText(setGaji.getjTextField1().getText()); //Mengganti text di frame SetGaji
+            DAOgaji.updatePerhitunganGaji(pgw.statusGaji, pgw.getIdEmployee(), pgw.getNamaJabatan()); //Update ke database
+            setGaji.getjTextField1().setText("");
+            setGaji.setVisible(false); //Menghilangkan JDialog ketika ditekan
+        }
     }
     
     //SetGaji Manager sesuai input
