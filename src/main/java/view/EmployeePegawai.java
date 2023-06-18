@@ -200,6 +200,11 @@ public class EmployeePegawai extends javax.swing.JFrame {
 
         Button_setJam.setBackground(new java.awt.Color(102, 255, 102));
         Button_setJam.setText("Set Jam");
+        Button_setJam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_setJamActionPerformed(evt);
+            }
+        });
 
         Deskrip_Pegawai.setText("Jabatan :");
         Deskrip_Pegawai.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -407,6 +412,7 @@ public class EmployeePegawai extends javax.swing.JFrame {
 
     private void Button_setGajiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_setGajiActionPerformed
         // TODO add your handling code here:
+        ck.showSetGajiPegawai();
     }//GEN-LAST:event_Button_setGajiActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -419,6 +425,11 @@ public class EmployeePegawai extends javax.swing.JFrame {
         this.setVisible(false);
         ck.showemployeeManager();
     }//GEN-LAST:event_Button_ManagerActionPerformed
+
+    private void Button_setJamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_setJamActionPerformed
+        // TODO add your handling code here:
+        ck.showSetkehadiranPegawai();
+    }//GEN-LAST:event_Button_setJamActionPerformed
 
     /**
      * @param args the command line arguments

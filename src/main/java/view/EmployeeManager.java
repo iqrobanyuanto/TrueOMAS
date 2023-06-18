@@ -139,9 +139,19 @@ public class EmployeeManager extends javax.swing.JFrame {
 
         jButton5.setBackground(new java.awt.Color(102, 255, 102));
         jButton5.setText("Set Gaji");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setBackground(new java.awt.Color(102, 255, 102));
         jButton6.setText("Set Jam");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         Deskrip_Standar.setText("Standar Jam Masuk :");
         Deskrip_Standar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -386,6 +396,16 @@ public class EmployeeManager extends javax.swing.JFrame {
         // TODO add your handling code here:
         ck.updateFormManager();
     }//GEN-LAST:event_listManagerValueChanged
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        ck.showSetGajiManager();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        ck.showSetkehadiranManager();
+    }//GEN-LAST:event_jButton6ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

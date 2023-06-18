@@ -18,7 +18,6 @@ public class LogKehadiran extends javax.swing.JFrame {
      */
     public LogKehadiran() {
         initComponents();
-        ck.isiTableKehadiran();
     }
     public JTable getTable(){
         return jTable2;

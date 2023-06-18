@@ -64,7 +64,6 @@ public class ControllerApp {
 //Controller kosong
     public ControllerApp(){
         DaoEmp = new EmployeeDao();
-        frameLog = new LogKehadiran();
         listPgw = DaoEmp.getAllPegawai();
         listMngr = DaoEmp.getAllManager();
     }
@@ -151,22 +150,29 @@ public class ControllerApp {
     
     //Mengupdate list GUI pegawai
     public void updateFormPegawai() {
+        
         int selectedIndex = framePegawai.getListPegawai().getSelectedIndex();
         if (selectedIndex >= 0 && selectedIndex < listPgw.size()) {
             Pegawai pgw = listPgw.get(selectedIndex);
-            int gaji = pgw.statusGaji.getStandarGaji();
+            //update isi object statusGaji
+            PerhitunganGaji statusGaji = DAOgaji.getPerhiitunganGaji(pgw.getIdEmployee(), pgw.getNamaJabatan());
+            pgw.statusGaji.setStandarGaji(statusGaji.getStandarGaji());
+            pgw.statusGaji.setTotalGaji(statusGaji.getTotalJamGaji());
+            
+            //Pemanggilan variblen untuk di format cetak
+            int gaji = statusGaji.getStandarGaji();
             String standarJamMasuk = pgw.kartuKehadiran.getStandarMasuk().toString();
             String standarJamKeluar = pgw.kartuKehadiran.getStandarKeluar().toString();
-            String statusLembur = pgw.statusLembur.toString();
+            boolean statusLembur = pgw.statusLembur.getStatusTiket();
             int totalLembur = pgw.recordKerja.getTotalLembur();
-            
+            //format cetak terupdate
             framePegawai.getDeskrip_Pegawai().setText("Jabatan: "+pgw.getNamaJabatan());
             framePegawai.getDeskrip_Pegawai1().setText("Id Pegawai: "+pgw.getIdEmployee());
             framePegawai.getDeskrip_Pegawai2().setText("Nama Employee: "+pgw.getNamaEmployee());
             framePegawai.getDeskrip_Pegawai3().setText("Umur: "+pgw.getUmur());
             framePegawai.getDeskrip_Pegawai4().setText("No. Telepon: "+pgw.getNomorTelepon());
-            framePegawai.getDeskrip_Gaji().setText("Standar Gaji:"+gaji);
-            framePegawai.getDeskrip_Standar().setText("Standar Jam Masuk: "+standarJamMasuk);
+            framePegawai.getDeskrip_Gaji().setText("Standar Gaji: "+gaji);
+            framePegawai.getDeskrip_Standar().setText("Standar Jam Masuk: "+ standarJamMasuk);
             framePegawai.getDeskrip_Standar1().setText("Standar Jam Keluar: "+standarJamKeluar);
             framePegawai.getDeskrip_Standar2().setText("Status Lembur: "+statusLembur);
             framePegawai.getDeskrip_Standar3().setText("Total Lembur: "+totalLembur);
@@ -200,9 +206,17 @@ public class ControllerApp {
         int selectedIndex = frameManager.getListManager().getSelectedIndex();
         if (selectedIndex >= 0 && selectedIndex < listMngr.size()) {
             Manager m = listMngr.get(selectedIndex);
-            int gaji = m.statusGaji.getStandarGaji();
+            
+            //update isi object statusGaji
+            PerhitunganGaji statusGaji = DAOgaji.getPerhiitunganGaji(m.getIdEmployee(), m.getNamaJabatan());
+            m.statusGaji.setStandarGaji(statusGaji.getStandarGaji());
+            m.statusGaji.setTotalGaji(statusGaji.getTotalJamGaji());
+            
+            //Pemanggilan variblen untuk di format cetak
+            int gaji = statusGaji.getStandarGaji();
             String standarJamMasuk = m.kartuKehadiran.getStandarMasuk().toString();
             String standarJamKeluar = m.kartuKehadiran.getStandarKeluar().toString();
+            
             
             frameManager.getDeskrip_Pegawai().setText("Jabatan: "+m.getNamaJabatan());
             frameManager.getDeskrip_Pegawai1().setText("Id Pegawai: "+m.getIdEmployee());
@@ -238,46 +252,51 @@ public class ControllerApp {
     
     //Menampilkan JDialog SetGaji (Pegawai)
     public void showSetGajiPegawai(){
-        setGaji.setVisible(true);
-        setGaji.setLocationRelativeTo(null);
+        int selectedIndex = framePegawai.getListPegawai().getSelectedIndex();
+        if(selectedIndex >= 0){
+            setGaji.setVisible(true);
+            setGaji.setLocationRelativeTo(null);
+        }        
     }
     
     //Menampilkan JDialog SetGaji (Manager)
     public void showSetGajiManager(){
-        setGaji.setVisible(true);
-        setGaji.setLocationRelativeTo(null);
+        int selectedIndex = frameManager.getListManager().getSelectedIndex();
+        if(selectedIndex >= 0){
+            setGaji.setVisible(true);
+            setGaji.setLocationRelativeTo(null);
+        } 
     }
     
     //SetGaji Pegawai sesuai input
     public void setGajiPegawai(){
-        
+        int selectedIndex = framePegawai.getListPegawai().getSelectedIndex();
+        Pegawai pgw = listPgw.get(selectedIndex);
         int convertTextField = Integer.parseInt(setGaji.getjTextField1().getText()); //Mengubah String jadi int
         
-        Pegawai pgw = listPgw.get(framePegawai.getListPegawai().getSelectedIndex());
-        pgw.statusGaji.setStandarGaji(convertTextField);
-        
-        DAOgaji.updatePerhitunganGaji(pgw.statusGaji, pgw.getIdEmployee(), pgw.getNamaJabatan()); //Replace standar gaji pada pegawai
-        
-        framePegawai.getDeskrip_Gaji().setText(setGaji.getjTextField1().getText()); //Mengganti text di frame SetGaji
-        //DAOgaji.updatePerhitunganGaji(emp.statusGaji, emp.getIdEmployee(), emp.getNamaJabatan()); //Update ke database
-        
-        setGaji.setVisible(false); //Menghilangkan JDialog ketika ditekan
+        if (selectedIndex >= 0 && selectedIndex < listPgw.size()) {
+            pgw.statusGaji.setStandarGaji(convertTextField);//Replace standar gaji pada pegawai
+            framePegawai.getDeskrip_Gaji().setText("Standar Gaji: "+setGaji.getjTextField1().getText()); //Mengganti text di frame SetGaji
+            DAOgaji.updatePerhitunganGaji(pgw.statusGaji, pgw.getIdEmployee(), pgw.getNamaJabatan()); //Update ke database
+            setGaji.getjTextField1().setText("");
+            setGaji.setVisible(false); //Menghilangkan JDialog ketika ditekan
+        }
     }
     
     //SetGaji Manager sesuai input
     public void setGajiManager(){
         
+        int selectedIndex = frameManager.getListManager().getSelectedIndex();
+        Manager m = listMngr.get(selectedIndex);
         int convertTextField = Integer.parseInt(setGaji.getjTextField1().getText()); //Mengubah String jadi int
         
-        Manager mngr = listMngr.get(frameManager.getListManager().getSelectedIndex());
-        mngr.statusGaji.setStandarGaji(convertTextField);
-        
-        DAOgaji.updatePerhitunganGaji(mngr.statusGaji, mngr.getIdEmployee(), mngr.getNamaJabatan()); //Replace standar gaji pada pegawai
-        
-        framePegawai.getDeskrip_Gaji().setText(setGaji.getjTextField1().getText()); //Mengganti text di frame SetGaji
-        //DAOgaji.updatePerhitunganGaji(emp.statusGaji, emp.getIdEmployee(), emp.getNamaJabatan()); //Update ke database
-        
-        setGaji.setVisible(false); //Menghilangkan JDialog ketika ditekan
+        if (selectedIndex >= 0 && selectedIndex < listPgw.size()) {
+            m.statusGaji.setStandarGaji(convertTextField);//Replace standar gaji pada pegawai
+            framePegawai.getDeskrip_Gaji().setText("Standar Gaji: "+setGaji.getjTextField1().getText()); //Mengganti text di frame SetGaji
+            DAOgaji.updatePerhitunganGaji(m.statusGaji, m.getIdEmployee(), m.getNamaJabatan()); //Update ke database
+            setGaji.getjTextField1().setText("");
+            setGaji.setVisible(false); //Menghilangkan JDialog ketika ditekan
+        }
     }
  
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -286,14 +305,21 @@ public class ControllerApp {
     
     //Menampilkan JDialog untuk SetKehadiran (Pegawai)
     public void showSetkehadiranPegawai(){
-        setKehadiran.setVisible(true);
-        setKehadiran.setLocationRelativeTo(null);
+        int selectedIndex = framePegawai.getListPegawai().getSelectedIndex();
+        if(selectedIndex >= 0){
+            setKehadiran.setVisible(true);
+            setKehadiran.setLocationRelativeTo(null);
+        }    
+        
     }
     
     //Menampilkan JDialog untuk SetKehadiran (Manager)
     public void showSetkehadiranManager(){
-        setKehadiran.setVisible(true);
-        setKehadiran.setLocationRelativeTo(null);
+        int selectedIndex = frameManager.getListManager().getSelectedIndex();
+        if(selectedIndex >= 0){
+            setKehadiran.setVisible(true);
+            setKehadiran.setLocationRelativeTo(null);
+        }    
     }
     
     //Set Kehadiran Pegawai
@@ -335,7 +361,15 @@ public class ControllerApp {
     }
     //Menambahkan pegawai ke database
     public void AddPegawai(){
-        DaoEmp.insertEmployee(dialogAddPegawai.getId().getText(), dialogAddPegawai.getNama().getText(), Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), dialogAddPegawai.getAlamat().getText(), dialogAddPegawai.getJabatan().getText());
+        Employee pgw;
+        if(dialogAddPegawai.getJabatan().getText().equalsIgnoreCase("Pegawai")){
+            pgw = new Pegawai(dialogAddPegawai.getId().getText(), dialogAddPegawai.getNama().getText(), Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), dialogAddPegawai.getAlamat().getText());
+        }else{
+            pgw = new Manager(dialogAddPegawai.getId().getText(), dialogAddPegawai.getNama().getText(), Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), dialogAddPegawai.getAlamat().getText());
+        }
+    
+        DaoEmp.insertEmployee(pgw.getIdEmployee(), pgw.getNamaEmployee(), pgw.getUmur(), pgw.getNomorTelepon(), pgw.getAlamat(), pgw.getNamaJabatan());
+        DAOgaji.insertPerhitunganGaji(pgw.statusGaji, pgw.getIdEmployee(), pgw.getNamaJabatan());
     }
     
     public void showDelete(boolean isManager, int selectedIndex){

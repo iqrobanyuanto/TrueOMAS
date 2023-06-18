@@ -41,7 +41,7 @@ public class TrueOMAS {
 //        System.out.println(man.kartuKehadiran.getWaktu_masuk().toString());
 //        Tapping.Tap(man);
           ControllerApp ck = new ControllerApp();
-          ck.showLogin();
+          ck.showLogKehadiran();
         
     }
 }
