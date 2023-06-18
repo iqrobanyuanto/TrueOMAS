@@ -17,4 +17,12 @@ public interface InterfaceDaoRecordKehadiran {
     public abstract void updateLog(RecordKehadiran log, Employee e);
     public abstract void deleteAllLog(Employee e);
     public abstract List<RecordKehadiran> getAllLog(Employee e);
+    public abstract int getLogSize();
+    public abstract String[][] getAllDataLog(int row);
+    public abstract int getLogSizeManager();
+    public abstract String[][] getAllDataLogManager(int row);
+    public abstract String[][] getTodayDataLogManager(int row);
+    public abstract int getTodayLogSizeManager();
+    public abstract int getTodayLogSizePegawai();
+    public abstract String[][] getTodayDataLog(int row);
 }

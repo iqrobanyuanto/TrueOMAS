@@ -16,6 +16,7 @@ import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -33,6 +34,9 @@ public class ControllerApp {
     KehadiranDao DaoKehadiran = new KehadiranDao();
     InterfaceDaoEmployee EmployeeDao = new EmployeeDao();
     AkunAdminDao DaoAdmin = new AkunAdminDao();
+    PerhitunganWaktuDao DaoWaktu = new PerhitunganWaktuDao();
+    TiketLemburDao DaoLembur = new TiketLemburDao();
+    RecordKehadiranDao DaoRecordKehadiran = new RecordKehadiranDao();
     
     private static Login frameLogin = new Login();
     private static EmployeePegawai framePegawai = new EmployeePegawai();
@@ -40,12 +44,12 @@ public class ControllerApp {
     private static Assign assign = new Assign();
     private static SetGaji setGaji = new SetGaji(framePegawai,true); //Frame SetGaji
     private static LogKehadiran frameLog = new LogKehadiran();
-    static Kehadiran kehadiran = new Kehadiran(); //Frame Kehadiran
     private static SetKehadiran setKehadiran = new SetKehadiran(framePegawai,true);
     private static AddPegawai dialogAddPegawai = new AddPegawai(framePegawai,true);
     private static LogKehadiran frameKehadiran = new LogKehadiran();
     private static RemovePegawai dialogDeletePegawai;
     private static RemovePegawai dialogDeleteManager;
+
 //Class GUI
     /*
     private static Login frameLogin = new Login();
@@ -64,7 +68,6 @@ public class ControllerApp {
 //Controller kosong
     public ControllerApp(){
         DaoEmp = new EmployeeDao();
-        frameLog = new LogKehadiran();
         listPgw = DaoEmp.getAllPegawai();
         listMngr = DaoEmp.getAllManager();
     }
@@ -335,7 +338,23 @@ public class ControllerApp {
     }
     //Menambahkan pegawai ke database
     public void AddPegawai(){
-        DaoEmp.insertEmployee(dialogAddPegawai.getId().getText(), dialogAddPegawai.getNama().getText(), Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), dialogAddPegawai.getAlamat().getText(), dialogAddPegawai.getJabatan().getText());
+        Pegawai pgw;
+        Manager m;
+        if(dialogAddPegawai.getJabatan().getText().equals("Pegawai")){
+            pgw = new Pegawai(dialogAddPegawai.getId().getText(), dialogAddPegawai.getNama().getText(), Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), dialogAddPegawai.getAlamat().getText());
+            
+            DaoLembur.insertTiketLembur(pgw.statusLembur, pgw.getIdEmployee());
+            DaoEmp.insertEmployee(pgw.getIdEmployee(), pgw.getNamaEmployee(), pgw.getUmur(), pgw.getNomorTelepon(), pgw.getAlamat(), pgw.getNamaJabatan());
+            DAOgaji.insertPerhitunganGaji(pgw.statusGaji, pgw.getIdEmployee(), pgw.getNamaJabatan());
+            DaoKehadiran.insertKartuKehadiran(pgw.kartuKehadiran, pgw.getIdEmployee(), pgw.getNamaEmployee());
+            DaoWaktu.insertPerhitunganWaktu(pgw.recordKerja, pgw.getIdEmployee(), pgw.getNamaJabatan());
+        }else{
+            m = new Manager(dialogAddPegawai.getId().getText(), dialogAddPegawai.getNama().getText(), Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), dialogAddPegawai.getAlamat().getText());
+            DaoEmp.insertEmployee(m.getIdEmployee(), m.getNamaEmployee(), m.getUmur(), m.getNomorTelepon(), m.getAlamat(), m.getNamaJabatan());
+            DAOgaji.insertPerhitunganGaji(m.statusGaji, m.getIdEmployee(), m.getNamaJabatan());
+            DaoKehadiran.insertKartuKehadiran(m.kartuKehadiran, m.getIdEmployee(), m.getNamaJabatan());
+            DaoWaktu.insertPerhitunganWaktu(m.recordKerja, m.getIdEmployee(), m.getNamaJabatan());
+        }
     }
     
     public void showDelete(boolean isManager, int selectedIndex){
@@ -370,10 +389,97 @@ public class ControllerApp {
         frameKehadiran.setLocationRelativeTo(null);
     }
     
-    public void isiTableKehadiran(){
-        List<Pegawai> listPegawai = EmployeeDao.getAllPegawai();
-        ModelTableKehadiran mt = new ModelTableKehadiran(listPegawai);
-        frameLog.getTable().setModel(mt);
+    public void isiTableKehadiran(JTable table){
+        DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+        dtm.setRowCount(0);
+        
+        String columns[] = {"Id", "Nama", "Jabatan", "Tanggal", "Waktu Masuk", "Waktu Keluar"};
+        String data[][] = DaoRecordKehadiran.getAllDataLog(DaoRecordKehadiran.getLogSize());
+        DefaultTableModel model = new DefaultTableModel(data, columns);
+        table.setModel(model);
+        table.setAutoCreateRowSorter(true);
+    }
+    
+    public void isiTableKehadiranManager(JTable table){
+        DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+        dtm.setRowCount(0);
+        String columns[] = {"Id", "Nama", "Jabatan", "Tanggal", "Waktu Masuk", "Waktu Keluar"};
+        String data[][] = DaoRecordKehadiran.getAllDataLogManager(DaoRecordKehadiran.getLogSizeManager());
+        DefaultTableModel model = new DefaultTableModel(data, columns);
+        table.setModel(model);
+        table.setAutoCreateRowSorter(true);
+    }
+    
+    public void isiTableKehadiranAll(JTable table){
+        DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+        dtm.setRowCount(0);
+        
+        String columns[] = {"Id", "Nama", "Jabatan", "Tanggal", "Waktu Masuk", "Waktu Keluar"};
+        String data1[][] = DaoRecordKehadiran.getAllDataLogManager(DaoRecordKehadiran.getLogSizeManager());
+        String data2[][] = DaoRecordKehadiran.getAllDataLog(DaoRecordKehadiran.getLogSize());
+        
+        String data[][] = new String[data1.length+data2.length][6];
+        int j = 0;
+        for(int i = 0; i < data1.length; i++){
+            data[i][0] = data1[i][0];
+            data[i][1] = data1[i][1];
+            data[i][2] = data1[i][2];
+            data[i][3] = data1[i][3];
+            data[i][4] = data1[i][4];
+            data[i][5] = data1[i][5];
+            j++;
+        }
+       System.out.println("Banyak j"+j);
+        for(int i = 0; i < data2.length; i++){
+            data[j][0] = data2[i][0];
+            data[j][1] = data2[i][1];
+            data[j][2] = data2[i][2];
+            data[j][3] = data2[i][3];
+            data[j][4] = data2[i][4];
+            data[j][5] = data2[i][5];
+            j++;
+        }
+        
+        System.out.println(data[0][0]);
+        DefaultTableModel model = new DefaultTableModel(data, columns);
+        table.setModel(model);
+        table.setAutoCreateRowSorter(true);
+    }
+    
+    public void isiTableKehadiranToday(JTable table){
+        DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+        dtm.setRowCount(0);
+        
+        String columns[] = {"Id", "Nama", "Jabatan", "Tanggal", "Waktu Masuk", "Waktu Keluar"};
+        String data1[][] = DaoRecordKehadiran.getTodayDataLogManager(DaoRecordKehadiran.getTodayLogSizeManager());
+        String data2[][] = DaoRecordKehadiran.getTodayDataLog(DaoRecordKehadiran.getTodayLogSizePegawai());
+        
+        String data[][] = new String[data1.length+data2.length][6];
+        int j = 0;
+        for(int i = 0; i < data1.length; i++){
+            data[i][0] = data1[i][0];
+            data[i][1] = data1[i][1];
+            data[i][2] = data1[i][2];
+            data[i][3] = data1[i][3];
+            data[i][4] = data1[i][4];
+            data[i][5] = data1[i][5];
+            j++;
+        }
+       System.out.println("Banyak j"+j);
+        for(int i = 0; i < data2.length; i++){
+            data[j][0] = data2[i][0];
+            data[j][1] = data2[i][1];
+            data[j][2] = data2[i][2];
+            data[j][3] = data2[i][3];
+            data[j][4] = data2[i][4];
+            data[j][5] = data2[i][5];
+            j++;
+        }
+        
+        System.out.println(data[0][0]);
+        DefaultTableModel model = new DefaultTableModel(data, columns);
+        table.setModel(model);
+        table.setAutoCreateRowSorter(true);
     }
     
     

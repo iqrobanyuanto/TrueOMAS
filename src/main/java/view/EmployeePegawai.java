@@ -143,6 +143,11 @@ public class EmployeePegawai extends javax.swing.JFrame {
         Button_Pegawai.setBackground(new java.awt.Color(153, 153, 153));
         Button_Pegawai.setForeground(new java.awt.Color(255, 255, 255));
         Button_Pegawai.setText("Pegawai");
+        Button_Pegawai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_PegawaiActionPerformed(evt);
+            }
+        });
 
         Button_Manager.setText("Manager");
         Button_Manager.addActionListener(new java.awt.event.ActionListener() {
@@ -419,6 +424,10 @@ public class EmployeePegawai extends javax.swing.JFrame {
         this.setVisible(false);
         ck.showemployeeManager();
     }//GEN-LAST:event_Button_ManagerActionPerformed
+
+    private void Button_PegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_PegawaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Button_PegawaiActionPerformed
 
     /**
      * @param args the command line arguments
