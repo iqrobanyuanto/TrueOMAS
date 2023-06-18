@@ -155,7 +155,6 @@ public class ControllerApp {
     
     //Mengupdate list GUI pegawai
     public void updateFormPegawai() {
-        
         int selectedIndex = framePegawai.getListPegawai().getSelectedIndex();
         if (selectedIndex >= 0 && selectedIndex < listPgw.size()) {
             Pegawai pgw = listPgw.get(selectedIndex);
@@ -394,7 +393,7 @@ public class ControllerApp {
         Pegawai pgw = listPgw.get(framePegawai.getListPegawai().getSelectedIndex());
         
         //Update status lembur ke database
-        pgw.statusLembur.setStatusLembur(pengizin, m, ld, ltm, ltk);
+        pgw.statusLembur.setStatusLembur(pengizin, ld, ltm, ltk);
         DaoLembur.updateTiketLembur(pgw.statusLembur, pgw);
         
     }

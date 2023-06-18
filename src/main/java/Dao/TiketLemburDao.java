@@ -73,7 +73,7 @@ public class TiketLemburDao implements InterfaceDaoTiketLembur{
     public void updateTiketLembur(TiketLembur statusLembur, Pegawai peg){
         String sql;
         String info;
-        sql = "UPDATE PegawaiStatusLembur SET tanggalLembur = ?, waktuMulai = ?, waktuAkhir = ?, pengizin = ?, statusTiket = ? WHERE idPegawai = "+ peg.getIdEmployee();
+        sql = "UPDATE PegawaiStatusLembur SET tanggalLembur = ?, waktuMulai = ?, waktuAkhir = ?, pengizin = ?, statusTiket = ? WHERE idPegawai = '"+ peg.getIdEmployee()+"'";
         info = "Data TiketLembur Pegawai dengan id "+ peg.getIdEmployee() +", telah diupdate ke dalam database!";
          try (PreparedStatement statement = DBConnection.getConnection().prepareStatement(sql)) {
             
