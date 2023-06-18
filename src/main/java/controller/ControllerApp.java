@@ -13,8 +13,10 @@ import java.util.List;
 import javax.swing.*;
 import Dao.*;
 import java.awt.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 
 
@@ -48,6 +50,7 @@ public class ControllerApp {
     private static LogKehadiran frameKehadiran = new LogKehadiran();
     private static RemovePegawai dialogDeletePegawai;
     private static RemovePegawai dialogDeleteManager;
+    private static SetLembur setLembur = new SetLembur(framePegawai,true);
 //Class GUI
     /*
     private static Login frameLogin = new Login();
@@ -276,7 +279,7 @@ public class ControllerApp {
         Pegawai pgw = listPgw.get(selectedIndex);
         int convertTextField = Integer.parseInt(setGaji.getjTextField1().getText()); //Mengubah String jadi int
         
-        if (selectedIndex >= 0 && selectedIndex < listPgw.size()) {
+        if (selectedIndex >= 0) {
             pgw.statusGaji.setStandarGaji(convertTextField);//Replace standar gaji pada pegawai
             framePegawai.getDeskrip_Gaji().setText("Standar Gaji: "+setGaji.getjTextField1().getText()); //Mengganti text di frame SetGaji
             DAOgaji.updatePerhitunganGaji(pgw.statusGaji, pgw.getIdEmployee(), pgw.getNamaJabatan()); //Update ke database
@@ -292,7 +295,7 @@ public class ControllerApp {
         Manager m = listMngr.get(selectedIndex);
         int convertTextField = Integer.parseInt(setGaji.getjTextField1().getText()); //Mengubah String jadi int
         
-        if (selectedIndex >= 0 && selectedIndex < listPgw.size()) {
+        if (selectedIndex >= 0) {
             m.statusGaji.setStandarGaji(convertTextField);//Replace standar gaji pada pegawai
             framePegawai.getDeskrip_Gaji().setText("Standar Gaji: "+setGaji.getjTextField1().getText()); //Mengganti text di frame SetGaji
             DAOgaji.updatePerhitunganGaji(m.statusGaji, m.getIdEmployee(), m.getNamaJabatan()); //Update ke database
@@ -356,16 +359,31 @@ public class ControllerApp {
         setKehadiran.setVisible(false); //Menghilangkan JDialog SetKehadiran
     }
     
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------- Set Lembur ----------------------------------------------------------------------------------------
+
+    public void showSetLembur(){
+        setLembur.setVisible(true);
+        setLembur.setLocationRelativeTo(null);
+    }
+    
+    public void setLembur(int y, int m, int d){
+        LocalDate ld;
+        y = Integer.parseInt(setLembur.getYear().getText());
+        m = Integer.parseInt(setLembur.getMonth().getText());
+        d = Integer.parseInt(setLembur.getDay().getText());
+        ld = LocalDate.of(y, Month.of(m), d);
+        //!!!!Tambahin Dao Update Tiket lembur
         
+    }
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void showAddPegawai(){
         dialogAddPegawai.setVisible(true);
     }
+    
     //Menambahkan pegawai ke database
     public void AddPegawai(){
         Pegawai pgw;
         Manager m;
-        
         if(dialogAddPegawai.getJabatan().getText().equals("Pegawai")){
             pgw = new Pegawai(dialogAddPegawai.getId().getText(), dialogAddPegawai.getNama().getText(), Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), dialogAddPegawai.getAlamat().getText());
             
