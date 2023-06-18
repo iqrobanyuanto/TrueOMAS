@@ -5,6 +5,7 @@
 package Dao;
 
 import DBPr.DBConnection;
+import EmpWork.Pegawai;
 import EmpWork.TiketLembur;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,13 +22,13 @@ import java.util.logging.Logger;
  */
 public class TiketLemburDao implements InterfaceDaoTiketLembur{
     @Override
-    public void insertTiketLembur(TiketLembur statusLembur, String idPegawai){
+    public void insertTiketLembur(TiketLembur statusLembur, Pegawai peg){
         String sql;
         String info;
         sql = "INSERT INTO PegawaiStatusLembur(idPegawai, namaPegawai, tanggalLembur, waktuMulai, waktuAkhir, pengizin, statusTiket) VALUES(?,?,?,?,?)";
-        info = "Data TiketLembur Pegawai baru dengan id "+ idPegawai +", telah ditambahkan ke dalam database!";
+        info = "Data TiketLembur Pegawai baru dengan id "+ peg.getIdEmployee()+", telah ditambahkan ke dalam database!";
          try (PreparedStatement statement = DBConnection.getConnection().prepareStatement(sql)) {
-             statement.setString(1, idPegawai);
+             statement.setString(1, peg.getIdEmployee());
              statement.setString(2, statusLembur.getNamaPegawai());
              // Menginisiasi null Handler
              if(statusLembur.getTanggal() != null){
@@ -69,31 +70,31 @@ public class TiketLemburDao implements InterfaceDaoTiketLembur{
     }
     
     @Override
-    public void updateTiketLembur(TiketLembur statusLembur, String idPegawai){
+    public void updateTiketLembur(TiketLembur statusLembur, Pegawai peg){
         String sql;
         String info;
-        sql = "UPDATE PegawaiStatusLembur SET namaPegawai = ?, waktuLembur = ?, pengizin = ?, statusTiket = ? WHERE idPegawai = "+idPegawai;
-        info = "Data TiketLembur Pegawai dengan id "+ idPegawai +", telah diupdate ke dalam database!";
+        sql = "UPDATE PegawaiStatusLembur SET tanggalLembur = ?, waktuMulai = ?, waktuAkhir = ?, pengizin = ?, statusTiket = ? WHERE idPegawai = "+ peg.getIdEmployee();
+        info = "Data TiketLembur Pegawai dengan id "+ peg.getIdEmployee() +", telah diupdate ke dalam database!";
          try (PreparedStatement statement = DBConnection.getConnection().prepareStatement(sql)) {
-             statement.setString(1, statusLembur.getNamaPegawai());
+            
              // Menginisiasi null Handler
              if(statusLembur.getTanggal() != null){
-                 statement.setDate(3, Date.valueOf(statusLembur.getTanggal()));
+                 statement.setDate(1, Date.valueOf(statusLembur.getTanggal()));
              }else{
-                 statement.setNull(3, java.sql.Types.DATE);
+                 statement.setNull(1, java.sql.Types.DATE);
              }
              if(statusLembur.getWaktuMulai() != null){
-                statement.setTime(4, Time.valueOf(statusLembur.getWaktuMulai()));
+                statement.setTime(2, Time.valueOf(statusLembur.getWaktuMulai()));
              }else{
-                 statement.setNull(4, java.sql.Types.TIME);
+                 statement.setNull(2, java.sql.Types.TIME);
              }
              if(statusLembur.getWaktuAkhir() != null){
-                  statement.setTime(5, Time.valueOf(statusLembur.getWaktuAkhir()));
+                  statement.setTime(3, Time.valueOf(statusLembur.getWaktuAkhir()));
              }else{
-                 statement.setNull(5, java.sql.Types.TIME);
+                 statement.setNull(3, java.sql.Types.TIME);
              }
-             statement.setString(3,statusLembur.getPengizin());
-             statement.setBoolean(4,statusLembur.getStatusTiket());
+             statement.setString(4,statusLembur.getPengizin());
+             statement.setBoolean(5,statusLembur.getStatusTiket());
              statement.executeUpdate();
              System.out.println(info);
         } catch (SQLException e) {

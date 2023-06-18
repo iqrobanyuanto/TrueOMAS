@@ -25,6 +25,7 @@ public class TiketLembur {
         tanggal = null;
         waktuMulai = null;
         waktuAkhir = null;
+        pengizin = "";
         statusTiket = false;
     }
     public void setTanggal(LocalDate r){

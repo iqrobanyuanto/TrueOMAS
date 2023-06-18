@@ -395,7 +395,7 @@ public class ControllerApp {
         
         //Update status lembur ke database
         pgw.statusLembur.setStatusLembur(pengizin, m, ld, ltm, ltk);
-        DaoLembur.updateTiketLembur(pgw.statusLembur, pgw.getIdEmployee());
+        DaoLembur.updateTiketLembur(pgw.statusLembur, pgw);
         
     }
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -410,7 +410,7 @@ public class ControllerApp {
         if(dialogAddPegawai.getJabatan().getText().equals("Pegawai")){
             pgw = new Pegawai(dialogAddPegawai.getId().getText(), dialogAddPegawai.getNama().getText(), Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), dialogAddPegawai.getAlamat().getText());
             
-            DaoLembur.insertTiketLembur(pgw.statusLembur, pgw.getIdEmployee());
+            DaoLembur.insertTiketLembur(pgw.statusLembur, pgw);
             DaoEmp.insertEmployee(pgw.getIdEmployee(), pgw.getNamaEmployee(), pgw.getUmur(), pgw.getNomorTelepon(), pgw.getAlamat(), pgw.getNamaJabatan());
             DAOgaji.insertPerhitunganGaji(pgw.statusGaji, pgw.getIdEmployee(), pgw.getNamaJabatan());
             DaoKehadiran.insertKartuKehadiran(pgw.kartuKehadiran, pgw.getIdEmployee(), pgw.getNamaEmployee());
