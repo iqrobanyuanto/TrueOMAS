@@ -58,10 +58,10 @@ public class KehadiranDao implements InterfaceDaoKehadiran{
         String sql;
         String info;
         if(namaJabatan.equals("Manager")){
-            sql = "UPDATE ManagerKartuKehadiran SET standarJamMasuk = ?, standarJamKeluar = ?, waktu_masuk = ?, waktu_keluar = ?, jam_masuk = ?, jam_keluar = ? WHERE idManager = " + idEmployee;
+            sql = "UPDATE ManagerKartuKehadiran SET standarJamMasuk = ?, standarJamKeluar = ?, waktu_masuk = ?, waktu_keluar = ?, jam_masuk = ?, jam_keluar = ? WHERE idManager = '" + idEmployee+"'";
             info = "data Kehadiran Manager dengan id "+idEmployee+" telah dilakukan update";
         }else{
-            sql = "UPDATE PegawaiKartuKehadiran SET standarJamMasuk = ?, standarJamKeluar = ?, waktu_masuk = ?, waktu_keluar = ?, jam_masuk = ?, jam_keluar = ? WHERE idPegawai = "+ idEmployee;
+            sql = "UPDATE PegawaiKartuKehadiran SET standarJamMasuk = ?, standarJamKeluar = ?, waktu_masuk = ?, waktu_keluar = ?, jam_masuk = ?, jam_keluar = ? WHERE idPegawai = '"+ idEmployee+"'";
             info = "data Kehadiran Pegawai dengan id "+idEmployee+" telah dilakukan update";
         }
          try (PreparedStatement statement = DBConnection.getConnection().prepareStatement(sql)) {
@@ -108,9 +108,9 @@ public class KehadiranDao implements InterfaceDaoKehadiran{
         String sql;
         Kehadiran kartu = new Kehadiran();
         if(namaJabatan.equals("Manager")){
-            sql = "SELECT * FROM ManagerKartuKehadiran WHERE idManager = " + idEmployee;
+            sql = "SELECT * FROM ManagerKartuKehadiran WHERE idManager = '" + idEmployee+"'";
         }else{
-            sql = "SELECT * FROM PegawaiKartuKehadiran WHERE idPegawai = " + idEmployee;
+            sql = "SELECT * FROM PegawaiKartuKehadiran WHERE idPegawai = '" + idEmployee+"'";
         }
         try(Statement statement = DBConnection.getConnection().createStatement()){
             ResultSet result = statement.executeQuery(sql);

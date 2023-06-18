@@ -163,10 +163,13 @@ public class ControllerApp {
             pgw.statusGaji.setStandarGaji(statusGaji.getStandarGaji());
             pgw.statusGaji.setTotalGaji(statusGaji.getTotalJamGaji());
             
+            //update isi object Standar Jam
+            Kehadiran hadir = DaoKehadiran.getKehadiran(pgw.getIdEmployee(), pgw.getNamaJabatan());
+
             //Pemanggilan variblen untuk di format cetak
             int gaji = statusGaji.getStandarGaji();
-            String standarJamMasuk = pgw.kartuKehadiran.getStandarMasuk().toString();
-            String standarJamKeluar = pgw.kartuKehadiran.getStandarKeluar().toString();
+            String standarJamMasuk = hadir.getStandarMasuk().toString();
+            String standarJamKeluar = hadir.getStandarKeluar().toString();
             boolean statusLembur = pgw.statusLembur.getStatusTiket();
             int totalLembur = pgw.recordKerja.getTotalLembur();
             //format cetak terupdate
@@ -314,7 +317,6 @@ public class ControllerApp {
             setKehadiran.setVisible(true);
             setKehadiran.setLocationRelativeTo(null);
         }    
-        
     }
     
     //Menampilkan JDialog untuk SetKehadiran (Manager)
@@ -352,8 +354,8 @@ public class ControllerApp {
         DaoKehadiran.updateKartuKehadiran(k, pgw.getIdEmployee(), pgw.getNamaJabatan());
         
         //Update label pada view
-        framePegawai.getDeskrip_Standar().setText("Jam Masuk: "+masuk+"\n"+
-                "Jam Keluar: "+keluar);
+        framePegawai.getDeskrip_Standar().setText("Jam Masuk: "+masuk);
+        framePegawai.getDeskrip_Standar1().setText("Jam Keluar: "+keluar);
         
         setKehadiran.setVisible(false); //Menghilangkan JDialog SetKehadiran
     }
