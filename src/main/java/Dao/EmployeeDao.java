@@ -23,10 +23,12 @@ import java.util.logging.Logger;
  */
 public class EmployeeDao implements InterfaceDaoEmployee{
     PerhitunganGajiDao DaoGaji = new PerhitunganGajiDao();
+    
     @Override
     public void insertEmployee(String idEmployee, String nama, int umur, String nomor_telepon, String alamat, String namaJabatan){
         String sql;
         String info;
+        String sqlGaji;
         if(namaJabatan.equals("Manager")){
             sql = "INSERT INTO Manager(idManager, namaJabatan, nama, umur, nomor_telepon, alamat) VALUES(?,?,?,?,?,?)";
             info = "Manager baru telah ditambahkan ke dalam database!";
@@ -46,6 +48,7 @@ public class EmployeeDao implements InterfaceDaoEmployee{
         } catch (SQLException e) {
              Logger.getLogger(EmployeeDao.class.getName()).log(Level.SEVERE, null, e);
         }
+         
     }
     @Override
     public void deleteEmployee(String id, String namaJabatan){
