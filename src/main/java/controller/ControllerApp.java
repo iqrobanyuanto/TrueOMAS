@@ -169,18 +169,16 @@ public class ControllerApp {
             framePegawai.getDeskrip_Standar2().setText("Status Lembur: "+statusLembur);
             framePegawai.getDeskrip_Standar3().setText("Total Lembur: "+totalLembur);
         } else {
-             framePegawai.getDeskrip_Pegawai().setText("""
-                                                       Jabatan:
-                                                       Id Manager: 
-                                                       Nama: 
-                                                       Umur: 
-                                                       Nomor Telepon: """);
-            framePegawai.getDeskrip_Gaji().setText("Standar Gaji :");       
-            framePegawai.getDeskrip_Standar().setText("""
-                                                      Standar Jam Masuk: 
-                                                      Standar Jam Keluar:  
-                                                       Status Lembur:  
-                                                       Total Lembur: """);
+            framePegawai.getDeskrip_Pegawai().setText("Jabatan: ");
+            framePegawai.getDeskrip_Pegawai1().setText("Id Pegawai: ");
+            framePegawai.getDeskrip_Pegawai2().setText("Nama Employee: ");
+            framePegawai.getDeskrip_Pegawai3().setText("Umur: ");
+            framePegawai.getDeskrip_Pegawai4().setText("No. Telepon: ");
+            framePegawai.getDeskrip_Gaji().setText("Standar Gaji:");
+            framePegawai.getDeskrip_Standar().setText("Standar Jam Masuk: ");
+            framePegawai.getDeskrip_Standar1().setText("Standar Jam Keluar: ");
+            framePegawai.getDeskrip_Standar2().setText("Status Lembur: ");
+            framePegawai.getDeskrip_Standar3().setText("Total Lembur: ");
         }
     }
     
@@ -214,17 +212,14 @@ public class ControllerApp {
             frameManager.getDeskrip_Standar1().setText("Standar Jam Keluar: "+standarJamKeluar);
                                                         
         } else {
-             frameManager.getDeskrip_Pegawai().setText("""
-                                                       Jabatan:
-                                                       Id Manager: 
-                                                       Nama: 
-                                                       Umur: 
-                                                       Nomor Telepon: """);
-            frameManager.getDeskrip_Gaji().setText("Standar Gaji :");       
-            frameManager.getDeskrip_Standar().setText("""
-                                                      Standar Jam Masuk: 
-                                                      Standar Jam Keluar:  
-                                                        """);
+            frameManager.getDeskrip_Pegawai().setText("Jabatan: ");
+            frameManager.getDeskrip_Pegawai1().setText("Id Pegawai: ");
+            frameManager.getDeskrip_Pegawai2().setText("Nama Employee: ");
+            frameManager.getDeskrip_Pegawai3().setText("Umur: ");
+            frameManager.getDeskrip_Pegawai4().setText("No. Telepon: ");
+            frameManager.getDeskrip_Gaji().setText("Standar Gaji:");
+            frameManager.getDeskrip_Standar().setText("Standar Jam Masuk: ");
+            frameManager.getDeskrip_Standar1().setText("Standar Jam Keluar: ");
         }
     }
     
