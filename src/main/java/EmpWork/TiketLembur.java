@@ -4,34 +4,52 @@
  */
 package EmpWork;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  *
  * @author Iqro Banyuanto
  */
 public class TiketLembur {
     private String namaPegawai;
-    private int waktuLembur;
+    private LocalDate tanggal;
+    private LocalTime waktuMulai;
+    private LocalTime waktuAkhir;
     private String pengizin;
     private boolean statusTiket;
     
-    public TiketLembur(){
-        
-    }
+    public TiketLembur(){}
     public TiketLembur(String nama){
         namaPegawai = nama;
+        tanggal = null;
+        waktuMulai = null;
+        waktuAkhir = null;
         statusTiket = false;
+    }
+    public void setTanggal(LocalDate r){
+        tanggal = r;
+    }
+    public LocalDate getTanggal(){
+        return tanggal;
+    }
+    public void setWaktuMulai(LocalTime r){
+        waktuMulai = r;
+    }
+    public LocalTime getWaktuMulai(){
+        return waktuMulai;
+    }
+    public void setWaktuAkhir(LocalTime r){
+        waktuAkhir = r;
+    }
+    public LocalTime getWaktuAkhir(){
+        return waktuAkhir;
     }
     public void setNamaPegawai(String namaPegawai){
         this.namaPegawai = namaPegawai;
     }
     public String getNamaPegawai(){
         return namaPegawai;
-    }
-    public void setWaktuLembur(int waktuLembur){
-        this.waktuLembur = waktuLembur;
-    }
-    public int getWaktuLembur(){
-        return waktuLembur;
     }
     public void setPengizin(String pengizin){
         this.pengizin = pengizin;
@@ -45,20 +63,26 @@ public class TiketLembur {
     public boolean getStatusTiket(){
         return statusTiket;
     }
-    public void setStatusLembur(String pengizin, int waktulembur){
-        waktuLembur = waktulembur;
+    public void setStatusLembur(String pengizin, int waktulembur, LocalDate tanggalLembur, LocalTime waktuMulai, LocalTime waktuBerakhir){
+        tanggal = tanggalLembur;
+        this.waktuMulai = waktuMulai;
+        waktuAkhir = waktuBerakhir;
         this.pengizin = pengizin;
         statusTiket = true;
     }
     public void resetStatus(){
         if(statusTiket == true){
-            waktuLembur = 0;
+            tanggal = null;
+            waktuMulai = null;
+            waktuAkhir = null;
             this.pengizin = "";
             statusTiket = false;
         }
     }
+    /*
     public void showTiketDesc(){
         System.out.println("---Tiket Lembur---");
         System.out.println("Nama Pegawai: "+ namaPegawai+"\n Lama lembur: "+ waktuLembur +" jam \n "+ "Pengizin: "+pengizin+" \n Status lembur: "+ statusTiket);
     }
+    */
 }
