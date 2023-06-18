@@ -6,6 +6,7 @@ package com.mycompany.trueomas;
 
 import Dao.*;
 import EmpWork.Manager;
+import EmpWork.Pegawai;
 import EmpWork.RecordKehadiran;
 import EmpWork.Tapping;
 import controller.ControllerApp;
@@ -20,11 +21,12 @@ public class TrueOMAS {
 
     public static void main(String[] args) {
         
-//        EmployeeDao dao = new EmployeeDao();
-//        KehadiranDao dao1 = new KehadiranDao();
-//        PerhitunganGajiDao dao2 = new PerhitunganGajiDao();
-//        PerhitunganWaktuDao dao3 = new PerhitunganWaktuDao();
-//        RecordKehadiranDao dao4 = new RecordKehadiranDao();
+        EmployeeDao dao = new EmployeeDao();
+        KehadiranDao dao1 = new KehadiranDao();
+        PerhitunganGajiDao dao2 = new PerhitunganGajiDao();
+        PerhitunganWaktuDao dao3 = new PerhitunganWaktuDao();
+        RecordKehadiranDao dao4 = new RecordKehadiranDao();
+        TiketLemburDao dao5 = new TiketLemburDao();
 ////        Manager man = new Manager("111","Irqo",20,"08132213122","Banjar");
 ////        dao.insertEmployee(man.getIdEmployee(), man.getNamaEmployee(), man.getUmur(), man.getNomorTelepon(), man.getAlamat(), man.getNamaJabatan());
 ////        dao1.insertKartuKehadiran(man.kartuKehadiran, man.getIdEmployee(), man.getNamaJabatan());
@@ -40,8 +42,18 @@ public class TrueOMAS {
 //        dao1.updateKartuKehadiran(man.kartuKehadiran, man.getIdEmployee(), man.getNamaJabatan());
 //        System.out.println(man.kartuKehadiran.getWaktu_masuk().toString());
 //        Tapping.Tap(man);
-          ControllerApp ck = new ControllerApp();
-          ck.showLogKehadiran();
+          //ControllerApp ck = new ControllerApp();
+          //ck.showLogKehadiran();
+        Pegawai peg = dao.getPegawai("111");
+        //dao.insertEmployee(peg.getIdEmployee(), peg.getNamaEmployee(), peg.getUmur(), peg.getNomorTelepon(), peg.getAlamat(), peg.getNamaJabatan());
+        //dao1.insertKartuKehadiran(peg.kartuKehadiran, peg.getIdEmployee(), peg.getNamaJabatan());
+        //dao2.insertPerhitunganGaji(peg.statusGaji, peg.getIdEmployee(), peg.getNamaJabatan());
+        //dao3.insertPerhitunganWaktu(peg.recordKerja, peg.getIdEmployee(), peg.getNamaJabatan());
+        dao5.deleteTiketLembur(peg.getIdEmployee());
+        dao3.deletePerhitunganWaktu(peg.getIdEmployee(), peg.getNamaJabatan());
+        dao2.deletePerhitunganGaji(peg.getIdEmployee(), peg.getNamaJabatan());
+        dao1.deleteKartuKehadiran(peg.getIdEmployee(), peg.getNamaJabatan());
+        dao.deleteEmployee(peg.getIdEmployee(), peg.getNamaJabatan());
         
     }
 }
