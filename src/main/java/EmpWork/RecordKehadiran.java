@@ -11,7 +11,7 @@ import java.time.LocalTime;
  *
  * @author Iqro Banyuanto
  */
-public class LogKehadiran {
+public class RecordKehadiran {
     private LocalDate tanggal;
     private LocalTime waktuMasuk;
     private LocalTime waktuKeluar;
