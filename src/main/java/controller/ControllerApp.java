@@ -12,7 +12,9 @@ import view.*;
 import java.util.List;
 import javax.swing.*;
 import Dao.*;
+import java.awt.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 
@@ -27,52 +29,62 @@ public class ControllerApp {
     List<Manager> listMngr;
     List<AkunAdmin> listAkunAdmn;
     EmployeeDao DaoEmp = new EmployeeDao();
-    Employee emp; //akses Employee dari EmpWork
-    Pegawai pegawai; //akses Pegawai dari EmpWork
-    Manager manager; //akses Manager dari EmpWork
-    PerhitunganGajiDao DAOgaji; //akses DAO Gaji dari DAO
-    RecordKehadiranDao DAOkehadiran; //akses DAO Kehadiran dari DAO
+    PerhitunganGajiDao DAOgaji = new PerhitunganGajiDao(); //akses DAO Gaji dari DAO
+    KehadiranDao DaoKehadiran = new KehadiranDao();
     InterfaceDaoEmployee EmployeeDao;
+    AkunAdminDao DaoAdmin = new AkunAdminDao();
     
-    //Class GUI
+    private  Login frameLogin;
+    private  EmployeePegawai framePegawai;
+    private  EmployeeManager frameManager;
+    private  Assign assign;
+    private  SetGaji setGaji; //Frame SetGaji
+    private  LogKehadiran frameLog;
+    private  SetKehadiran setKehadiran;
+    private  AddPegawai dialogAddPegawai;
+    private  LogKehadiran frameKehadiran;
+    private  RemovePegawai dialogDeletePegawai;
+    private  RemovePegawai dialogDeleteManager;
+//Class GUI
+    /*
     private static Login frameLogin = new Login();
-    private static EmployeePegawai framePegawai = new EmployeePegawai();
-    private static EmployeeManager frameManager = new EmployeeManager();
-    private static Assign assign = new Assign();
+    private static EmployeePegawai framePegawai = new EmployeePegawai(this);
+    private static EmployeeManager frameManager = new EmployeeManager(this);
+    private static Assign assign = new Assign(this);
     private static SetGaji setGaji = new SetGaji(framePegawai,true); //Frame SetGaji
-    static LogKehadiran frameLog = new LogKehadiran();
-    static Kehadiran kehadiran = new Kehadiran(); //Frame Kehadiran
+    private static LogKehadiran frameLog = new LogKehadiran();
     private static SetKehadiran setKehadiran = new SetKehadiran(framePegawai,true);
     private static AddPegawai dialogAddPegawai = new AddPegawai(framePegawai,true);
-    static AkunAdminDao DaoAdmin = new AkunAdminDao();
     private static LogKehadiran frameKehadiran = new LogKehadiran();
-    private static RemovePegawai dialogDeletePegawai;
-    private static RemovePegawai dialogDeleteManager;
-    //Controller kosong
+    private static RemovePegawai dialogDeletePegawai = new RemovePegawai(framePegawai, true, false);
+    private static RemovePegawai dialogDeleteManager = new RemovePegawai(frameManager, true, true);
+    
+    */
+//Controller kosong
     public ControllerApp(){
-        /*
-        this.frameLogin = new Login();
+        DaoEmp = new EmployeeDao();
+        
+        this.frameLogin = new Login(this);
         this.framePegawai = new EmployeePegawai();
         this.frameManager = new EmployeeManager();
-        this.assign = new Assign();
+        this.assign = new Assign(this);
         this.setGaji = new SetGaji(framePegawai,true); //Frame SetGaji
         this.frameLog = new LogKehadiran();
-        this.kehadiran = new Kehadiran(); //Frame Kehadiran
+        //this.kehadiran = new Kehadiran(); //Frame Kehadiran
         this.setKehadiran = new SetKehadiran(framePegawai,true);
         this.dialogAddPegawai = new AddPegawai(framePegawai,true);
         this.DaoAdmin = new AkunAdminDao();
         this.frameKehadiran = new LogKehadiran();
-        */
         listPgw = DaoEmp.getAllPegawai();
         listMngr = DaoEmp.getAllManager();
     }
     
  //#################################################################### ASSIGN #####################################################################
     //Untuk show GUI Assign-------
-    public static void ShowAssign(){
+    public void ShowAssign(){
         assign.setVisible(true);
         assign.setLocationRelativeTo(null);
-        //refreshAssign();
+//        refreshAssign();
     }
     
     //Mengupdate list pada Assign lembur
@@ -88,9 +100,9 @@ public class ControllerApp {
 //    }
     
     //Deskripsi pada list yang dituju
-    public void AssignDesc(){
-        
-    }
+//    public void AssignDesc(){
+//        
+//    }
     
     //update list pegawai di GUI Assign
 //    public void updateFormAssign() {
@@ -250,18 +262,31 @@ public class ControllerApp {
     public void setGajiPegawai(){
         
         int convertTextField = Integer.parseInt(setGaji.getjTextField1().getText()); //Mengubah String jadi int
-        pegawai.statusGaji.setStandarGaji(convertTextField); //Replace standar gaji pada pegawai
+        
+        Pegawai pgw = listPgw.get(framePegawai.getListPegawai().getSelectedIndex());
+        pgw.statusGaji.setStandarGaji(convertTextField);
+        
+        DAOgaji.updatePerhitunganGaji(pgw.statusGaji, pgw.getIdEmployee(), pgw.getNamaJabatan()); //Replace standar gaji pada pegawai
+        
         framePegawai.getDeskrip_Gaji().setText(setGaji.getjTextField1().getText()); //Mengganti text di frame SetGaji
-        DAOgaji.updatePerhitunganGaji(emp.statusGaji, emp.getIdEmployee(), emp.getNamaJabatan()); //Update ke database
+        //DAOgaji.updatePerhitunganGaji(emp.statusGaji, emp.getIdEmployee(), emp.getNamaJabatan()); //Update ke database
+        
         setGaji.setVisible(false); //Menghilangkan JDialog ketika ditekan
     }
     
     //SetGaji Manager sesuai input
     public void setGajiManager(){
+        
         int convertTextField = Integer.parseInt(setGaji.getjTextField1().getText()); //Mengubah String jadi int
-        manager.statusGaji.setStandarGaji(convertTextField); //Replace standar gaji pada manager
+        
+        Manager mngr = listMngr.get(frameManager.getListManager().getSelectedIndex());
+        mngr.statusGaji.setStandarGaji(convertTextField);
+        
+        DAOgaji.updatePerhitunganGaji(mngr.statusGaji, mngr.getIdEmployee(), mngr.getNamaJabatan()); //Replace standar gaji pada pegawai
+        
         framePegawai.getDeskrip_Gaji().setText(setGaji.getjTextField1().getText()); //Mengganti text di frame SetGaji
-        DAOgaji.updatePerhitunganGaji(emp.statusGaji, emp.getIdEmployee(), emp.getNamaJabatan()); //Update ke database
+        //DAOgaji.updatePerhitunganGaji(emp.statusGaji, emp.getIdEmployee(), emp.getNamaJabatan()); //Update ke database
+        
         setGaji.setVisible(false); //Menghilangkan JDialog ketika ditekan
     }
  
@@ -283,34 +308,32 @@ public class ControllerApp {
     
     //Set Kehadiran Pegawai
     public void setKehadiranPegawai(){
-        int convertTextFieldMasuk = Integer.parseInt(setKehadiran.getjTextField1().getText()); //Mengubah String jadi int
-        int convertTextFieldKeluar = Integer.parseInt(setKehadiran.getjTextField2().getText()); //Mengubah String jadi int
         
-        kehadiran.setJamMasuk(convertTextFieldMasuk); //Replace Jam Masuk
-        kehadiran.setJamKeluar(convertTextFieldKeluar); //Replace Jam Keluar
-        framePegawai.getDeskrip_Standar().setText("Jam Masuk: "+setKehadiran.getjTextField1().getText()+"\n"+
-                "Jam Keluar: "+setKehadiran.getjTextField2().getText()); //Mengganti label standar
+        Kehadiran k = new Kehadiran();
+        Pegawai pgw = listPgw.get(framePegawai.getListPegawai().getSelectedIndex());
         
-        DateTimeFormatter jam = DateTimeFormatter.ofPattern("HH:mm"); //Membuat format jam
-        LocalDateTime waktu = LocalDateTime.parse(setKehadiran.getjTextField1().getText(),jam); //Mengubah String menjadi Jam
-        DAOkehadiran.insertRecord(waktu, emp.getIdEmployee(), emp.getNamaJabatan()); //Memasukkan jam ke database
+        //String untuk menggabungkan inputan
+        String in1 =setKehadiran.getjTextField1().getText();
+        String in2 =setKehadiran.getjTextField3().getText();
+        String in3 =setKehadiran.getjTextField2().getText();
+        String in4 =setKehadiran.getjTextField4().getText();
+        String masuk = in1+":"+in2;
+        String keluar = in3+":"+in4;
         
-        setKehadiran.setVisible(false); //Menghilangkan JDialog SetKehadiran
-    }
-    
-    //Set Kehadiran Manager
-    public void setKehadiranManager(){
-        int convertTextFieldMasuk = Integer.parseInt(setKehadiran.getjTextField1().getText()); //Mengubah String jadi int
-        int convertTextFieldKeluar = Integer.parseInt(setKehadiran.getjTextField2().getText()); //Mengubah String jadi int
+        //Mengubah string menjadi LocalTime
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm"); //Membuat format jam
+        LocalTime waktuMasuk = LocalTime.parse(masuk,formatter); //Mengubah String menjadi Jam
+        LocalTime waktuKeluar = LocalTime.parse(keluar,formatter); //Mengubah String menjadi Jam
         
-        kehadiran.setJamMasuk(convertTextFieldMasuk); //Replace Jam Masuk
-        kehadiran.setJamKeluar(convertTextFieldKeluar); //Replace Jam Keluar
-        frameManager.getDeskrip_Standar().setText("Jam Masuk: "+setKehadiran.getjTextField1().getText()+"\n"+
-                "Jam Keluar: "+setKehadiran.getjTextField2().getText()); //Mengganti label standar
+        k.setStadarMasuk(waktuMasuk);
+        k.setStandarKeluar(waktuKeluar);
         
-        DateTimeFormatter jam = DateTimeFormatter.ofPattern("HH:mm"); //Membuat format jam
-        LocalDateTime waktu = LocalDateTime.parse(setKehadiran.getjTextField1().getText(),jam); //Mengubah String menjadi Jam
-        DAOkehadiran.insertRecord(waktu, emp.getIdEmployee(), emp.getNamaJabatan()); //Memasukkan jam ke database
+        //Update kehadiran ke database
+        DaoKehadiran.updateKartuKehadiran(k, pgw.getIdEmployee(), pgw.getNamaJabatan());
+        
+        //Update label pada view
+        framePegawai.getDeskrip_Standar().setText("Jam Masuk: "+masuk+"\n"+
+                "Jam Keluar: "+keluar);
         
         setKehadiran.setVisible(false); //Menghilangkan JDialog SetKehadiran
     }
@@ -375,8 +398,17 @@ public class ControllerApp {
     }
     
     public void Login(String id, String pass){
-        if(id == null || pass == null){
-            LoginError error = new LoginError(frameLogin, true);
+        if(id.length() == 0 || pass.length() == 0){
+            
+            //Membuat JDialog baru yang berisikan notif error
+            JDialog errorDialog = new JDialog(frameLogin, "Error", true);
+            errorDialog.setLayout(new FlowLayout());
+            JLabel errorMessageLabel = new JLabel("Please put a correct input");
+            errorDialog.add(errorMessageLabel);
+
+            errorDialog.pack();
+            errorDialog.setLocationRelativeTo(frameLogin);
+            errorDialog.setVisible(true);
         }else{
             //mencari akun
             listAkunAdmn = DaoAdmin.getAllAkunAdmin();
@@ -388,6 +420,8 @@ public class ControllerApp {
                     }
                 } else {
                     LoginError error = new LoginError(frameLogin, true);
+                    error.setVisible(true);
+                    error.setLocationRelativeTo(null);
                 }
             }
         }

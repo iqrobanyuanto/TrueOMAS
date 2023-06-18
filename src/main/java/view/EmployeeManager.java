@@ -19,7 +19,9 @@ public class EmployeeManager extends javax.swing.JFrame {
     /**
      * Creates new form EmployeeManager
      */
-    public EmployeeManager() {
+    public EmployeeManager(ControllerApp as) {
+        listModel = new DefaultListModel();
+        this.ck = as;
         initComponents();
         ck.fillDataManager(listManager);
     }
@@ -424,7 +426,7 @@ public class EmployeeManager extends javax.swing.JFrame {
     }
     public javax.swing.JList<String> getListManager() {
         
-        return listManager;
+        return jList1;
     }
 
     public JLabel getDeskrip_Gaji() {

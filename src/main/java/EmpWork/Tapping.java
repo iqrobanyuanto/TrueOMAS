@@ -3,28 +3,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package EmpWork;
-import DBPr.KumpulanEmployee;
+import Dao.KehadiranDao;
+import Dao.RecordKehadiranDao;
 /**
  *
  * @author Iqro Banyuanto
  */
 public class Tapping {
-    public static void Tap(String namaJabatan, String idEmployee){
+    public static void Tap(Employee q){
         try{
-            KumpulanEmployee r = new KumpulanEmployee();
-            Employee q = r.searchEmployee(namaJabatan, idEmployee);
             if(q == null){
                 throw new IllegalArgumentException("Employee tidak ditemukan");
             }
+            KehadiranDao DBkehadiran = new KehadiranDao();
             if(q.kartuKehadiran.cekJamMasuk() == -99){
-                q.kartuKehadiran.setWaktuMasuk();
-                if(q.kartuKehadiran.getWaktu_masuk() != null){
-                    q.list_kehadiran.add(q.kartuKehadiran.getWaktu_masuk());
-                }
+                q.kartuKehadiran.setTappingWaktuMasuk();
+                DBkehadiran.updateKartuKehadiran(q.kartuKehadiran, q.getIdEmployee(), q.getNamaJabatan());
             }else{
-                q.kartuKehadiran.setWaktuKeluar();
-                q.list_kehadiran.add(q.kartuKehadiran.getWaktu_keluar());
+                q.kartuKehadiran.setTappingWaktuKeluar();
+                RecordKehadiran e = new RecordKehadiran();
+                e.setTanggal(q.kartuKehadiran.getWaktu_masuk().toLocalDate());
+                e.setWaktuMasuk(q.kartuKehadiran.getWaktu_masuk().toLocalTime());
+                e.setWaktuKeluar(q.kartuKehadiran.getWaktu_keluar().toLocalTime());
+                RecordKehadiranDao a = new RecordKehadiranDao();
+                a.insertLog(e, q);
                 prosesTambahTotalJamKerja(q);
+                DBkehadiran.updateKartuKehadiran(q.kartuKehadiran, q.getIdEmployee(), q.getNamaJabatan());
+                
             }
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());

@@ -17,9 +17,19 @@ public class Assign extends javax.swing.JFrame {
     /**
      * Creates new form Assign
      */
-    public Assign() {
+    public Assign(ControllerApp as) {
+        listModel = new DefaultListModel();
+        this.ck = as;
         initComponents();
+        jList1.setModel(listModel);
+        
     }
+
+    public DefaultListModel getListModel() {
+        return listModel;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -246,11 +256,11 @@ public class Assign extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Assign().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Assign().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,6 +5,7 @@
 package view;
 
 import controller.ControllerApp;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.ListModel;
@@ -18,7 +19,9 @@ public class EmployeePegawai extends javax.swing.JFrame {
     /**
      * Creates new form Assign
      */
-    public EmployeePegawai() {
+    public EmployeePegawai(ControllerApp as) {
+        listModel = new DefaultListModel();
+        this.ck = as;
         initComponents();
         ck.fillDataPegawai(listPegawai);
     }
