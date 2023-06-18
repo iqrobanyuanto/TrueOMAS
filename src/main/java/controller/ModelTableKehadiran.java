@@ -37,7 +37,7 @@ public class ModelTableKehadiran extends AbstractTableModel{
             case 1: return listPegawai.get(rowIndex).getNamaEmployee();
             case 2: return listPegawai.get(rowIndex).getNamaJabatan();
             case 3: 
-                list_kehadiran = dao.getRecordKehadiran(listPegawai.get(rowIndex).getIdEmployee(), listPegawai.get(rowIndex).getNamaJabatan());
+                //list_kehadiran = dao.getRecordKehadiran(listPegawai.get(rowIndex).getIdEmployee(), listPegawai.get(rowIndex).getNamaJabatan());
              for (LocalDateTime list_kehadiran1 : list_kehadiran) {
                  DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
                  LocalDateTime now = LocalDateTime.now();

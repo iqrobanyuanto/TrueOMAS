@@ -82,7 +82,6 @@ public class ControllerApp {
     public void ShowAssign(){
         assign.setVisible(true);
         assign.setLocationRelativeTo(null);
-        refreshAssign();
     }
     
     //Mengupdate list pada Assign lembur
@@ -96,26 +95,7 @@ public class ControllerApp {
         }
         jlist.setModel(model);
     }
-    
-    //update list pegawai di GUI Assign
-    public void updateFormAssign() {
-        int jamLembur = pegawai.statusLembur.getWaktuLembur();
-        String sJamLembur = Integer.toString(jamLembur); // Convert int to String
-        var pengizin = pegawai.statusLembur.getPengizin();
-        int selectedIndex = assign.getjList1().getSelectedIndex();
-        if (selectedIndex >= 0 && selectedIndex < listPgw.size()) {
-            Pegawai pgw = listPgw.get(selectedIndex);
-            assign.getjLabel4().setText(pgw.getNamaEmployee());
-            assign.getjLabel6().setText(pengizin);
-            assign.getjLabel8().setText(sJamLembur);
-        } else {
-            assign.getjLabel4().setText("");
-            assign.getjLabel6().setText("");
-            assign.getjLabel8().setText("");
-        }
-        
-    }
-    
+      
     //update list pegawai di GUI Assign
     public void updateFormAssign() {
         int selectedIndex = framePegawai.getListPegawai().getSelectedIndex();
