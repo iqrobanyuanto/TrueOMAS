@@ -190,6 +190,12 @@ public class AddPegawai extends javax.swing.JDialog {
             ck.AddPegawai();
         }
         this.setVisible(false);
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jTextField6.setText("");
         ck.showemployeePegawai();
     }//GEN-LAST:event_jButton1ActionPerformed
 

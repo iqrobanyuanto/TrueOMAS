@@ -33,6 +33,8 @@ public class ControllerApp {
     KehadiranDao DaoKehadiran = new KehadiranDao();
     InterfaceDaoEmployee EmployeeDao = new EmployeeDao();
     AkunAdminDao DaoAdmin = new AkunAdminDao();
+    PerhitunganWaktuDao DaoWaktu = new PerhitunganWaktuDao();
+    TiketLemburDao DaoLembur = new TiketLemburDao();
     
     private static Login frameLogin = new Login();
     private static EmployeePegawai framePegawai = new EmployeePegawai();
@@ -361,15 +363,25 @@ public class ControllerApp {
     }
     //Menambahkan pegawai ke database
     public void AddPegawai(){
-        Employee pgw;
-        if(dialogAddPegawai.getJabatan().getText().equalsIgnoreCase("Pegawai")){
+        Pegawai pgw;
+        Manager m;
+        
+        if(dialogAddPegawai.getJabatan().getText().equals("Pegawai")){
             pgw = new Pegawai(dialogAddPegawai.getId().getText(), dialogAddPegawai.getNama().getText(), Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), dialogAddPegawai.getAlamat().getText());
+            
+            DaoLembur.insertTiketLembur(pgw.statusLembur, pgw.getIdEmployee());
+            DaoEmp.insertEmployee(pgw.getIdEmployee(), pgw.getNamaEmployee(), pgw.getUmur(), pgw.getNomorTelepon(), pgw.getAlamat(), pgw.getNamaJabatan());
+            DAOgaji.insertPerhitunganGaji(pgw.statusGaji, pgw.getIdEmployee(), pgw.getNamaJabatan());
+            DaoKehadiran.insertKartuKehadiran(pgw.kartuKehadiran, pgw.getIdEmployee(), pgw.getNamaEmployee());
+            DaoWaktu.insertPerhitunganWaktu(pgw.recordKerja, pgw.getIdEmployee(), pgw.getNamaJabatan());
         }else{
-            pgw = new Manager(dialogAddPegawai.getId().getText(), dialogAddPegawai.getNama().getText(), Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), dialogAddPegawai.getAlamat().getText());
+            m = new Manager(dialogAddPegawai.getId().getText(), dialogAddPegawai.getNama().getText(), Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), dialogAddPegawai.getAlamat().getText());
+            DaoEmp.insertEmployee(m.getIdEmployee(), m.getNamaEmployee(), m.getUmur(), m.getNomorTelepon(), m.getAlamat(), m.getNamaJabatan());
+            DAOgaji.insertPerhitunganGaji(m.statusGaji, m.getIdEmployee(), m.getNamaJabatan());
+            DaoKehadiran.insertKartuKehadiran(m.kartuKehadiran, m.getIdEmployee(), m.getNamaEmployee());
+            DaoWaktu.insertPerhitunganWaktu(m.recordKerja, m.getIdEmployee(), m.getNamaJabatan());
         }
-    
-        DaoEmp.insertEmployee(pgw.getIdEmployee(), pgw.getNamaEmployee(), pgw.getUmur(), pgw.getNomorTelepon(), pgw.getAlamat(), pgw.getNamaJabatan());
-        DAOgaji.insertPerhitunganGaji(pgw.statusGaji, pgw.getIdEmployee(), pgw.getNamaJabatan());
+        
     }
     
     public void showDelete(boolean isManager, int selectedIndex){
