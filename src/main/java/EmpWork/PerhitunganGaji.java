@@ -16,7 +16,6 @@ public class PerhitunganGaji {
         this.standargaji = standarGaji;
     }
     
-    
     public int getStandarGaji(){
         return standargaji;
     }
