@@ -366,13 +366,36 @@ public class ControllerApp {
         setLembur.setLocationRelativeTo(null);
     }
     
-    public void setLembur(int y, int m, int d){
+    public void setLembur(){
         LocalDate ld;
-        y = Integer.parseInt(setLembur.getYear().getText());
-        m = Integer.parseInt(setLembur.getMonth().getText());
-        d = Integer.parseInt(setLembur.getDay().getText());
+        
+        //Membuat tanggal LocalDate
+        int y = Integer.parseInt(setLembur.getYear().getText());
+        int m = Integer.parseInt(setLembur.getMonth().getText());
+        int d = Integer.parseInt(setLembur.getDay().getText());
         ld = LocalDate.of(y, Month.of(m), d);
-        //!!!!Tambahin Dao Update Tiket lembur
+        
+        //Pengizin
+        String pengizin = setLembur.getPengizin().getText();
+        
+        //Masuk
+        int hm = Integer.parseInt(setLembur.getMulaiJam().getText());
+        int mm = Integer.parseInt(setLembur.getMulaiMenit().getText());
+        
+        //Keluar
+        int hk = Integer.parseInt(setLembur.getAkhirJam().getText());
+        int mk = Integer.parseInt(setLembur.getMenitAkhir().getText());
+        
+        //Convert into LocalTime
+        LocalTime ltm = LocalTime.of(hm, mm);
+        LocalTime ltk = LocalTime.of(hk, mk);
+        
+        //Selected pegawai
+        Pegawai pgw = listPgw.get(framePegawai.getListPegawai().getSelectedIndex());
+        
+        //Update status lembur ke database
+        pgw.statusLembur.setStatusLembur(pengizin, m, ld, ltm, ltk);
+        DaoLembur.updateTiketLembur(pgw.statusLembur, pgw.getIdEmployee());
         
     }
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
