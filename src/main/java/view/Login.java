@@ -12,12 +12,11 @@ import javax.swing.JTextField;
  * @author madel
  */
 public class Login extends javax.swing.JFrame {
-    ControllerApp ck;
+    ControllerApp ck = new ControllerApp();
     /**
      * Creates new form Login
      */
-    public Login(ControllerApp ck) {
-        this.ck = ck;
+    public Login() {
         initComponents();
         jTextField1.setText("");
         jTextField2.setText("");

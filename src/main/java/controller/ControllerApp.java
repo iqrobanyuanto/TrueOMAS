@@ -31,20 +31,21 @@ public class ControllerApp {
     EmployeeDao DaoEmp = new EmployeeDao();
     PerhitunganGajiDao DAOgaji = new PerhitunganGajiDao(); //akses DAO Gaji dari DAO
     KehadiranDao DaoKehadiran = new KehadiranDao();
-    InterfaceDaoEmployee EmployeeDao;
+    InterfaceDaoEmployee EmployeeDao = new EmployeeDao();
     AkunAdminDao DaoAdmin = new AkunAdminDao();
     
-    private  Login frameLogin;
-    private  EmployeePegawai framePegawai;
-    private  EmployeeManager frameManager;
-    private  Assign assign;
-    private  SetGaji setGaji; //Frame SetGaji
-    private  LogKehadiran frameLog;
-    private  SetKehadiran setKehadiran;
-    private  AddPegawai dialogAddPegawai;
-    private  LogKehadiran frameKehadiran;
-    private  RemovePegawai dialogDeletePegawai;
-    private  RemovePegawai dialogDeleteManager;
+    private static Login frameLogin = new Login();
+    private static EmployeePegawai framePegawai = new EmployeePegawai();
+    private static EmployeeManager frameManager = new EmployeeManager();
+    private static Assign assign = new Assign();
+    private static SetGaji setGaji = new SetGaji(framePegawai,true); //Frame SetGaji
+    private static LogKehadiran frameLog = new LogKehadiran();
+    static Kehadiran kehadiran = new Kehadiran(); //Frame Kehadiran
+    private static SetKehadiran setKehadiran = new SetKehadiran(framePegawai,true);
+    private static AddPegawai dialogAddPegawai = new AddPegawai(framePegawai,true);
+    private static LogKehadiran frameKehadiran = new LogKehadiran();
+    private static RemovePegawai dialogDeletePegawai;
+    private static RemovePegawai dialogDeleteManager;
 //Class GUI
     /*
     private static Login frameLogin = new Login();
@@ -63,18 +64,7 @@ public class ControllerApp {
 //Controller kosong
     public ControllerApp(){
         DaoEmp = new EmployeeDao();
-        
-        this.frameLogin = new Login(this);
-        this.framePegawai = new EmployeePegawai();
-        this.frameManager = new EmployeeManager();
-        this.assign = new Assign(this);
-        this.setGaji = new SetGaji(framePegawai,true); //Frame SetGaji
-        this.frameLog = new LogKehadiran();
-        //this.kehadiran = new Kehadiran(); //Frame Kehadiran
-        this.setKehadiran = new SetKehadiran(framePegawai,true);
-        this.dialogAddPegawai = new AddPegawai(framePegawai,true);
-        this.DaoAdmin = new AkunAdminDao();
-        this.frameKehadiran = new LogKehadiran();
+        frameLog = new LogKehadiran();
         listPgw = DaoEmp.getAllPegawai();
         listMngr = DaoEmp.getAllManager();
     }
