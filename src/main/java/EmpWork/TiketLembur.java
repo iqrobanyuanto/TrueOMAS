@@ -64,7 +64,7 @@ public class TiketLembur {
     public boolean getStatusTiket(){
         return statusTiket;
     }
-    public void setStatusLembur(String pengizin, int waktulembur, LocalDate tanggalLembur, LocalTime waktuMulai, LocalTime waktuBerakhir){
+    public void setStatusLembur(String pengizin, LocalDate tanggalLembur, LocalTime waktuMulai, LocalTime waktuBerakhir){
         tanggal = tanggalLembur;
         this.waktuMulai = waktuMulai;
         waktuAkhir = waktuBerakhir;
