@@ -51,7 +51,7 @@ public class Kehadiran {
         waktu_keluar = waktuKeluar;
     }
     
-    public void setTappingWaktuMasuk(){
+    public void setWaktuMasuk(){
         if(LocalTime.now().isAfter(standarJamMasuk) && LocalTime.now().isBefore(standarJamKeluar)){
             waktu_masuk = LocalDateTime.now();
             jam_masuk = waktu_masuk.getHour();
@@ -69,11 +69,11 @@ public class Kehadiran {
         }
     }
     
-    public void setTappingWaktuKeluar(){
-        if(LocalTime.now().isBefore(standarJamKeluar)){
+    public void setWaktuKeluar(){
+        if(LocalTime.now().isAfter(standarJamKeluar)){
             waktu_keluar = LocalDateTime.now();
             jam_keluar = waktu_keluar.getHour();
-        }else{
+        }else if(LocalTime.now().isAfter(standarJamKeluar)){
             waktu_keluar = LocalDateTime.of(LocalDate.now(), standarJamKeluar);
             jam_keluar = waktu_keluar.getHour();
         }

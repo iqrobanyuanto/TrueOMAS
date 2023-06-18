@@ -118,13 +118,13 @@ public class KehadiranDao implements InterfaceDaoKehadiran{
                 kartu.setStadarMasuk(result.getTime("standarJamMasuk").toLocalTime());
                 kartu.setStandarKeluar(result.getTime("standarJamKeluar").toLocalTime());
              //LocalDateTime Null handler
-             if(result.getTimestamp("waktu_masuk") != null){
+             if(kartu.getWaktu_masuk() != null){
                 kartu.setWaktu_Masuk(result.getTimestamp("waktu_masuk").toLocalDateTime());                
              }else{
                 kartu.setWaktu_Masuk(null);
              }
              //LocalDateTime Null handler
-             if(result.getTimestamp("waktu_keluar") != null){
+             if(kartu.getWaktu_keluar() != null){
                 kartu.setWaktu_Keluar(result.getTimestamp("waktu_keluar").toLocalDateTime());
              }else{
                 kartu.setWaktu_Keluar(null);

@@ -22,10 +22,13 @@ import java.util.logging.Logger;
  * @author Iqro Banyuanto
  */
 public class EmployeeDao implements InterfaceDaoEmployee{
+    PerhitunganGajiDao DaoGaji = new PerhitunganGajiDao();
+    
     @Override
     public void insertEmployee(String idEmployee, String nama, int umur, String nomor_telepon, String alamat, String namaJabatan){
         String sql;
         String info;
+        String sqlGaji;
         if(namaJabatan.equals("Manager")){
             sql = "INSERT INTO Manager(idManager, namaJabatan, nama, umur, nomor_telepon, alamat) VALUES(?,?,?,?,?,?)";
             info = "Manager baru telah ditambahkan ke dalam database!";
@@ -45,6 +48,7 @@ public class EmployeeDao implements InterfaceDaoEmployee{
         } catch (SQLException e) {
              Logger.getLogger(EmployeeDao.class.getName()).log(Level.SEVERE, null, e);
         }
+         
     }
     @Override
     public void deleteEmployee(String id, String namaJabatan){
@@ -159,12 +163,12 @@ public class EmployeeDao implements InterfaceDaoEmployee{
         try(Statement statement = DBConnection.getConnection().createStatement()){
             ResultSet result = statement.executeQuery(sql);
             while(result.next()){
-                 String idpegawai = result.getString("idPegawai");
+                 String idManager = result.getString("idManager");
                  String nama = result.getString("nama");
                  int umur = result.getInt("umur");
                  String nomortelp = result.getString("nomor_telepon");
                  String alamat = result.getString("alamat");
-                Manager peg = new Manager(idpegawai, nama, umur, nomortelp, alamat);
+                Manager peg = new Manager(idManager, nama, umur, nomortelp, alamat);
                 listManager.add(peg);
             }
             statement.close();
