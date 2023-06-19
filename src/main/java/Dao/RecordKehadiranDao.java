@@ -266,14 +266,13 @@ public class RecordKehadiranDao implements InterfaceDaoRecordKehadiran{
     public int getTodayLogSizePegawai(){
         String sql;
         int i = 0;
-        sql = "SELECT * FROM ManagerRecordKehadiran";
+        sql = "SELECT * FROM PegawaiRecordKehadiran";
         try(Statement statement = DBConnection.getConnection().createStatement()){
             ResultSet result = statement.executeQuery(sql);
             while(result.next()){
                 LocalDate tanggal = result.getDate("tanggal").toLocalDate();
                 LocalDate now = LocalDate.now();
                 if(tanggal.equals(now)){
-                    System.out.println("tes");
                     i++;
                 }
             }
