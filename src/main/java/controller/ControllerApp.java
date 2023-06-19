@@ -466,10 +466,12 @@ public class ControllerApp {
                     Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), 
                         dialogAddPegawai.getAlamat().getText());
             
-            DaoLembur.insertTiketLembur(pgw.statusLembur, pgw);
+
             
             DaoEmp.insertEmployee(pgw.getIdEmployee(), pgw.getNamaEmployee(), pgw.getUmur(), pgw.getNomorTelepon(), 
                         pgw.getAlamat(), pgw.getNamaJabatan());
+            
+            DaoLembur.insertTiketLembur(pgw.statusLembur, pgw);
             
             DAOgaji.insertPerhitunganGaji(pgw.statusGaji, pgw.getIdEmployee(), pgw.getNamaJabatan());
             DaoKehadiran.insertKartuKehadiran(pgw.kartuKehadiran, pgw.getIdEmployee(), pgw.getNamaEmployee());
