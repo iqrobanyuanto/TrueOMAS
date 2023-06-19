@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class DBConnection {
     private static Connection connection;
-    private static final String url = "jdbc:mysql://localhost:3306/omas?zeroDateTimeBehavior=CONVERT_TO_NULL";
+    private static final String url = "jdbc:mysql://localhost:3306/fix?zeroDateTimeBehavior=CONVERT_TO_NULL";
     private static final String username = "root";
     private static final String password = "";
     private static final String className = "com.mysql.jdbc.Driver";
