@@ -17,6 +17,7 @@ import EmpWork.RecordKehadiran;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
@@ -108,5 +109,214 @@ public class RecordKehadiranDao implements InterfaceDaoRecordKehadiran{
             Logger.getLogger(EmployeeDao.class.getName()).log(Level.SEVERE, null, e);
         }
         return r.list_kehadiran;
+    }
+    
+    @Override
+    public int getLogSize(){
+        String sql;
+        int i = 0;
+        sql = "SELECT * FROM PegawaiRecordKehadiran";
+        try(Statement statement = DBConnection.getConnection().createStatement()){
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()){
+                i++;
+            }
+            statement.close();
+        }catch(SQLException e){
+            Logger.getLogger(EmployeeDao.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return i;
+    }
+    
+    @Override
+    public int getLogSizeManager(){
+        String sql;
+        int i = 0;
+        sql = "SELECT * FROM ManagerRecordKehadiran";
+        try(Statement statement = DBConnection.getConnection().createStatement()){
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()){
+                i++;
+            }
+            statement.close();
+        }catch(SQLException e){
+            Logger.getLogger(EmployeeDao.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return i;
+    }
+   
+    @Override
+    public String[][] getAllDataLog(int row){
+        String sql = "SELECT * FROM PegawaiRecordKehadiran";
+        EmployeeDao dao = new EmployeeDao();
+        String data[][] = new String[row][6];
+        
+        int i = 0;
+        try(Statement statement = DBConnection.getConnection().createStatement()){
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()){
+                String idpegawai = result.getString("idPegawai");
+                String nama = dao.getPegawai(idpegawai).getNamaEmployee();
+                String jabatan = dao.getPegawai(idpegawai).getNamaJabatan();
+                LocalDate tanggal = result.getDate("tanggal").toLocalDate();
+                LocalTime waktuMasuk = result.getTime("waktuMasuk").toLocalTime();
+                LocalTime waktuKeluar = result.getTime("waktuKeluar").toLocalTime();
+                data[i][0] = idpegawai;
+                data[i][1] = nama;
+                data[i][2] = jabatan;
+                data[i][3] = tanggal.toString();
+                data[i][4] = waktuMasuk.toString();
+                data[i][5] = waktuKeluar.toString();
+                i++;
+            }
+            statement.close();
+        }catch(SQLException e){
+            Logger.getLogger(EmployeeDao.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return data;
+    }
+    
+    @Override
+    public String[][] getAllDataLogManager(int row){
+        String sql = "SELECT * FROM ManagerRecordKehadiran";
+        EmployeeDao dao = new EmployeeDao();
+        String data[][] = new String[row][6];
+        
+        int i = 0;
+        try(Statement statement = DBConnection.getConnection().createStatement()){
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()){
+                String idpegawai = result.getString("idManager");
+                String nama = dao.getManager(idpegawai).getNamaEmployee();
+                String jabatan = dao.getManager(idpegawai).getNamaJabatan();
+                LocalDate tanggal = result.getDate("tanggal").toLocalDate();
+                LocalTime waktuMasuk = result.getTime("waktuMasuk").toLocalTime();
+                LocalTime waktuKeluar = result.getTime("waktuKeluar").toLocalTime();
+                data[i][0] = idpegawai;
+                data[i][1] = nama;
+                data[i][2] = jabatan;
+                data[i][3] = tanggal.toString();
+                data[i][4] = waktuMasuk.toString();
+                data[i][5] = waktuKeluar.toString();
+                i++;
+            }
+            statement.close();
+        }catch(SQLException e){
+            Logger.getLogger(EmployeeDao.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return data;
+    }
+    
+    @Override
+    public String[][] getTodayDataLogManager(int row){
+        String sql = "SELECT * FROM ManagerRecordKehadiran";
+        EmployeeDao dao = new EmployeeDao();
+        String data[][] = new String[row][6];
+        
+        int i = 0;
+        try(Statement statement = DBConnection.getConnection().createStatement()){
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()){
+                String idpegawai = result.getString("idManager");
+                String nama = dao.getManager(idpegawai).getNamaEmployee();
+                String jabatan = dao.getManager(idpegawai).getNamaJabatan();
+                LocalDate tanggal = result.getDate("tanggal").toLocalDate();
+                LocalTime waktuMasuk = result.getTime("waktuMasuk").toLocalTime();
+                LocalTime waktuKeluar = result.getTime("waktuKeluar").toLocalTime();
+                LocalDate now = LocalDate.now();
+                if(tanggal.equals(now)){
+                    data[i][0] = idpegawai;
+                    data[i][1] = nama;
+                    data[i][2] = jabatan;
+                    data[i][3] = tanggal.toString();
+                    data[i][4] = waktuMasuk.toString();
+                    data[i][5] = waktuKeluar.toString();
+                    i++;
+                }
+            }
+            statement.close();
+        }catch(SQLException e){
+            Logger.getLogger(EmployeeDao.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return data;
+    }
+    @Override
+    public int getTodayLogSizeManager(){
+        String sql;
+        int i = 0;
+        sql = "SELECT * FROM ManagerRecordKehadiran";
+        try(Statement statement = DBConnection.getConnection().createStatement()){
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()){
+               
+                LocalDate tanggal = result.getDate("tanggal").toLocalDate();
+                LocalDate now = LocalDate.now();
+                if(tanggal.equals(now)){
+                    i++;
+                }
+            }
+            statement.close();
+        }catch(SQLException e){
+            Logger.getLogger(EmployeeDao.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return i;
+    }
+    
+    @Override
+    public int getTodayLogSizePegawai(){
+        String sql;
+        int i = 0;
+        sql = "SELECT * FROM ManagerRecordKehadiran";
+        try(Statement statement = DBConnection.getConnection().createStatement()){
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()){
+                LocalDate tanggal = result.getDate("tanggal").toLocalDate();
+                LocalDate now = LocalDate.now();
+                if(tanggal.equals(now)){
+                    System.out.println("tes");
+                    i++;
+                }
+            }
+            statement.close();
+        }catch(SQLException e){
+            Logger.getLogger(EmployeeDao.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return i;
+    }
+    
+    @Override
+    public String[][] getTodayDataLog(int row){
+        String sql = "SELECT * FROM PegawaiRecordKehadiran";
+        EmployeeDao dao = new EmployeeDao();
+        String data[][] = new String[row][6];
+        System.out.println(row);
+        int i = 0;
+        try(Statement statement = DBConnection.getConnection().createStatement()){
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()){
+                String idpegawai = result.getString("idPegawai");
+                String nama = dao.getPegawai(idpegawai).getNamaEmployee();
+                String jabatan = dao.getPegawai(idpegawai).getNamaJabatan();
+                LocalDate tanggal = result.getDate("tanggal").toLocalDate();
+                LocalTime waktuMasuk = result.getTime("waktuMasuk").toLocalTime();
+                LocalTime waktuKeluar = result.getTime("waktuKeluar").toLocalTime();
+                LocalDate now = LocalDate.now();
+                if(tanggal.equals(now)){
+                    data[i][0] = idpegawai;
+                    data[i][1] = nama;
+                    data[i][2] = jabatan;
+                    data[i][3] = tanggal.toString();
+                    data[i][4] = waktuMasuk.toString();
+                    data[i][5] = waktuKeluar.toString();
+                    i++;
+                }
+                
+                
+            }
+            statement.close();
+        }catch(SQLException e){
+            Logger.getLogger(EmployeeDao.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return data;
     }
 }

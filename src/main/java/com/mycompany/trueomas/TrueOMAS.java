@@ -43,6 +43,7 @@ public class TrueOMAS {
 //        dao1.updateKartuKehadiran(man.kartuKehadiran, man.getIdEmployee(), man.getNamaJabatan());
 //        System.out.println(man.kartuKehadiran.getWaktu_masuk().toString());
 //        Tapping.Tap(man);
+        
           ControllerApp ck = new ControllerApp();
           ck.showLogKehadiran();
         //Pegawai peg = new Pegawai("111","Irqo",20,"08132213122","Banjar");

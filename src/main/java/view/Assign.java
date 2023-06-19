@@ -202,7 +202,7 @@ public class Assign extends javax.swing.JFrame {
         });
 
         assign.setBackground(new java.awt.Color(153, 153, 153));
-        assign.setText("Assign");
+        assign.setText("List Lembur");
 
         jButton3.setText("Employee");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -275,7 +275,7 @@ public class Assign extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutActionPerformed
 
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
-        ck.fillDataPegawai(jList1);
+        ck.fillDataLembur(jList1);
     }//GEN-LAST:event_refreshActionPerformed
 
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged

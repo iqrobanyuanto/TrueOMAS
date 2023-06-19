@@ -104,7 +104,7 @@ public class Administrator {
         KumpulanEmployee ke = new KumpulanEmployee();
         System.out.println("Masukkan nama pengizin dan id pegawai: ");
         Pegawai e = ke.getPegawai(idEmployee);
-        e.statusLembur.setStatusLembur(pengizin, waktuLembur);
+//        e.statusLembur.setStatusLembur(pengizin, waktuLembur);
         e.recordKerja.tambahTotalLembur(waktuLembur);
         System.out.println("Status lembur "+ e.getNamaEmployee()+" telah aktif");
     }

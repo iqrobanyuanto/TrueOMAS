@@ -290,7 +290,7 @@ public class EmployeeManager extends javax.swing.JFrame {
             }
         });
 
-        assign.setText("Assign");
+        assign.setText("List Lembur");
         assign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 assignActionPerformed(evt);
