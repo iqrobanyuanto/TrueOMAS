@@ -89,8 +89,10 @@ public class ControllerApp {
         for (Pegawai pgw : listPgw) {
             TiketLembur lembur = DaoLembur.getTiketLembur(pgw.getIdEmployee());
 
-            if(pgw.statusLembur.getStatusTiket() == true){
+            if(lembur.getStatusTiket() == true){
                 model.addElement(pgw.getNamaEmployee());
+            }else{
+                model.removeElement(pgw.getNamaEmployee());
             }
         }
         jlist.setModel(model);
@@ -472,7 +474,7 @@ public class ControllerApp {
             DAOgaji.insertPerhitunganGaji(pgw.statusGaji, pgw.getIdEmployee(), pgw.getNamaJabatan());
             DaoKehadiran.insertKartuKehadiran(pgw.kartuKehadiran, pgw.getIdEmployee(), pgw.getNamaEmployee());
             DaoWaktu.insertPerhitunganWaktu(pgw.recordKerja, pgw.getIdEmployee(), pgw.getNamaJabatan());
-        }else{
+        }else if(dialogAddPegawai.getJabatan().getText().equals("Manager")){
             m = new Manager(dialogAddPegawai.getId().getText(), dialogAddPegawai.getNama().getText(), 
                         Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), 
                             dialogAddPegawai.getAlamat().getText());
