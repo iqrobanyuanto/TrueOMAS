@@ -104,24 +104,25 @@ public class ControllerApp {
         Pegawai peg = listPgw.get(selectedIndex);
         
         TiketLembur lembur = DaoLembur.getTiketLembur(peg.getIdEmployee());
-        var waktuLembur = DaoWaktu.getPerhitunganWaktu(peg.getIdEmployee(), peg.getNamaJabatan());
-        
+
         String pengizin = lembur.getPengizin();
-        int sJamLembur = waktuLembur.getTotalLembur();
+        String jamMulai = lembur.getWaktuMulai().toString();
+        String jamSelesai = lembur.getWaktuAkhir().toString();
         
         peg.statusLembur.setStatusTiket(lembur.getStatusTiket());
         peg.statusLembur.setPengizin(pengizin);
-        peg.recordKerja.setTotalLembur(sJamLembur);
 
         if (selectedIndex >= 0) {
             Pegawai pgw = listPgw.get(selectedIndex);
             assign.getjLabel4().setText(pgw.getNamaEmployee());
+            assign.getjLabel6().setText(jamMulai);
+            assign.getjLabel10().setText(jamSelesai);
             assign.getjLabel8().setText(pengizin);
-            assign.getjLabel6().setText(""+sJamLembur);
         } else {
             assign.getjLabel4().setText("");
-            assign.getjLabel8().setText("");
             assign.getjLabel6().setText("");
+            assign.getjLabel10().setText("");
+            assign.getjLabel8().setText("");
         }
     }
     
@@ -295,6 +296,7 @@ public class ControllerApp {
             setGaji.setVisible(true);
             setGaji.setLocationRelativeTo(null);
         } 
+        
     }
     
     //SetGaji Pegawai sesuai input
@@ -466,10 +468,12 @@ public class ControllerApp {
                     Integer.parseInt(dialogAddPegawai.getUmur().getText()), dialogAddPegawai.getNoHP().getText(), 
                         dialogAddPegawai.getAlamat().getText());
             
-            DaoLembur.insertTiketLembur(pgw.statusLembur, pgw);
+
             
             DaoEmp.insertEmployee(pgw.getIdEmployee(), pgw.getNamaEmployee(), pgw.getUmur(), pgw.getNomorTelepon(), 
                         pgw.getAlamat(), pgw.getNamaJabatan());
+            
+            DaoLembur.insertTiketLembur(pgw.statusLembur, pgw);
             
             DAOgaji.insertPerhitunganGaji(pgw.statusGaji, pgw.getIdEmployee(), pgw.getNamaJabatan());
             DaoKehadiran.insertKartuKehadiran(pgw.kartuKehadiran, pgw.getIdEmployee(), pgw.getNamaEmployee());
