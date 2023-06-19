@@ -24,7 +24,7 @@ public class TiketLemburDao implements InterfaceDaoTiketLembur{
     public void insertTiketLembur(TiketLembur statusLembur, String idPegawai){
         String sql;
         String info;
-        sql = "INSERT INTO PegawaiStatusLembur(idPegawai, namaPegawai, tanggalLembur, waktuMulai, waktuAkhir, pengizin, statusTiket) VALUES(?,?,?,?,?)";
+        sql = "INSERT INTO PegawaiStatusLembur(idPegawai, namaPegawai, tanggalLembur, waktuMulai, waktuAkhir, pengizin, statusTiket) VALUES(?,?,?,?,?,?,?)";
         info = "Data TiketLembur Pegawai baru dengan id "+ idPegawai +", telah ditambahkan ke dalam database!";
          try (PreparedStatement statement = DBConnection.getConnection().prepareStatement(sql)) {
              statement.setString(1, idPegawai);
