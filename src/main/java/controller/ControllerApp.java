@@ -525,9 +525,18 @@ public class ControllerApp {
     public void DeleteEmployee(boolean isManager, int selectedIndex){
         if(isManager){
             Manager m = listMngr.get(selectedIndex);
+            DaoKehadiran.deleteKartuKehadiran(m.getIdEmployee(), m.getNamaJabatan());
+            DaoWaktu.deletePerhitunganWaktu(m.getIdEmployee(), m.getNamaJabatan());
+            DAOgaji.deletePerhitunganGaji(m.getIdEmployee(), m.getNamaJabatan());
+            DaoRecordKehadiran.deleteAllLog(m);
             DaoEmp.deleteEmployee(m.getIdEmployee(), "Manager");
         }else{
             Pegawai pgw = listPgw.get(selectedIndex);
+            DaoLembur.deleteTiketLembur(pgw.getIdEmployee());
+            DaoKehadiran.deleteKartuKehadiran(pgw.getIdEmployee(), pgw.getNamaJabatan());
+            DaoWaktu.deletePerhitunganWaktu(pgw.getIdEmployee(), pgw.getNamaJabatan());
+            DAOgaji.deletePerhitunganGaji(pgw.getIdEmployee(), pgw.getNamaJabatan());
+            DaoRecordKehadiran.deleteAllLog(pgw);
             DaoEmp.deleteEmployee(pgw.getIdEmployee(), "Pegawai");
         }
     }

@@ -22,7 +22,7 @@ public class TrueOMAS {
 
     public static void main(String[] args) {
         
-//        EmployeeDao dao = new EmployeeDao();
+        EmployeeDao dao = new EmployeeDao();
 //        KehadiranDao dao1 = new KehadiranDao();
 //        PerhitunganGajiDao dao2 = new PerhitunganGajiDao();
 //        PerhitunganWaktuDao dao3 = new PerhitunganWaktuDao();
@@ -44,8 +44,10 @@ public class TrueOMAS {
 //        System.out.println(man.kartuKehadiran.getWaktu_masuk().toString());
 //        Tapping.Tap(man);
         
+          
+          //Tapping.Tap(dao.getPegawai("144"));
           ControllerApp ck = new ControllerApp();
-          ck.showLogKehadiran();
+          ck.showLogin();
         //Pegawai peg = new Pegawai("111","Irqo",20,"08132213122","Banjar");
 //        Pegawai peg = dao.getPegawai("111");
 //        peg.statusLembur = dao5.getTiketLembur("111");
