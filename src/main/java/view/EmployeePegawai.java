@@ -324,7 +324,7 @@ public class EmployeePegawai extends javax.swing.JFrame {
                 .addGap(58, 58, 58))
         );
 
-        assign.setText("Assign");
+        assign.setText("List Lembur");
         assign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 assignActionPerformed(evt);
@@ -455,7 +455,9 @@ public class EmployeePegawai extends javax.swing.JFrame {
     private void setLemburActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setLemburActionPerformed
         ck.showSetLembur();
     }//GEN-LAST:event_setLemburActionPerformed
-
+    private void Button_PegawaiActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        // TODO add your handling code here:
+    }      
     /**
      * @param args the command line arguments
      */

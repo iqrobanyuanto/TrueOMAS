@@ -62,7 +62,7 @@ public class LogKehadiran extends javax.swing.JFrame {
         logkehadiran.setBackground(new java.awt.Color(153, 153, 153));
         logkehadiran.setText("Log Kehadiran");
 
-        assign.setText("Assign");
+        assign.setText("List Lembur");
         assign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 assignActionPerformed(evt);
@@ -99,7 +99,6 @@ public class LogKehadiran extends javax.swing.JFrame {
         });
 
         jButton3.setText("All");
-        jButton3.setActionCommand("All");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);

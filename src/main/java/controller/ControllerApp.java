@@ -38,6 +38,7 @@ public class ControllerApp {
     AkunAdminDao DaoAdmin = new AkunAdminDao();
     PerhitunganWaktuDao DaoWaktu = new PerhitunganWaktuDao();
     TiketLemburDao DaoLembur = new TiketLemburDao();
+    RecordKehadiranDao DaoRecordKehadiran = new RecordKehadiranDao();
     
     private static Login frameLogin = new Login();
     private static EmployeePegawai framePegawai = new EmployeePegawai();
@@ -123,6 +124,19 @@ public class ControllerApp {
             assign.getjLabel8().setText("");
             assign.getjLabel6().setText("");
         }
+    }
+    
+    public void fillDataLembur(JList jlist){
+        DefaultListModel model = new DefaultListModel();
+        listPgw = DaoEmp.getAllPegawai();
+        TiketLembur status; 
+        for (Pegawai e: listPgw){
+            status = DaoLembur.getTiketLembur(e.getIdEmployee());
+            if(status.getStatusTiket() == true){
+                model.addElement(e.getNamaEmployee());
+            }
+        }
+        jlist.setModel(model);
     }
     
  //###############################################################################################################################################

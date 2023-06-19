@@ -472,7 +472,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="assign">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Assign"/>
+        <Property name="text" type="java.lang.String" value="List Lembur"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="assignActionPerformed"/>
