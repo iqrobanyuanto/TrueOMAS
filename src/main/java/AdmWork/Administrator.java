@@ -99,7 +99,7 @@ public class Administrator {
             System.out.println("Nama Jabatan Employee Tidak valid");
         }
     }
-
+/*
     public void assignLembur(String idEmployee, int waktuLembur, String pengizin){
         KumpulanEmployee ke = new KumpulanEmployee();
         System.out.println("Masukkan nama pengizin dan id pegawai: ");
@@ -108,7 +108,7 @@ public class Administrator {
         e.recordKerja.tambahTotalLembur(waktuLembur);
         System.out.println("Status lembur "+ e.getNamaEmployee()+" telah aktif");
     }
-    
+*/
     public void resetStatusLembur(String idEmployee){
         KumpulanEmployee ke = new KumpulanEmployee();
         Pegawai e = ke.getPegawai(idEmployee);

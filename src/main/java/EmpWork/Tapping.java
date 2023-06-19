@@ -49,7 +49,7 @@ public class Tapping {
                         if( p.statusLembur.getTanggal().equals(LocalDate.now()) && LocalTime.now().isAfter(p.statusLembur.getWaktuMulai()) && LocalTime.now().isBefore(p.statusLembur.getWaktuAkhir())){
                             prosesTambahTotalJamLembur(p);
                             p.statusLembur.resetStatus();
-                            tkt.updateTiketLembur(p.statusLembur, p.getIdEmployee());
+                            tkt.updateTiketLembur(p.statusLembur, p);
                         }else{
                             System.out.println("Waktu Lembur "+ p.getIdEmployee()+" belum dimulai");
                         }                
