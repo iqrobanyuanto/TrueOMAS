@@ -4,6 +4,7 @@
  */
 package EmpWork;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**
@@ -28,8 +29,8 @@ public class Pegawai extends Employee{
          return nama_jabatan;
      }
      
-     public void assignLembur(String pengizin, int lamalembur){
-         statusLembur.setStatusLembur(pengizin, lamalembur);
+     public void assignLembur(String pengizin, LocalDate tanggalLembur, LocalTime waktuMulai, LocalTime waktuBerakhir){
+         statusLembur.setStatusLembur(pengizin, tanggalLembur, waktuMulai, waktuBerakhir);
      }
      
      @Override
@@ -44,7 +45,7 @@ public class Pegawai extends Employee{
         this.kartuKehadiran.showStandarJamKerja();
         this.recordKerja.showDescJamKerja();
         this.showListKehadiran();
-        this.statusLembur.showTiketDesc();
+        //this.statusLembur.showTiketDesc();
      }
      //test Liyan
      public String getDataPegawai(){

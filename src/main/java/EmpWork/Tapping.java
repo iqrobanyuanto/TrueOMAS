@@ -12,7 +12,7 @@ import Dao.RecordKehadiranDao;
 public class Tapping {
     public static void Tap(Employee q){
         try{
-            if(q == null){
+            if(q == null){  
                 throw new IllegalArgumentException("Employee tidak ditemukan");
             }
             KehadiranDao DBkehadiran = new KehadiranDao();
@@ -29,12 +29,11 @@ public class Tapping {
                 a.insertLog(e, q);
                 prosesTambahTotalJamKerja(q);
                 DBkehadiran.updateKartuKehadiran(q.kartuKehadiran, q.getIdEmployee(), q.getNamaJabatan());
-                
             }
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
-    }
+    }   
     private static void prosesTambahTotalJamKerja(Employee emp){
         if(emp.kartuKehadiran.getWaktu_masuk().getHour() > emp.kartuKehadiran.getStandarMasuk().getHour()){
              emp.recordKerja.tambahTotalTerlambat(emp.kartuKehadiran.getWaktu_masuk().getHour() - emp.kartuKehadiran.getStandarMasuk().getHour());

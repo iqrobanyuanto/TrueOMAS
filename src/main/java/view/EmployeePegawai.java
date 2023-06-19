@@ -60,6 +60,7 @@ public class EmployeePegawai extends javax.swing.JFrame {
         Deskrip_Standar1 = new javax.swing.JLabel();
         Deskrip_Standar2 = new javax.swing.JLabel();
         Deskrip_Standar3 = new javax.swing.JLabel();
+        setLembur = new javax.swing.JButton();
         assign = new javax.swing.JButton();
         logkehadiran = new javax.swing.JButton();
         employee = new javax.swing.JButton();
@@ -205,6 +206,11 @@ public class EmployeePegawai extends javax.swing.JFrame {
 
         Button_setJam.setBackground(new java.awt.Color(102, 255, 102));
         Button_setJam.setText("Set Jam");
+        Button_setJam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_setJamActionPerformed(evt);
+            }
+        });
 
         Deskrip_Pegawai.setText("Jabatan :");
         Deskrip_Pegawai.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -226,6 +232,14 @@ public class EmployeePegawai extends javax.swing.JFrame {
 
         Deskrip_Standar3.setText("Total Lembur  :");
         Deskrip_Standar3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        setLembur.setBackground(new java.awt.Color(102, 255, 102));
+        setLembur.setText("Set Lembur");
+        setLembur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setLemburActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -260,8 +274,12 @@ public class EmployeePegawai extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel6))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(Deskrip_Standar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Deskrip_Standar3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Deskrip_Standar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Deskrip_Standar3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(setLembur)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -282,11 +300,6 @@ public class EmployeePegawai extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(Button_setGaji)
-                        .addGap(90, 90, 90)
-                        .addComponent(Button_setJam)
-                        .addGap(37, 37, 37))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Deskrip_Gaji)
@@ -296,11 +309,19 @@ public class EmployeePegawai extends javax.swing.JFrame {
                         .addComponent(Deskrip_Standar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Deskrip_Standar1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(Button_setGaji)
+                        .addGap(90, 90, 90)
+                        .addComponent(Button_setJam)
+                        .addGap(21, 21, 21)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(setLembur)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(Deskrip_Standar2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Deskrip_Standar2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Deskrip_Standar3)
-                .addGap(46, 46, 46))
+                        .addComponent(Deskrip_Standar3)))
+                .addGap(58, 58, 58))
         );
 
         assign.setText("Assign");
@@ -412,6 +433,7 @@ public class EmployeePegawai extends javax.swing.JFrame {
 
     private void Button_setGajiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_setGajiActionPerformed
         // TODO add your handling code here:
+        ck.showSetGajiPegawai();
     }//GEN-LAST:event_Button_setGajiActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -425,9 +447,14 @@ public class EmployeePegawai extends javax.swing.JFrame {
         ck.showemployeeManager();
     }//GEN-LAST:event_Button_ManagerActionPerformed
 
-    private void Button_PegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_PegawaiActionPerformed
+    private void Button_setJamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_setJamActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Button_PegawaiActionPerformed
+        ck.showSetkehadiranPegawai();
+    }//GEN-LAST:event_Button_setJamActionPerformed
+
+    private void setLemburActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setLemburActionPerformed
+        ck.showSetLembur();
+    }//GEN-LAST:event_setLemburActionPerformed
 
     /**
      * @param args the command line arguments
@@ -464,6 +491,7 @@ public class EmployeePegawai extends javax.swing.JFrame {
     private javax.swing.JList<String> listPegawai;
     private javax.swing.JButton logkehadiran;
     private javax.swing.JButton logout;
+    private javax.swing.JButton setLembur;
     // End of variables declaration//GEN-END:variables
 
     public javax.swing.JLabel getDeskrip_Gaji() {
