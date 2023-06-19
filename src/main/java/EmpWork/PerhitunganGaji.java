@@ -20,9 +20,8 @@ public class PerhitunganGaji {
         return standargaji;
     }
     
-    public int hitungTotalGaji_1Bulan(int totalLembur, int totalTerlambat, int totalJamKerja){
+    public void hitungTotalGaji_1Bulan(int totalLembur, int totalTerlambat, int totalJamKerja){
         totalGaji = standargaji * (totalLembur + (totalTerlambat - totalJamKerja));
-        return totalGaji;
     }
     
     public void setTotalGaji(int totalgaji){
