@@ -29,8 +29,8 @@ public class Pegawai extends Employee{
          return nama_jabatan;
      }
      
-     public void assignLembur(String pengizin, int lamalembur, LocalDate tanggalLembur, LocalTime waktuMulai, LocalTime waktuBerakhir){
-         statusLembur.setStatusLembur(pengizin, lamalembur, tanggalLembur, waktuMulai, waktuBerakhir);
+     public void assignLembur(String pengizin, LocalDate tanggalLembur, LocalTime waktuMulai, LocalTime waktuBerakhir){
+         statusLembur.setStatusLembur(pengizin, tanggalLembur, waktuMulai, waktuBerakhir);
      }
      
      @Override

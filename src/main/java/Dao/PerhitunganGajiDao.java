@@ -45,10 +45,10 @@ public class PerhitunganGajiDao implements InterfaceDaoPerhitunganGaji{
         String sql;
         String info;
         if(namaJabatan.equals("Manager")){
-            sql = "UPDATE ManagerRecordStatusGaji SET standarGaji = ?, totalGaji = ? WHERE idManager = " + idEmployee;
+            sql = "UPDATE ManagerRecordStatusGaji SET standarGaji = ?, totalGaji = ? WHERE idManager = '" + idEmployee +"'";
             info = "Data PerhitunganGaji Manager dengan id "+ idEmployee +" telah diupdate ke dalam database!";
         }else{
-            sql = "UPDATE PegawaiRecordStatusGaji SET standarGaji = ?, totalGaji = ? WHERE idPegawai = " + idEmployee;
+            sql = "UPDATE PegawaiRecordStatusGaji SET standarGaji = ?, totalGaji = ? WHERE idPegawai = '" + idEmployee+"'";
             info = "Data PerhitunganGaji Pegawai dengan id "+ idEmployee +" telah diupdate ke dalam database!";
         }
          try (PreparedStatement statement = DBConnection.getConnection().prepareStatement(sql)) {
@@ -85,9 +85,9 @@ public class PerhitunganGajiDao implements InterfaceDaoPerhitunganGaji{
         String sql;
         PerhitunganGaji statusGaji = new PerhitunganGaji();
         if(namaJabatan.equals("Manager")){
-            sql = "SELECT * FROM ManagerRecordStatusGaji WHERE idManager = " + idEmployee;
+            sql = "SELECT * FROM ManagerRecordStatusGaji WHERE idManager = '" + idEmployee+"'";
         }else{
-            sql = "SELECT * FROM PegawaiRecordStatusGaji WHERE idPegawai = " + idEmployee;
+            sql = "SELECT * FROM PegawaiRecordStatusGaji WHERE idPegawai = '" + idEmployee+"'";
         }
         try(Statement statement = DBConnection.getConnection().createStatement()){
             ResultSet result = statement.executeQuery(sql);

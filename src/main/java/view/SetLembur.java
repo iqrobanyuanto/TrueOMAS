@@ -205,12 +205,12 @@ public class SetLembur extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(day.getText() == null && akhirJam.getText() == null && menitAkhir.getText() == null && month.getText() == null && mulaiJam.getText() == null && 
+        if(day.getText().equals("") && akhirJam.getText() == null && menitAkhir.getText() == null && month.getText() == null && mulaiJam.getText() == null && 
                 mulaiMenit.getText() == null && pengizin.getText() == null && waktuMulai.getText() == null && year.getText() == null ){
-        JDialog errorDialog = new JDialog(this, "Not enough input!", true);
-        errorDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        errorDialog.setSize(300, 150);
-        errorDialog.setLocationRelativeTo(this);
+            JDialog errorDialog = new JDialog(this, "Not enough input!", true);
+            errorDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            errorDialog.setSize(300, 150);
+            errorDialog.setLocationRelativeTo(this);
         }else{
             ck.setLembur();
         }

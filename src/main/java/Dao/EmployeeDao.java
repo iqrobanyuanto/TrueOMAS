@@ -91,7 +91,7 @@ public class EmployeeDao implements InterfaceDaoEmployee{
     public Pegawai getPegawai(String id){
         Pegawai pegawai = null;
         String sql;
-        sql = "SELECT * FROM Pegawai WHERE idPegawai = " + id;
+        sql = "SELECT * FROM Pegawai WHERE idPegawai = '" + id+"'";
          try (Statement statement = DBConnection.getConnection().createStatement()) {
              ResultSet result = statement.executeQuery(sql);
              if(result.next()){

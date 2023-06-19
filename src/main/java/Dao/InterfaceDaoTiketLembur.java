@@ -3,14 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package Dao;
+import EmpWork.Pegawai;
 import EmpWork.TiketLembur;
 /**
  *
  * @author Iqro Banyuanto
  */
 public interface InterfaceDaoTiketLembur {
-    public abstract void insertTiketLembur(TiketLembur statusLembur, String idPegawai);
+    public abstract void insertTiketLembur(TiketLembur statusLembur, Pegawai peg);
     public abstract void deleteTiketLembur(String idPegawai);
-    public abstract void updateTiketLembur(TiketLembur statusLembur, String idPegawai);
+    public abstract void updateTiketLembur(TiketLembur statusLembur, Pegawai peg);
     public abstract TiketLembur getTiketLembur(String idPegawai);
 }
