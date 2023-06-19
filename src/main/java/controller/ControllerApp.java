@@ -100,7 +100,7 @@ public class ControllerApp {
 
     //update list pegawai di GUI Assign
     public void updateFormAssign() {
-        int selectedIndex = frameManager.getListManager().getSelectedIndex();
+        int selectedIndex = assign.getjList1().getSelectedIndex();
         Pegawai peg = listPgw.get(selectedIndex);
         
         TiketLembur lembur = DaoLembur.getTiketLembur(peg.getIdEmployee());
@@ -116,12 +116,12 @@ public class ControllerApp {
         if (selectedIndex >= 0) {
             Pegawai pgw = listPgw.get(selectedIndex);
             assign.getjLabel4().setText(pgw.getNamaEmployee());
-            assign.getjLabel6().setText(pengizin);
-            assign.getjLabel8().setText(""+sJamLembur);
+            assign.getjLabel8().setText(pengizin);
+            assign.getjLabel6().setText(""+sJamLembur);
         } else {
             assign.getjLabel4().setText("");
-            assign.getjLabel6().setText("");
             assign.getjLabel8().setText("");
+            assign.getjLabel6().setText("");
         }
     }
     
