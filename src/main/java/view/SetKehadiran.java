@@ -13,12 +13,14 @@ import javax.swing.JTextField;
  */
 public class SetKehadiran extends javax.swing.JDialog {
     ControllerApp ck = new ControllerApp();
+    boolean isManager;
     /**
      * Creates new form SetKehadiran
      */
-    public SetKehadiran(java.awt.Frame parent, boolean modal) {
+    public SetKehadiran(java.awt.Frame parent, boolean modal, boolean isManager) {
         super(parent, modal);
         initComponents();
+        this.isManager = isManager;
     }
 
     /**
@@ -162,7 +164,11 @@ public class SetKehadiran extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ck.setKehadiranPegawai();
+        if(isManager){
+            ck.setKehadiranManager();
+        }else{
+            ck.setKehadiranPegawai();
+        }
         this.setVisible(false);
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -170,44 +176,6 @@ public class SetKehadiran extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SetKehadiran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SetKehadiran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SetKehadiran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SetKehadiran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                SetKehadiran dialog = new SetKehadiran(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

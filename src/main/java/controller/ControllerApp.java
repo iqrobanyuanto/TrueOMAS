@@ -46,7 +46,7 @@ public class ControllerApp {
     private static Assign assign = new Assign();
     private static SetGaji setGaji = new SetGaji(framePegawai,true); //Frame SetGaji
     private static LogKehadiran frameLog = new LogKehadiran();
-    private static SetKehadiran setKehadiran = new SetKehadiran(framePegawai,true);
+    private static SetKehadiran setKehadiran;
     private static AddPegawai dialogAddPegawai = new AddPegawai(framePegawai,true);
     private static LogKehadiran frameKehadiran = new LogKehadiran();
     private static RemovePegawai dialogDeletePegawai;
@@ -351,6 +351,7 @@ public class ControllerApp {
     public void showSetkehadiranPegawai(){
         int selectedIndex = framePegawai.getListPegawai().getSelectedIndex();
         if(selectedIndex >= 0){
+            setKehadiran = new SetKehadiran(framePegawai, true, false);
             setKehadiran.setVisible(true);
             setKehadiran.setLocationRelativeTo(null);
         }    
@@ -360,6 +361,7 @@ public class ControllerApp {
     public void showSetkehadiranManager(){
         int selectedIndex = frameManager.getListManager().getSelectedIndex();
         if(selectedIndex >= 0){
+            setKehadiran = new SetKehadiran(frameManager, true, true);
             setKehadiran.setVisible(true);
             setKehadiran.setLocationRelativeTo(null);
         }    
@@ -396,6 +398,7 @@ public class ControllerApp {
         
         setKehadiran.setVisible(false); //Menghilangkan JDialog SetKehadiran
     }
+    
     
     //Set Kehadiran Manager
     public void setKehadiranManager(){
@@ -501,7 +504,7 @@ public class ControllerApp {
                         m.getAlamat(), m.getNamaJabatan());
             
             DAOgaji.insertPerhitunganGaji(m.statusGaji, m.getIdEmployee(), m.getNamaJabatan());
-            DaoKehadiran.insertKartuKehadiran(m.kartuKehadiran, m.getIdEmployee(), m.getNamaEmployee());
+            DaoKehadiran.insertKartuKehadiran(m.kartuKehadiran, m.getIdEmployee(), m.getNamaJabatan());
             DaoWaktu.insertPerhitunganWaktu(m.recordKerja, m.getIdEmployee(), m.getNamaJabatan());
         }
         
@@ -517,7 +520,6 @@ public class ControllerApp {
             dialogDeletePegawai.getjLabel1().setText("Apakah anda ingin menghapus "+listPgw.get(selectedIndex).getNamaEmployee()+" dari database?");
             dialogDeletePegawai.setVisible(true);
         }
-        
     }
     //Menghapus Employee
     public void DeleteEmployee(boolean isManager, int selectedIndex){
